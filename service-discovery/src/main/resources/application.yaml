@@ -1,0 +1,14 @@
+server:
+  port: 9_000
+
+spring:
+  application:
+    name: service-discovery
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9000/eureka}
+  instance:
+    preferIpAddress: true
+

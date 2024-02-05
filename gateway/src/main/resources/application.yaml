@@ -1,0 +1,29 @@
+server:
+  port: 8_000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9000/eureka}
+  instance:
+    preferIpAddress: true
+
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: room-service
+          uri: lb://room-service:10000/api/rooms
+          predicates:
+            - Path=/api/rooms
+        - id: device-service
+          uri: lb://device-service:10001/api/devices
+          predicates:
+            - Path=/api/devices
+        - id: device-command-service
+          uri: lb://device-command-service/api/device-commands
+          predicates:
+            - Path=/api/device-commands

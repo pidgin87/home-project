@@ -1,0 +1,13 @@
+type Query {
+    getRemoteDeviceInfo(remoteUid: String!): RemoteDeviceInfo
+}
+
+type RemoteDeviceInfo {
+    name: String!
+    status: [RemoteDeviceStatus]
+}
+
+type RemoteDeviceStatus {
+    code: String
+    value: String
+}

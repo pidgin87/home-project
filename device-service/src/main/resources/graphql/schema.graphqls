@@ -1,0 +1,32 @@
+type Query {
+    getDevices: [Device]
+    getDevicesByRoom(roomId: String): [Device]
+    getDevice(deviceId: String): DeviceInfo
+    getProducts: [Product]
+}
+
+type DeviceInfo {
+    id: String
+    name: String
+    roomId: String
+    type: String
+    statuses: [DeviceStatus]
+}
+
+type DeviceStatus {
+    code: String
+    value: String
+}
+
+type Device {
+    id: String
+    name: String
+    roomId: String
+    type: String
+}
+
+type Product {
+     id: String
+     uid: String
+     name: String
+}

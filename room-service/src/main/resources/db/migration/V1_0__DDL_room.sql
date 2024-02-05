@@ -1,0 +1,4 @@
+create table ROOM (
+    id   VARCHAR(36) PRIMARY KEY NOT NULL,
+    name VARCHAR(50) UNIQUE NOT NULL
+);

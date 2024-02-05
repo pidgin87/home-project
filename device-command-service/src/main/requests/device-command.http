@@ -1,0 +1,14 @@
+###
+GRAPHQL http://localhost:10002/api/device-commands
+
+query  getDeviceInfo($remoteUid: String) {
+    getDeviceInfo(remoteUid: $remoteUid) {
+        name
+    }
+}
+
+{
+    "remoteUid": "ebd2fd6hbjkmr75s"
+}
+
+###

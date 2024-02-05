@@ -1,0 +1,18 @@
+GRAPHQL http://localhost:10001/api/devices
+
+query  {
+    devices {
+        id
+    }
+}
+
+###
+
+GRAPHQL http://localhost:8000/api/devices
+
+query  {
+    devices {
+        id
+    }
+}
+

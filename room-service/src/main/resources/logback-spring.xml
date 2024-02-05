@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true">
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.68.102:5000</destination>
+        <addDefaultStatusListener>false</addDefaultStatusListener>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>{"app_name": "room-service", "app_version":"1.0.0", "hostname": "${HOSTNAME}"}</pattern>
+                </pattern>
+                <mdc/>
+                <timestamp/>
+                <message/>
+                <threadName/>
+                <logLevel/>
+                <callerData/>
+                <stackTrace/>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+
+</configuration>
