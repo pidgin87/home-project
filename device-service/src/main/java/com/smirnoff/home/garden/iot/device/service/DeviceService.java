@@ -14,5 +14,7 @@ public interface DeviceService {
 
     List<DeviceEntity> getAll(String roomId);
 
+    List<DeviceEntity> getAll(List<String> roomIds);
+
     List<DeviceStatus> getStatuses(Device device);
 }

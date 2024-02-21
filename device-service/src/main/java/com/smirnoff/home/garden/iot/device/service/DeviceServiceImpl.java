@@ -6,6 +6,7 @@ import com.smirnoff.home.garden.iot.device.persistance.model.DeviceEntity;
 import com.smirnoff.home.garden.iot.device.persistance.repository.DeviceEntityRepository;
 import lombok.AllArgsConstructor;
 import org.apache.camel.ProducerTemplate;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,6 +31,13 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public List<DeviceEntity> getAll(String roomId) {
         return deviceEntityRepository.findByRoomId(roomId);
+    }
+
+    @Override
+    public List<DeviceEntity> getAll(List<String> roomIds) {
+        return deviceEntityRepository.findByRoomIdInOrderByRoomIdAsc(
+                roomIds, Sort.by(Sort.Direction.ASC, "roomId")
+        );
     }
 
     @Override

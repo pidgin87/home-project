@@ -1,6 +1,7 @@
 type Query {
     getDevices: [Device]
     getDevicesByRoom(roomId: String): [Device]
+    getDevicesByRooms(roomIds: [String]): [Device]
     getDevice(deviceId: String): DeviceInfo
     getProducts: [Product]
 }

@@ -1,0 +1,7 @@
+query GetDeviceListByRooms ($roomIds: [String!]) {
+    getDevicesByRooms(roomIds: $roomIds) {
+        id
+        name
+        roomId
+    }
+}

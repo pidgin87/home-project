@@ -40,7 +40,6 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
-
     annotationProcessor("org.mapstruct:mapstruct-processor:${property("mapStruct.version")}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
