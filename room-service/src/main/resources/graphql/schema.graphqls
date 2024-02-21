@@ -1,5 +1,6 @@
 type Query {
     rooms: [Room]
+    getRoom(roomId: String!): RoomDetail
 }
 
 type Mutation {
@@ -9,4 +10,21 @@ type Mutation {
 type Room {
     id: ID
     name: String
+}
+
+type RoomDetail {
+    id: ID
+    name: String
+    devices: [DeviceDetail]
+}
+
+type DeviceDetail {
+    id: ID
+    name: String
+    statuses: [DeviceStatusDetail]
+}
+
+type DeviceStatusDetail {
+    code: String
+    value: String
 }

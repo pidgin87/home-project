@@ -1,4 +1,4 @@
-package com.smirnoff.home.garden.iot.device.util;
+package com.smirnoff.home.garden.iot.room.util;
 
 import org.apache.camel.util.json.JsonObject;
 

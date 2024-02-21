@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class RemoteDeviceInfo {
+public class RemoteDevice {
     private String id;
     private String name;
     private Boolean online;

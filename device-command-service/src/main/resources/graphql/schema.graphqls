@@ -1,13 +1,15 @@
 type Query {
-    getRemoteDeviceInfo(remoteUid: String!): RemoteDeviceInfo
+    getRemoteDevice(id: String!): RemoteDevice
+    getRemoteDevices(ids: [String]!): [RemoteDevice]
 }
 
-type RemoteDeviceInfo {
+type RemoteDevice {
+    id: String
     name: String!
-    status: [RemoteDeviceStatus]
+    statuses: [RemoteDeviceStatus]
 }
 
 type RemoteDeviceStatus {
-    code: String
+    property: String
     value: String
 }

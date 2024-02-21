@@ -1,12 +1,11 @@
 package com.smirnoff.home.garden.iot.device.command.service;
 
-import com.smirnoff.home.garden.iot.device.command.model.RemoteDeviceInfo;
-import com.smirnoff.home.garden.iot.device.command.model.RemoteDeviceStatus;
+import com.smirnoff.home.garden.iot.device.command.model.RemoteDevice;
 
 import java.util.List;
 
 public interface RemoteDeviceService {
-    RemoteDeviceInfo getDeviceInfo(String remoteUid);
+    RemoteDevice getDevice(String id);
 
-    List<RemoteDeviceStatus> getStatus(String remoteUid);
+    List<RemoteDevice> getDevices(List<String> ids);
 }

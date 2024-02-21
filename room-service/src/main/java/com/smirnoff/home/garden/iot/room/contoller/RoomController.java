@@ -1,7 +1,7 @@
 package com.smirnoff.home.garden.iot.room.contoller;
 
 import com.smirnoff.home.garden.iot.room.persistance.model.RoomEntity;
-import com.smirnoff.home.garden.iot.room.service.RoomService;
+import com.smirnoff.home.garden.iot.room.service.room.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

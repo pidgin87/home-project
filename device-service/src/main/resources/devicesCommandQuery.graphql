@@ -6,3 +6,13 @@ query GetDeviceStatuses ($remoteUid: String!) {
         }
     }
 }
+
+query GetDevicesStatuses ($remoteUids: [String]!) {
+    getRemoteDevices(remoteUids: $remoteUids) {
+        remoteId
+        status {
+            code
+            value
+        }
+    }
+}

@@ -21,12 +21,23 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("org.flywaydb:flyway-core")
+    implementation("org.mapstruct:mapstruct:${property("mapStruct.version")}")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
+
+    //    Camel
+    implementation("org.apache.camel.springboot:camel-spring-boot:${property("camel.version")}")
+    implementation("org.apache.camel:camel-direct:${property("camel.version")}")
+    implementation("org.apache.camel:camel-log:${property("camel.version")}")
+    implementation("org.apache.camel:camel-graphql:${property("camel.version")}")
+    implementation("org.apache.camel:camel-jsonpath:${property("camel.version")}")
+    implementation("org.apache.camel:camel-jackson:${property("camel.version")}")
 
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
+    annotationProcessor("org.mapstruct:mapstruct-processor:${property("mapStruct.version")}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework:spring-webflux")

@@ -25,6 +25,12 @@ public class DeviceController {
     }
 
     @QueryMapping
+    public List<Device> getDeviceList(@Argument List<String> deviceIds) {
+        List<DeviceEntity> devices = deviceService.findAll(deviceIds);
+        return deviceMapper.map(devices);
+    }
+
+    @QueryMapping
     public List<Device> getDevicesByRoom(@Argument String roomId) {
         List<DeviceEntity> devices = deviceService.getAll(roomId);
         return deviceMapper.map(devices);

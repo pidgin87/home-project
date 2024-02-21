@@ -6,10 +6,16 @@ import com.smirnoff.home.garden.iot.device.persistance.model.DeviceEntity;
 import com.smirnoff.home.garden.iot.device.persistance.repository.DeviceEntityRepository;
 import lombok.AllArgsConstructor;
 import org.apache.camel.ProducerTemplate;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static com.smirnoff.home.garden.iot.device.camel.GetDevicesStatusesRoute.GET_DEVICES_STATUSES;
 
 @Component
 @AllArgsConstructor
@@ -33,9 +39,27 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
+    public List<DeviceEntity> getAll(List<String> roomIds) {
+        return deviceEntityRepository.findByRoomIdInOrderByRoomIdAsc(
+                roomIds, Sort.by(Sort.Direction.ASC, "roomId")
+        );
+    }
+
+    @Override
     public List<DeviceStatus> getStatuses(Device device) {
         Object response = producerTemplate
-                .requestBody("direct:get-device-statuses", device.getId());
+                .requestBody(GET_DEVICES_STATUSES, device.getId());
+        return null;
+    }
+
+    @Override
+    public List<DeviceEntity> findAll(List<String> deviceIds) {
+        List<DeviceEntity> devices = deviceEntityRepository.findByIdIn(deviceIds);
+        Map<String, DeviceEntity> remoteDevices = devices.stream().collect(
+                Collectors.toMap(DeviceEntity::getGlobalId, Function.identity())
+        );
+
+        List response = producerTemplate.requestBody(GET_DEVICES_STATUSES, remoteDevices.keySet(), List.class);
         return null;
     }
 }

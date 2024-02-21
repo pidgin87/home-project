@@ -1,16 +1,10 @@
 type Query {
     getDevices: [Device]
+    getDeviceList(deviceIds: [String]!): [Device]
     getDevicesByRoom(roomId: String): [Device]
-    getDevice(deviceId: String): DeviceInfo
+    getDevicesByRooms(roomIds: [String]): [Device]
+    getDevice(deviceId: String): Device
     getProducts: [Product]
-}
-
-type DeviceInfo {
-    id: String
-    name: String
-    roomId: String
-    type: String
-    statuses: [DeviceStatus]
 }
 
 type DeviceStatus {
@@ -23,6 +17,7 @@ type Device {
     name: String
     roomId: String
     type: String
+    statuses: [DeviceStatus]
 }
 
 type Product {
