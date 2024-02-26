@@ -12,6 +12,7 @@ public class Device {
     private String id;
     private String name;
     private String roomId;
+    private String globalId;
     private ProductType type;
     private List<DeviceStatus> statuses;
 }

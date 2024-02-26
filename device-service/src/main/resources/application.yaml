@@ -29,4 +29,4 @@ spring:
 home-garden:
   endpoints:
     room-graphql: http://localhost:8000/api/rooms
-    device-command-graphql: http://localhost:8000/api/device-commands
+    device-command-graphql: http://localhost:10002/api/device-commands

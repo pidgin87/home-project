@@ -19,17 +19,15 @@ public class FindDevicesTimerRoute extends RouteBuilder {
     public void configure() throws Exception {
         from("timer://room-update-timer?period=10000")
                 .routeId("find-devices")
-                .to("graphql:" + roomServiceEndpoint + "?queryFile=roomsQuery.graphql&operationName=GetAllRooms")
-                .to("log:rooms")
-                .split(jsonpath("$.data.rooms..id"))
-                .process(exchange -> {
-                    String roomId = exchange.getIn().getBody(String.class);
-                    exchange.getIn().setBody(singletonJsonObject("roomId", roomId));
-                })
-                .to("log:room")
-                .to("graphql:" + deviceServiceEndpoint + "?queryFile=devicesQuery.graphql&operationName=GetDeviceListByRoom")
-                .split(jsonpath("$.data.getDevicesByRoom..id"))
-                .to("direct:refresh-devices")
+                    .to("graphql:" + roomServiceEndpoint + "?queryFile=roomsQuery.graphql&operationName=GetAllRooms")
+                    .split().jsonpath("$.data.rooms..id")
+                        .process(exchange -> {
+                            String roomId = exchange.getIn().getBody(String.class);
+                            exchange.getIn().setBody(singletonJsonObject("roomId", roomId));
+                        })
+                        .to("graphql:" + deviceServiceEndpoint + "?queryFile=devicesQuery.graphql&operationName=GetDeviceListByRoom")
+                        .to("direct:update-room-statuses")
+                .end()
         ;
     }
 

@@ -8,7 +8,7 @@ type Query {
 }
 
 type DeviceStatus {
-    code: String
+    property: String
     value: String
 }
 

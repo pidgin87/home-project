@@ -2,6 +2,10 @@ query GetDeviceListByRoom ($roomId: String!) {
     getDevicesByRoom(roomId: $roomId) {
         id
         name
+        statuses {
+            property
+            value
+        }
     }
 }
 
@@ -10,7 +14,7 @@ query GetDeviceStatusInfo ($deviceId: String!) {
         id
         name
         statuses {
-            code
+            property
             value
         }
     }

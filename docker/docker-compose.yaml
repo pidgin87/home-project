@@ -12,3 +12,10 @@ services:
       - POSTGRES_USER=dev_user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=home-garden
+
+  apm-server:
+    image: elastic/apm-server:7.17.18@sha256:020e8c21ee5ea431848f8f7d46b4438195e39747d9c472ea98eec742ab36b977
+    ports:
+      - 8200:8200
+    volumes:
+      - "/Users/kesmirnov/work/home-garden/docker/apm-server.yml:/usr/share/apm-server/apm-server.yml"

@@ -9,9 +9,11 @@ import org.apache.camel.ProducerTemplate;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -46,20 +48,29 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public List<DeviceStatus> getStatuses(Device device) {
-        Object response = producerTemplate
-                .requestBody(GET_DEVICES_STATUSES, device.getId());
-        return null;
+    public List<DeviceEntity> findAll(List<String> deviceIds) {
+        return deviceEntityRepository.findByIdIn(deviceIds);
     }
 
     @Override
-    public List<DeviceEntity> findAll(List<String> deviceIds) {
-        List<DeviceEntity> devices = deviceEntityRepository.findByIdIn(deviceIds);
-        Map<String, DeviceEntity> remoteDevices = devices.stream().collect(
-                Collectors.toMap(DeviceEntity::getGlobalId, Function.identity())
+    public Map<Device, List<DeviceStatus>> findStatuses(List<Device> deviceIds) {
+        Map<String, Device> deviceMap = deviceIds.stream().collect(
+                Collectors.toMap(Device::getGlobalId, Function.identity())
         );
 
-        List response = producerTemplate.requestBody(GET_DEVICES_STATUSES, remoteDevices.keySet(), List.class);
-        return null;
+        Map<String, Device> devices = (Map<String, Device>) producerTemplate.requestBody(
+                GET_DEVICES_STATUSES, deviceMap.keySet(), List.class
+        ).stream().collect(
+                Collectors.toMap(Device::getId, Function.identity())
+        );
+
+        Map<Device, List<DeviceStatus>> statuses = new HashMap<>();
+
+        for (String deviceRemoteId : deviceMap.keySet()) {
+            Device device = deviceMap.get(deviceRemoteId);
+            statuses.put(device, devices.get(deviceRemoteId).getStatuses());
+        }
+
+        return statuses;
     }
 }

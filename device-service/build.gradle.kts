@@ -34,6 +34,7 @@ dependencies {
     implementation("org.apache.camel:camel-log:${property("camel.version")}")
     implementation("org.apache.camel:camel-graphql:${property("camel.version")}")
     implementation("org.apache.camel:camel-jsonpath:${property("camel.version")}")
+    implementation("org.apache.camel:camel-jackson:${property("camel.version")}")
 
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
