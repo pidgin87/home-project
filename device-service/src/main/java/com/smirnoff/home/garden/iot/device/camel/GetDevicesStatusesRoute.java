@@ -43,7 +43,9 @@ public class GetDevicesStatusesRoute extends RouteBuilder {
                     List<String> remoteUids = exchange.getIn().getBody(List.class);
                     exchange.getIn().setBody(singletonJsonObjects("remoteUids", remoteUids));
                 })
+                .log("${body}")
                 .to("graphql:" + deviceCommandServiceEndpoint + "?queryFile=devicesCommandQuery.graphql&operationName=GetDevicesStatuses")
+                .log("${body}")
                 .split().jsonpath("$.data.getRemoteDevices")
                     .aggregationStrategy(new JoinDeviceAggregationStrategy())
                     .marshal().json()
