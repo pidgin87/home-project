@@ -5,6 +5,7 @@ import com.smirnoff.home.garden.iot.device.model.DeviceStatus;
 import com.smirnoff.home.garden.iot.device.persistance.model.DeviceEntity;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface DeviceService {
@@ -14,5 +15,9 @@ public interface DeviceService {
 
     List<DeviceEntity> getAll(String roomId);
 
-    List<DeviceStatus> getStatuses(Device device);
+    List<DeviceEntity> getAll(List<String> roomIds);
+
+    List<DeviceEntity> findAll(List<String> deviceIds);
+
+    Map<Device, List<DeviceStatus>> findStatuses(List<Device> deviceIds);
 }

@@ -34,13 +34,13 @@ dependencies {
     implementation("org.apache.camel:camel-log:${property("camel.version")}")
     implementation("org.apache.camel:camel-graphql:${property("camel.version")}")
     implementation("org.apache.camel:camel-jsonpath:${property("camel.version")}")
+    implementation("org.apache.camel:camel-jackson:${property("camel.version")}")
 
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
-
     annotationProcessor("org.mapstruct:mapstruct-processor:${property("mapStruct.version")}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

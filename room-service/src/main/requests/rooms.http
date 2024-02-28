@@ -16,3 +16,17 @@ query  {
         id
     }
 }
+
+###
+
+GRAPHQL http://192.168.68.115:8000/api/rooms
+
+query  {
+    getRoom(roomId: "19805a72-0a6e-4f48-81b4-29ee1b2da33e") {
+        id
+        name
+        devices {
+            name
+        }
+    }
+}

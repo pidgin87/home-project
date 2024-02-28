@@ -25,3 +25,7 @@ spring:
     show-sql: true
   flyway:
     create-schemas: true
+
+home-garden:
+  endpoints:
+    device-graphql: http://localhost:8000/api/devices
