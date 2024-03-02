@@ -2,5 +2,5 @@
 
 docker buildx build \
   --platform linux/amd64 \
-  -t smirnoke/home-garden:gateway \
+  -t smirnoke/home-project-gateway \
   --push .

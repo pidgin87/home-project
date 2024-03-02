@@ -11,6 +11,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

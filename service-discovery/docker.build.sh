@@ -2,5 +2,5 @@
 
 docker buildx build \
   --platform linux/amd64 \
-  -t smirnoke/home-garden:service-discovery \
+  -t smirnoke/home-project-service-discovery \
   --push .

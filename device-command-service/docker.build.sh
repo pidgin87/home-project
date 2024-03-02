@@ -2,5 +2,5 @@
 
 docker buildx build \
   --platform linux/amd64 \
-  -t smirnoke/home-garden:device-command-service \
+  -t smirnoke/home-project-device-command-service \
   --push .
