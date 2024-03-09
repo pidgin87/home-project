@@ -1,10 +1,11 @@
 FROM openjdk:21-bullseye
 
-COPY /docker/entrypoint.sh /application/entrypoint.sh
-COPY /build/libs/service-discovery-0.0.1-SNAPSHOT.jar /application/runner.jar
+EXPOSE 9000
+WORKDIR /application
 
+COPY /docker/entrypoint.sh /application/entrypoint.sh
 RUN chmod +x /application/entrypoint.sh
 
-WORKDIR /application
+COPY /build/libs/service-discovery-0.0.1-SNAPSHOT.jar /application/runner.jar
 
 ENTRYPOINT ["./entrypoint.sh"]

@@ -8,7 +8,6 @@ eureka:
   instance:
     preferIpAddress: true
 
-
 spring:
   application:
     name: gateway
@@ -16,11 +15,11 @@ spring:
     gateway:
       routes:
         - id: room-service
-          uri: lb://room-service:10000/api/rooms
+          uri: lb://room-service/api/rooms
           predicates:
             - Path=/api/rooms
         - id: device-service
-          uri: lb://device-service:10001/api/devices
+          uri: lb://device-service/api/devices
           predicates:
             - Path=/api/devices
         - id: device-command-service

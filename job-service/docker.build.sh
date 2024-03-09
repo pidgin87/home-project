@@ -2,5 +2,5 @@
 
 docker buildx build \
   --platform linux/amd64 \
-  -t smirnoke/home-garden:job-service \
+  -t smirnoke/home-project-job-service \
   --push .

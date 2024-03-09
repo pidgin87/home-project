@@ -2,5 +2,5 @@
 
 docker buildx build \
   --platform linux/amd64 \
-  -t smirnoke/home-garden:room-service \
+  -t smirnoke/home-project-room-service \
   --push .

@@ -2,8 +2,6 @@ package com.smirnoff.home.garden.iot.device.camel;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smirnoff.home.garden.iot.device.model.Device;
-import com.smirnoff.home.garden.iot.device.persistance.model.DeviceEntity;
-import com.smirnoff.home.garden.iot.device.service.DeviceService;
 import lombok.RequiredArgsConstructor;
 import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
@@ -17,7 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.smirnoff.home.garden.iot.device.util.CamelUtils.singletonJsonObject;
 import static com.smirnoff.home.garden.iot.device.util.CamelUtils.singletonJsonObjects;
 import static java.util.Objects.isNull;
 
@@ -43,11 +40,13 @@ public class GetDevicesStatusesRoute extends RouteBuilder {
                     List<String> remoteUids = exchange.getIn().getBody(List.class);
                     exchange.getIn().setBody(singletonJsonObjects("remoteUids", remoteUids));
                 })
+                .log("${body}")
                 .to("graphql:" + deviceCommandServiceEndpoint + "?queryFile=devicesCommandQuery.graphql&operationName=GetDevicesStatuses")
+                .log("${body}")
                 .split().jsonpath("$.data.getRemoteDevices")
                     .aggregationStrategy(new JoinDeviceAggregationStrategy())
                     .marshal().json()
-                    .convertBodyTo(String.class)
+                        .convertBodyTo(String.class)
                     .unmarshal(dataFormat)
                 .end();
     }
