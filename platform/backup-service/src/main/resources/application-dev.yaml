@@ -1,0 +1,23 @@
+server:
+  port: 5_500
+
+camel:
+  component:
+    mapstruct:
+      mapper-package-name: com.smirnoff.home.platform.backup.mapper
+
+spring:
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  config:
+    import: optional:configserver:http://localhost:5656
+  application:
+    name: backup-service
+
+home-project:
+  backup-service:
+    camel-kafka-uri: postgresql.test,postgresql.device.device?brokers=localhost:9092&groupId=backup-service
+    directory:
+      path: /Users/kesmirnov/work/home-garden/tmp/backup-service

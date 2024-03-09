@@ -7,15 +7,55 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgresql/data:/var/lib/postgresql/data
+      - postgresql_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=dev_user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=home-garden
 
-  apm-server:
-    image: elastic/apm-server:7.17.18@sha256:020e8c21ee5ea431848f8f7d46b4438195e39747d9c472ea98eec742ab36b977
+  kafka:
+    image: bitnami/kafka:3.7.0
     ports:
-      - 8200:8200
+      - 9092:9092
+      - 9093:9093
     volumes:
-      - "/Users/kesmirnov/work/home-garden/docker/apm-server.yml:/usr/share/apm-server/apm-server.yml"
+      - kafka_data:/bitnami/kafka/data
+    environment:
+      # KRaft settings
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      # Listeners
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_BROKER_ID=1
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.labels.home-project-type == unique-01 ]
+      resources:
+        limits:
+          memory: 256Mb
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:53a6553765a806eda9905c43bfcfe09da6812035
+    ports:
+      - 10500:8080
+    environment:
+      - KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_NAME=kafka-cluster
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [ node.labels.home-project-type == unique-01 ]
+      resources:
+        limits:
+          memory: 256Mb
+
+volumes:
+  postgresql_data:
+  kafka_data:

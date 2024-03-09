@@ -3,7 +3,6 @@ FROM openjdk:21-bullseye
 EXPOSE 8000
 
 COPY /docker/entrypoint.sh /application/entrypoint.sh
-COPY /docker/bootstrap.yml /application/config/bootstrap.yml
 WORKDIR /application
 
 COPY /build/libs/gateway-0.0.1-SNAPSHOT.jar /application/runner.jar

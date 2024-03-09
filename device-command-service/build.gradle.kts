@@ -31,6 +31,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("com.tuya:tuya-spring-boot-starter:1.3.3")
+
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
+
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 
     compileOnly("org.projectlombok:lombok")

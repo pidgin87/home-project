@@ -1,8 +1,0 @@
-server:
-  port: 10_000
-
-spring:
-  config:
-    import: optional:configserver:http://config-server:7000
-  application:
-    name: room-service
