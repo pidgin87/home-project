@@ -39,6 +39,7 @@ public class BackupKafkaListener extends RouteBuilder {
                 })
                 .marshal(formatter)
                 .to("file:" + backupPath + "?fileName=${in.header.backupSchema}/${in.header.backupTable}/${in.header.primaryKey}.json")
+                .log("Entity: [${in.header.backupTable}] from schema: [${in.header.backupSchema}] with primary key: [${in.header.primaryKey}] was saved")
                 .end();
     }
 

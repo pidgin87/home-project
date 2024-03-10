@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/config-server" />
             <option value="$PROJECT_DIR$/device-command-service" />
             <option value="$PROJECT_DIR$/device-service" />
+            <option value="$PROJECT_DIR$/finance" />
+            <option value="$PROJECT_DIR$/finance/fund-service" />
             <option value="$PROJECT_DIR$/gateway" />
             <option value="$PROJECT_DIR$/job-service" />
             <option value="$PROJECT_DIR$/platform" />
