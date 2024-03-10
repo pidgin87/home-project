@@ -10,6 +10,6 @@ include("job-service")
 
 include("platform:backup-service")
 findProject(":platform:backup-service")?.name = "backup-service"
-include("finance")
+
 include("finance:fund-service")
 findProject(":finance:fund-service")?.name = "fund-service"
