@@ -1,0 +1,27 @@
+server:
+  port: 10_004
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9000/eureka}
+  instance:
+    preferIpAddress: true
+
+spring:
+  application:
+    name: finance-fund-service
+  graphql:
+    path: /api/finance/fund
+    graphiql:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/home-garden?currentSchema=finance-fund
+    username: dev_user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  flyway:
+    create-schemas: true

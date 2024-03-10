@@ -30,16 +30,17 @@ public class BackupKafkaListener extends RouteBuilder {
         formatter.disableFeature(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         from("kafka:" + camelKafkaUri)
-                .routeId("read-backups-messages")
-                .unmarshal(formatter)
-                .process(this::setOperationHeaders)
-                .process(exchange -> {
-                    BackupEntityModel model = backupEntityModelMapper.map(exchange.getIn().getBody(DebeziumMessage.class));
-                    exchange.getIn().setBody(model);
-                })
-                .marshal(formatter)
-                .to("file:" + backupPath + "?fileName=${in.header.backupSchema}/${in.header.backupTable}/${in.header.primaryKey}.json")
-                .end();
+            .routeId("read-backups-messages")
+            .unmarshal(formatter)
+            .process(this::setOperationHeaders)
+            .process(exchange -> {
+                BackupEntityModel model = backupEntityModelMapper.map(exchange.getIn().getBody(DebeziumMessage.class));
+                exchange.getIn().setBody(model);
+            })
+            .marshal(formatter)
+            .to("file:" + backupPath + "?fileName=${in.header.backupSchema}/${in.header.backupTable}/${in.header.primaryKey}.json")
+            .log("Entity: [${in.header.backupTable}] from schema: [${in.header.backupSchema}] with primary key: [${in.header.primaryKey}] was saved")
+        .end();
     }
 
     private void setOperationHeaders(Exchange message) {
