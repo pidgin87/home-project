@@ -26,3 +26,7 @@ spring:
           uri: lb://device-command-service/api/device-commands
           predicates:
             - Path=/api/device-commands
+        - id: finance-fund-service
+          uri: lb://finance-fund-service/api/finance/fund
+          predicates:
+            - Path=/api/finance/fund

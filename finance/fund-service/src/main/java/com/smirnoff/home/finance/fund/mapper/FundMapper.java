@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface FundMapper {
     List<Fund> map(List<FundEntity> funds);
+
+    Fund map(FundEntity fund);
 }
