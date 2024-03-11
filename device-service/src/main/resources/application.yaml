@@ -19,6 +19,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/home-garden?currentSchema=device
     username: dev_user
     password: password
+    tomcat:
+      max-active: 5
   jpa:
     hibernate:
       ddl-auto: none
