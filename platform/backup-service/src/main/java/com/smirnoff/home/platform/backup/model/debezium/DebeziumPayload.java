@@ -11,7 +11,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DebeziumPayload {
 
-    @JsonProperty("payload")
+    @JsonProperty("before")
     private Map<String, String> before;
 
     @JsonProperty("after")

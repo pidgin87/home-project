@@ -8,6 +8,8 @@ group = "com.smirnoff.home.platform.backup"
 version = "0.0.1-SNAPSHOT"
 
 dependencies {
+    implementation("org.apache.commons:commons-lang3:${property("commonsLang3.version")}")
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
