@@ -18,6 +18,10 @@ spring:
 
 home-project:
   backup-service:
-    camel-kafka-uri: postgresql.test,postgresql.device.device?brokers=localhost:9092&groupId=backup-service
+    kafka:
+      bootstraps: localhost:9092
+      consumer:
+        topics: postgresql.test,postgresql.device.device
+        group-id: backup-service
     directory:
       path: /Users/kesmirnov/work/home-garden/tmp/backup-service

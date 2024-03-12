@@ -20,6 +20,7 @@ allprojects {
     extra["mapStruct.version"] = "1.5.5.Final"
     extra["lombokMapStructProcessor.version"] = "0.2.0"
     extra["logstashLogbackEncoder.version"] = "7.3"
+    extra["commonsLang3.version"] = "3.14.0"
 }
 
 configurations {
