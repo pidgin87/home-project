@@ -27,4 +27,9 @@ public class FundServiceImpl implements FundService {
 
         return fundRepository.save(fund);
     }
+
+    @Override
+    public void delete(String id) {
+        fundRepository.deleteById(id);
+    }
 }

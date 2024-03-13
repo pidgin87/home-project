@@ -4,9 +4,14 @@ type Query {
 
 type Mutation {
     createFund(name: String): Fund
+    deleteFund(id: String): VoidResponse
 }
 
 type Fund {
-     id: String
-     name: String
+    id: String
+    name: String
+}
+
+type VoidResponse {
+    result: Boolean
 }
