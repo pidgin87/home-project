@@ -15,7 +15,7 @@ import java.net.Socket;
 @ConnectorScan(basePackages = "com.smirnoff.home.garden.iot.device.command.adapter")
 @EnableCaching
 @SpringBootApplication
-@ComponentScan("com.smirnoff.home.platform")
+@ComponentScan(value = {"com.smirnoff.home.platform", "com.smirnoff.home.garden.iot.device.command"})
 public class DeviceCommandServiceRunner {
     public static void main(String[] args) {
         SpringApplication.run(DeviceCommandServiceRunner.class, args);

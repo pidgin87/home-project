@@ -2,6 +2,7 @@ package com.smirnoff.home.finance.fund.controller;
 
 import com.smirnoff.home.finance.fund.mapper.FundMapper;
 import com.smirnoff.home.finance.fund.model.Fund;
+import com.smirnoff.home.finance.fund.model.VoidResponse;
 import com.smirnoff.home.finance.fund.persistance.entity.FundEntity;
 import com.smirnoff.home.finance.fund.service.FundService;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,11 @@ public class FundController {
     public Fund createFund(@Argument String name) {
         FundEntity fund = fundService.create(name);
         return fundMapper.map(fund);
+    }
+
+    @MutationMapping
+    public VoidResponse deleteFund(@Argument String id) {
+        fundService.delete(id);
+        return new VoidResponse();
     }
 }

@@ -9,4 +9,6 @@ public interface FundService {
     List<FundEntity> getAll();
 
     FundEntity create(String name);
+
+    void delete(String id);
 }
