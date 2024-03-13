@@ -16,6 +16,8 @@
             <option value="$PROJECT_DIR$/finance/fund-service" />
             <option value="$PROJECT_DIR$/gateway" />
             <option value="$PROJECT_DIR$/job-service" />
+            <option value="$PROJECT_DIR$/module" />
+            <option value="$PROJECT_DIR$/module/eureka-client-extension" />
             <option value="$PROJECT_DIR$/platform" />
             <option value="$PROJECT_DIR$/platform/backup-service" />
             <option value="$PROJECT_DIR$/room-service" />

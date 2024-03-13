@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 
 import java.io.DataOutputStream;
@@ -14,6 +15,7 @@ import java.net.Socket;
 @ConnectorScan(basePackages = "com.smirnoff.home.garden.iot.device.command.adapter")
 @EnableCaching
 @SpringBootApplication
+@ComponentScan("com.smirnoff.home.platform")
 public class DeviceCommandServiceRunner {
     public static void main(String[] args) {
         SpringApplication.run(DeviceCommandServiceRunner.class, args);

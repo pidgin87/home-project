@@ -1,4 +1,4 @@
-package com.smirnoff.home.finance.fund.configuration;
+package com.smirnoff.home.platform.eureka.configuration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,7 @@ import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -14,8 +15,9 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 @Configuration
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@Profile("production")
 public class EurekaClientConfiguration {
 
     @Value("${eureka.client.interface:eth0}")
