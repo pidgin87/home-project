@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            setUrl("https://maven.vaadin.com/vaadin-prereleases")
+        }
+        maven {
+            setUrl("https://repo.spring.io/milestone")
+        }
+    }
+}
+
+plugins {
+    id 'java'
+    id 'com.vaadin' version '24.3.7'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+repositories {
+    mavenCentral()
+    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+    maven { setUrl("https://repo.spring.io/milestone") }
+    maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+dependencies {
+    implementation('com.vaadin:vaadin-spring-boot-starter')
+    implementation('org.parttio:line-awesome:2.0.0')
+
+    implementation 'org.vaadin.klaudeta:grid-pagination:4.0.0'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+vaadin {
+    alwaysExecutePrepareFrontend = true
+    productionMode = true
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.vaadin:vaadin-bom:24.3.7"
+    }
+}

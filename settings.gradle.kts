@@ -7,6 +7,7 @@ include("room-service")
 include("device-service")
 include("device-command-service")
 include("job-service")
+include("ui")
 
 include("platform:backup-service")
 findProject(":platform:backup-service")?.name = "backup-service"

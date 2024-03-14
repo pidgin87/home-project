@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/platform/backup-service" />
             <option value="$PROJECT_DIR$/room-service" />
             <option value="$PROJECT_DIR$/service-discovery" />
+            <option value="$PROJECT_DIR$/ui" />
           </set>
         </option>
       </GradleProjectSettings>
