@@ -17,3 +17,6 @@ findProject(":finance:fund-service")?.name = "fund-service"
 
 include("module:eureka-client-extension")
 findProject(":module:eureka-client-extension")?.name = "eureka-client-extension"
+
+include("module:graphql-openfeigh-extension")
+findProject(":module:graphql-openfeigh-extension")?.name = "graphql-openfeigh-extension"

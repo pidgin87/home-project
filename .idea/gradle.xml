@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/job-service" />
             <option value="$PROJECT_DIR$/module" />
             <option value="$PROJECT_DIR$/module/eureka-client-extension" />
+            <option value="$PROJECT_DIR$/module/graphql-openfeigh-extension" />
             <option value="$PROJECT_DIR$/platform" />
             <option value="$PROJECT_DIR$/platform/backup-service" />
             <option value="$PROJECT_DIR$/room-service" />
