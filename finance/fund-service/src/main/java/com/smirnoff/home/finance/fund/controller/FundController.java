@@ -33,6 +33,12 @@ public class FundController {
     }
 
     @MutationMapping
+    public Fund updateFund(@Argument String id, @Argument String name) {
+        FundEntity fund = fundService.update(id, name);
+        return fundMapper.map(fund);
+    }
+
+    @MutationMapping
     public VoidResponse deleteFund(@Argument String id) {
         fundService.delete(id);
         return new VoidResponse();

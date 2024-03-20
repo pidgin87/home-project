@@ -5,7 +5,9 @@ import com.smirnoff.home.ui.model.finance.fund.FundModel;
 import java.util.List;
 
 public interface FundAdapter {
-    void createNew(String fundName);
+    void create(String fundName);
+
+    void update(String id, String name);
 
     List<FundModel> getList();
 

@@ -1,6 +1,5 @@
 package com.smirnoff.home.finance.fund.service;
 
-import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.finance.fund.persistance.entity.FundEntity;
 import com.smirnoff.home.finance.fund.persistance.repository.FundRepository;
 import com.smirnoff.home.finance.fund.service.lc.FundLifecycle;
@@ -17,7 +16,7 @@ public class FundServiceImpl implements FundService {
 
     @Override
     public List<FundEntity> getAll() {
-        return fundRepository.findAll();
+        return fundRepository.findAllByOrderByCreatedDateAsc();
     }
 
     @Override
@@ -25,6 +24,14 @@ public class FundServiceImpl implements FundService {
         FundEntity fund = fundLifecycle.create();
         fund.setName(name);
 
+        return fundRepository.save(fund);
+    }
+
+    @Override
+    public FundEntity update(String id, String name) {
+        FundEntity fund = fundRepository.findById(id)
+                .orElseThrow(IllegalArgumentException::new);
+        fund.setName(name);
         return fundRepository.save(fund);
     }
 
