@@ -17,6 +17,9 @@ public interface FundClient {
     GraphQlResponse.VoidGraphQlResponse createFund(@RequestBody GraphQlRequest request);
 
     @RequestMapping(method = RequestMethod.POST)
+    GraphQlResponse.VoidGraphQlResponse updateFund(@RequestBody GraphQlRequest request);
+
+    @RequestMapping(method = RequestMethod.POST)
     GraphQlResponse.VoidGraphQlResponse deleteFund(@RequestBody GraphQlRequest request);
 
 }

@@ -38,8 +38,10 @@ dependencies {
     implementation('com.vaadin:vaadin-spring-boot-starter')
     implementation('org.parttio:line-awesome:2.0.0')
 
-    implementation 'org.vaadin.klaudeta:grid-pagination:4.0.0'
+    implementation('org.vaadin.klaudeta:grid-pagination:4.0.0')
 
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:${property("springCloud.openFeign.version")}")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
@@ -54,8 +56,8 @@ dependencies {
 }
 
 vaadin {
-//    alwaysExecutePrepareFrontend = true
-//    productionMode = true
+    alwaysExecutePrepareFrontend = true
+    productionMode = true
 }
 
 dependencyManagement {

@@ -37,6 +37,15 @@ public class FundAdapterImpl implements FundAdapter {
             """;
 
     //language=graphql
+    private static final String UPDATE_FUND_REQUEST = """
+            mutation UpdateFund($id: String, $name: String) {
+                updateFund(id: $id, name: $name) {
+                    id
+                }
+            }
+            """;
+
+    //language=graphql
     private static final String DELETE_FUND_REQUEST = """
             mutation DeleteFund($id: String) {
                 deleteFund(id: $id) {
@@ -46,11 +55,21 @@ public class FundAdapterImpl implements FundAdapter {
             """;
 
     @Override
-    public void createNew(String fundName) {
+    public void create(String fundName) {
         fundClient.createFund(GraphQlRequest.builder()
                 .query(CREATE_FUND_REQUEST)
                 .operationName("CreateFund")
                 .variables(Map.of("name", fundName))
+                .build()
+        );
+    }
+
+    @Override
+    public void update(String id, String fundName) {
+        fundClient.updateFund(GraphQlRequest.builder()
+                .query(UPDATE_FUND_REQUEST)
+                .operationName("UpdateFund")
+                .variables(Map.of("id", id, "name", fundName))
                 .build()
         );
     }

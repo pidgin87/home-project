@@ -1,7 +1,7 @@
 package com.smirnoff.home.ui.components.finance.fund;
 
 import com.smirnoff.home.ui.components.MainLayout;
-import com.smirnoff.home.ui.components.finance.fund.dialog.AddFundDialog;
+import com.smirnoff.home.ui.components.finance.fund.dialog.EditFundDialog;
 import com.smirnoff.home.ui.model.finance.fund.FundFilterModel;
 import com.smirnoff.home.ui.model.finance.fund.FundModel;
 import com.smirnoff.home.ui.service.finance.fund.FundService;
@@ -23,7 +23,6 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.vaadin.klaudeta.PaginatedGrid;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -35,7 +34,7 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
         CallbackDataProvider.CountCallback<FundModel, Void> {
 
     private final FundService fundService;
-    private PaginatedGrid<FundModel, FundFilterModel> grid;
+    private final PaginatedGrid<FundModel, FundFilterModel> grid;
 
     public FundListView(FundService fundService) {
         this.fundService = fundService;
@@ -46,7 +45,8 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
         addButton.setAriaLabel("Add item");
         toolbar.add(addButton);
 
-        add(prepareToolbar());
+        Component menuBar = prepareToolbar();
+        add(menuBar);
 
         grid = new PaginatedGrid<>();
         grid.addColumn(FundModel::name).setHeader("Name");
@@ -66,6 +66,13 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
             createAddFundDialog();
         });
 
+        createIconItem(menuBar, VaadinIcon.EDIT, "Edit", event -> {
+            Set<FundModel> selectedItems = grid.getSelectedItems();
+            if (selectedItems.size() == 1) {
+                createEditFundDialog(selectedItems.stream().toList().getFirst());
+            }
+        });
+
         createIconItem(menuBar, VaadinIcon.TRASH, "Delete", event -> {
             for (FundModel fund : grid.getSelectedItems()) {
                 fundService.delete(fund);
@@ -77,10 +84,23 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
     }
 
     private void createAddFundDialog() {
-        AddFundDialog dialog = new AddFundDialog();
+        EditFundDialog dialog = new EditFundDialog();
         dialog.saveClickListener(event -> {
             String fundName = dialog.getFundName();
-            fundService.createNew(fundName);
+            fundService.create(fundName);
+            dialog.close();
+            grid.refreshPaginator();
+        });
+
+        dialog.open();
+    }
+
+    private void createEditFundDialog(FundModel fundModel) {
+        EditFundDialog dialog = new EditFundDialog(fundModel);
+        dialog.saveClickListener(event -> {
+            String fundName = dialog.getFundName();
+
+            fundService.update(new FundModel(fundModel.id(), fundName));
             dialog.close();
             grid.refreshPaginator();
         });
@@ -98,7 +118,7 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
         return fundService.getList().size();
     }
 
-    private MenuItem createIconItem(HasMenuItems menu, VaadinIcon iconName, String ariaLabel, ComponentEventListener<ClickEvent<MenuItem>> clickListener) {
+    private void createIconItem(HasMenuItems menu, VaadinIcon iconName, String ariaLabel, ComponentEventListener<ClickEvent<MenuItem>> clickListener) {
         Icon icon = new Icon(iconName);
 
         MenuItem item = menu.addItem(icon, clickListener);
@@ -106,6 +126,5 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
             item.setAriaLabel(ariaLabel);
         }
 
-        return item;
     }
 }

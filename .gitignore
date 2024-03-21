@@ -46,3 +46,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/ui/frontend/generated/**
+/ui/node_modules/**

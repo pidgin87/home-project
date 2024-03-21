@@ -15,8 +15,13 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public void createNew(String fundName) {
-        fundAdapter.createNew(fundName);
+    public void create(String fundName) {
+        fundAdapter.create(fundName);
+    }
+
+    @Override
+    public void update(FundModel fund) {
+        fundAdapter.update(fund.id(), fund.name());
     }
 
     @Override
