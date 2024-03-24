@@ -1,10 +1,11 @@
-package com.smirnoff.home.ui.components.finance.fund;
+package com.smirnoff.home.ui.components.finance.product;
 
 import com.smirnoff.home.ui.components.MainLayout;
-import com.smirnoff.home.ui.components.finance.fund.dialog.EditFundDialog;
+import com.smirnoff.home.ui.components.finance.product.dialog.EditProductDialog;
 import com.smirnoff.home.ui.model.finance.fund.FundFilterModel;
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
-import com.smirnoff.home.ui.service.finance.fund.FundService;
+import com.smirnoff.home.ui.model.finance.product.ProductModel;
+import com.smirnoff.home.ui.model.finance.product.ProductTypeModel;
+import com.smirnoff.home.ui.service.finance.product.ProductService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -28,16 +29,15 @@ import java.util.stream.Stream;
 
 import static java.util.Objects.nonNull;
 
-@PageTitle("List of funds")
-@Route(value = "finance/funds", layout = MainLayout.class)
-public class FundListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<FundModel, Void>,
-        CallbackDataProvider.CountCallback<FundModel, Void> {
+@PageTitle("List of products")
+@Route(value = "finance/products", layout = MainLayout.class)
+public class ProductListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<ProductModel, Void>,
+        CallbackDataProvider.CountCallback<ProductModel, Void> {
 
-    private final FundService fundService;
-    private final PaginatedGrid<FundModel, FundFilterModel> grid;
-
-    public FundListView(FundService fundService) {
-        this.fundService = fundService;
+    private final PaginatedGrid<ProductModel, FundFilterModel> grid;
+    private final ProductService productService;
+    public ProductListView(ProductService productService) {
+        this.productService = productService;
 
         HorizontalLayout toolbar = new HorizontalLayout();
         Button addButton = new Button(new Icon());
@@ -49,7 +49,7 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
         add(menuBar);
 
         grid = new PaginatedGrid<>();
-        grid.addColumn(FundModel::name).setHeader("Name");
+        grid.addColumn(ProductModel::name).setHeader("Name");
 
         grid.setDataProvider(new CallbackDataProvider(this, this));
 
@@ -67,15 +67,15 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
         });
 
         createIconItem(menuBar, VaadinIcon.EDIT, "Edit", event -> {
-            Set<FundModel> selectedItems = grid.getSelectedItems();
+            Set<ProductModel> selectedItems = grid.getSelectedItems();
             if (selectedItems.size() == 1) {
-                createEditFundDialog(selectedItems.stream().toList().getFirst());
+                createEditProductDialog(selectedItems.stream().toList().getFirst());
             }
         });
 
         createIconItem(menuBar, VaadinIcon.TRASH, "Delete", event -> {
-            for (FundModel fund : grid.getSelectedItems()) {
-                fundService.delete(fund);
+            for (ProductModel product : grid.getSelectedItems()) {
+                productService.delete(product);
             }
             grid.refreshPaginator();
         });
@@ -84,10 +84,11 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
     }
 
     private void createAddFundDialog() {
-        EditFundDialog dialog = new EditFundDialog();
+        EditProductDialog dialog = new EditProductDialog();
         dialog.saveClickListener(event -> {
-            String fundName = dialog.getFundName();
-            fundService.create(fundName);
+            String productName = dialog.getProductName();
+            ProductTypeModel productType = dialog.getProductType();
+            productService.create(productName, productType);
             dialog.close();
             grid.refreshPaginator();
         });
@@ -95,27 +96,17 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
         dialog.open();
     }
 
-    private void createEditFundDialog(FundModel fundModel) {
-        EditFundDialog dialog = new EditFundDialog(fundModel);
+    private void createEditProductDialog(ProductModel productModel) {
+        EditProductDialog dialog = new EditProductDialog(productModel);
         dialog.saveClickListener(event -> {
-            String fundName = dialog.getFundName();
+            String productName = dialog.getProductName();
 
-            fundService.update(new FundModel(fundModel.id(), fundName));
+            productService.update(productModel.id(), productName);
             dialog.close();
             grid.refreshPaginator();
         });
 
         dialog.open();
-    }
-
-    @Override
-    public Stream<FundModel> fetch(Query<FundModel, Void> query) {
-        return fundService.getList().stream();
-    }
-
-    @Override
-    public int count(Query<FundModel, Void> query) {
-        return fundService.getList().size();
     }
 
     private void createIconItem(HasMenuItems menu, VaadinIcon iconName, String ariaLabel, ComponentEventListener<ClickEvent<MenuItem>> clickListener) {
@@ -126,5 +117,15 @@ public class FundListView extends VerticalLayout implements CallbackDataProvider
             item.setAriaLabel(ariaLabel);
         }
 
+    }
+
+    @Override
+    public int count(Query<ProductModel, Void> query) {
+        return 0;
+    }
+
+    @Override
+    public Stream<ProductModel> fetch(Query<ProductModel, Void> query) {
+        return productService.getList().stream();
     }
 }

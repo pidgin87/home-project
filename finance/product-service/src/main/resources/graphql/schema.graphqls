@@ -1,0 +1,19 @@
+type Query {
+    getProductList: [Product]
+}
+
+type Mutation {
+    createProduct(name: String, type: String): Product
+}
+
+type Product {
+    id: String
+    name: String
+    type: ProductType
+}
+
+enum ProductType {
+    CARD,
+    ACCOUNT,
+    BROKER_ACCOUNT
+}

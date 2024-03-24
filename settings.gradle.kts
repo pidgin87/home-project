@@ -15,6 +15,9 @@ findProject(":platform:backup-service")?.name = "backup-service"
 include("finance:fund-service")
 findProject(":finance:fund-service")?.name = "fund-service"
 
+include("finance:product-service")
+findProject(":finance:product-service")?.name = "product-service"
+
 include("module:eureka-client-extension")
 findProject(":module:eureka-client-extension")?.name = "eureka-client-extension"
 
