@@ -2,6 +2,7 @@ package com.smirnoff.home.finance.product.controller;
 
 import com.smirnoff.home.finance.product.mapper.ProductMapper;
 import com.smirnoff.home.finance.product.model.ProductDto;
+import com.smirnoff.home.finance.product.model.VoidResponse;
 import com.smirnoff.home.finance.product.persistance.entity.ProductType;
 import com.smirnoff.home.finance.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,11 @@ public class ProductController {
         return productMapper.map(
                 productService.create(name, type)
         );
+    }
+
+    @MutationMapping
+    public VoidResponse deleteProduct(@Argument String productId) {
+        productService.delete(productId);
+        return new VoidResponse();
     }
 }

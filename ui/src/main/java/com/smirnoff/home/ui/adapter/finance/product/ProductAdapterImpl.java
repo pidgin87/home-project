@@ -10,18 +10,38 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
 public class ProductAdapterImpl implements ProductAdapter {
     private final FinanceProductServiceClient financeProductServiceClient;
 
+    //language=graphql
     private static final String GET_PRODUCT_REQUEST = """
             query GetProductList {
                 getProductList {
                     id
                     name
                     type
+                }
+            }
+            """;
+
+    //language=graphql
+    private static final String CREATE_PRODUCT_REQUEST = """
+            mutation CreateProduct($name: String, $type: String) {
+                createProduct(name: $name, type: $type) {
+                    id
+                }
+            }
+            """;
+
+    //language=graphql
+    private static final String DELETE_PRODUCT_REQUEST = """
+            mutation DeleteFund($productId: String) {
+                deleteProduct(productId: $productId) {
+                    result
                 }
             }
             """;
@@ -38,6 +58,24 @@ public class ProductAdapterImpl implements ProductAdapter {
 
     @Override
     public void create(String productName, ProductTypeModel productType) {
+        financeProductServiceClient.createProduct(GraphQlRequest.builder()
+                .query(CREATE_PRODUCT_REQUEST)
+                .operationName("CreateProduct")
+                .variables(Map.of(
+                        "name", productName,
+                        "type", productType)
+                )
+                .build()
+        );
+    }
 
+    @Override
+    public void delete(ProductModel product) {
+        financeProductServiceClient.deleteProduct(GraphQlRequest.builder()
+                .query(DELETE_PRODUCT_REQUEST)
+                .operationName("DeleteFund")
+                .variables(Map.of("productId", product.id()))
+                .build()
+        );
     }
 }

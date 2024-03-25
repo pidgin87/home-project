@@ -13,6 +13,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+
     @Override
     public List<ProductEntity> getAll() {
         return productRepository.findAll();
@@ -24,5 +25,10 @@ public class ProductServiceImpl implements ProductService {
         product.setName(name);
         product.setType(type);
         return productRepository.save(product);
+    }
+
+    @Override
+    public void delete(String productId) {
+        productRepository.deleteById(productId);
     }
 }

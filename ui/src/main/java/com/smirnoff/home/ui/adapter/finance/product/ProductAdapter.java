@@ -9,4 +9,6 @@ public interface ProductAdapter {
     List<ProductModel> getList();
 
     void create(String productName, ProductTypeModel productType);
+
+    void delete(ProductModel product);
 }

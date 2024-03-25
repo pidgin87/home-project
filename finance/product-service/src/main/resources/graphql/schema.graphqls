@@ -4,6 +4,7 @@ type Query {
 
 type Mutation {
     createProduct(name: String, type: String): Product
+    deleteProduct(productId: String): VoidResponse
 }
 
 type Product {
@@ -16,4 +17,8 @@ enum ProductType {
     CARD,
     ACCOUNT,
     BROKER_ACCOUNT
+}
+
+type VoidResponse {
+    result: Boolean
 }

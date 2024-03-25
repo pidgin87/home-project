@@ -9,4 +9,6 @@ public interface ProductService {
     List<ProductEntity> getAll();
 
     ProductEntity create(String name, ProductType type);
+
+    void delete(String productId);
 }

@@ -11,4 +11,5 @@ public record GraphQlRequest(
         String operationName,
         Map<String, Object> variables
 ) {
+
 }

@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(ProductModel product) {
-
+        productAdapter.delete(product);
     }
 
     @Override
