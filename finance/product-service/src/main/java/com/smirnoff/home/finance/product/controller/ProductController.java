@@ -3,6 +3,7 @@ package com.smirnoff.home.finance.product.controller;
 import com.smirnoff.home.finance.product.mapper.ProductMapper;
 import com.smirnoff.home.finance.product.model.ProductDto;
 import com.smirnoff.home.finance.product.model.VoidResponse;
+import com.smirnoff.home.finance.product.persistance.entity.ProductEntity;
 import com.smirnoff.home.finance.product.persistance.entity.ProductType;
 import com.smirnoff.home.finance.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,6 +27,12 @@ public class ProductController {
         return productMapper.map(
                 productService.getAll()
         );
+    }
+
+    @QueryMapping
+    public ProductDto getProduct(@Argument String productId) {
+        Optional<ProductEntity> product = productService.getById(productId);
+        return productMapper.map(product.get());
     }
 
     @MutationMapping

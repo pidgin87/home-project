@@ -1,5 +1,6 @@
 type Query {
     getProductList: [Product]
+    getProduct(productId: String): Product
 }
 
 type Mutation {

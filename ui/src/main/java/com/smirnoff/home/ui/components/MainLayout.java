@@ -1,6 +1,7 @@
 package com.smirnoff.home.ui.components;
 
 import com.smirnoff.home.ui.components.finance.fund.FundListView;
+import com.smirnoff.home.ui.components.finance.history.HistoryListView;
 import com.smirnoff.home.ui.components.finance.product.ProductListView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -54,6 +55,7 @@ public class MainLayout extends AppLayout {
         SideNavItem financeModule = new SideNavItem("Finance", "finance", VaadinIcon.PIGGY_BANK.create());
         financeModule.addItem(new SideNavItem("Funds", FundListView.class, VaadinIcon.SCISSORS.create()));
         financeModule.addItem(new SideNavItem("Products", ProductListView.class, VaadinIcon.MONEY.create()));
+        financeModule.addItem(new SideNavItem("History", HistoryListView.class, VaadinIcon.ARCHIVES.create()));
 
         nav.addItem(financeModule);
 
