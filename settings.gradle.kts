@@ -12,6 +12,15 @@ include("ui")
 include("platform:backup-service")
 findProject(":platform:backup-service")?.name = "backup-service"
 
+include("platform:dictionary-service:dictionary-service-impl")
+findProject(":platform:dictionary-service:dictionary-service-impl")?.name = "dictionary-service-impl"
+
+include("platform:dictionary-service:dictionary-service-dto")
+findProject(":platform:dictionary-service:dictionary-service-dto")?.name = "dictionary-service-dto"
+
+include("platform:dictionary-service:dictionary-service-client")
+findProject(":platform:dictionary-service:dictionary-service-client")?.name = "dictionary-service-client"
+
 include("finance:fund-service")
 findProject(":finance:fund-service")?.name = "fund-service"
 

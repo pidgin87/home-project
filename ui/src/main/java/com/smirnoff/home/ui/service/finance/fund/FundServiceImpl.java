@@ -2,17 +2,15 @@ package com.smirnoff.home.ui.service.finance.fund;
 
 import com.smirnoff.home.ui.adapter.finance.fund.FundAdapter;
 import com.smirnoff.home.ui.model.finance.fund.FundModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class FundServiceImpl implements FundService {
     private final FundAdapter fundAdapter;
-
-    public FundServiceImpl(FundAdapter fundAdapter) {
-        this.fundAdapter = fundAdapter;
-    }
 
     @Override
     public void create(String fundName) {

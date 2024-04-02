@@ -5,7 +5,7 @@ plugins {
     id("org.hibernate.orm") version "6.4.1.Final"
 }
 
-group = "com.smirnoff.home.finance.history"
+group = "com.smirnoff.home.platform.dictionary.impl"
 version = "0.0.1-SNAPSHOT"
 
 configurations {
@@ -17,6 +17,7 @@ configurations {
 dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-openfeigh-extension"))
+    implementation(project(":platform:dictionary-service:dictionary-service-dto"))
 
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

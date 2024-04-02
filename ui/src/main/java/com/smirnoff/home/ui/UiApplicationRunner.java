@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
-@EnableFeignClients
+@EnableFeignClients(value = {"com.smirnoff.home.platform", "com.smirnoff.home.ui"})
 @SpringBootApplication
 @Theme(value = "home-project-ui", variant = Lumo.DARK)
 @ComponentScan(value = {"com.smirnoff.home.platform", "com.smirnoff.home.ui"})
