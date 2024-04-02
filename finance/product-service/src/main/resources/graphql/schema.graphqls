@@ -1,0 +1,25 @@
+type Query {
+    getProductList: [Product]
+    getProduct(productId: String): Product
+}
+
+type Mutation {
+    createProduct(name: String, type: String): Product
+    deleteProduct(productId: String): VoidResponse
+}
+
+type Product {
+    id: String
+    name: String
+    type: ProductType
+}
+
+enum ProductType {
+    CARD,
+    ACCOUNT,
+    BROKER_ACCOUNT
+}
+
+type VoidResponse {
+    result: Boolean
+}

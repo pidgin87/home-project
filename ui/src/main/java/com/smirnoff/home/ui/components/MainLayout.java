@@ -1,8 +1,8 @@
 package com.smirnoff.home.ui.components;
 
-import com.smirnoff.home.ui.components.about.AboutView;
 import com.smirnoff.home.ui.components.finance.fund.FundListView;
-import com.smirnoff.home.ui.components.helloworld.HelloWorldView;
+import com.smirnoff.home.ui.components.finance.history.HistoryListView;
+import com.smirnoff.home.ui.components.finance.product.ProductListView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Footer;
@@ -52,14 +52,12 @@ public class MainLayout extends AppLayout {
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
 
-        nav.addItem(new SideNavItem("Hello World", HelloWorldView.class));
-
-        SideNavItem financeModule = new SideNavItem("Finance", "finance", VaadinIcon.MONEY.create());
+        SideNavItem financeModule = new SideNavItem("Finance", "finance", VaadinIcon.PIGGY_BANK.create());
         financeModule.addItem(new SideNavItem("Funds", FundListView.class, VaadinIcon.SCISSORS.create()));
+        financeModule.addItem(new SideNavItem("Products", ProductListView.class, VaadinIcon.MONEY.create()));
+        financeModule.addItem(new SideNavItem("History", HistoryListView.class, VaadinIcon.ARCHIVES.create()));
 
         nav.addItem(financeModule);
-
-        nav.addItem(new SideNavItem("About", AboutView.class));
 
         return nav;
     }

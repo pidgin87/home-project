@@ -1,0 +1,3 @@
+Standard protocol has few primitive https://graphql.org/learn/schema/[types]:
+
+There are extra scalar types available https://github.com/graphql-java/graphql-java-extended-scalars[here]

@@ -29,7 +29,7 @@ import java.util.stream.Stream;
 import static java.util.Objects.nonNull;
 
 @PageTitle("List of funds")
-@Route(value = "finance/fund", layout = MainLayout.class)
+@Route(value = "finance/funds", layout = MainLayout.class)
 public class FundListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<FundModel, Void>,
         CallbackDataProvider.CountCallback<FundModel, Void> {
 

@@ -1,0 +1,37 @@
+type Query {
+    getOperationList: [OperationOutput]
+}
+
+type Mutation {
+    createOperation(operation: OperationInput!): VoidResponse
+}
+
+input OperationInput {
+    sourceProduct: String
+    sourceAmount: Float
+    sourceCurrency: String
+
+    destinationProduct: String
+    destinationAmount: Float
+    destinationCurrency: String
+
+    operationDate: DateTime
+}
+
+type OperationOutput {
+    sourceProduct: String
+    sourceAmount: Float
+    sourceCurrency: String
+
+    destinationProduct: String
+    destinationAmount: Float
+    destinationCurrency: String
+
+    operationDate: DateTime
+}
+
+scalar DateTime
+
+type VoidResponse {
+    result: Boolean
+}
