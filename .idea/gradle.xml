@@ -23,6 +23,10 @@
             <option value="$PROJECT_DIR$/module/graphql-openfeigh-extension" />
             <option value="$PROJECT_DIR$/platform" />
             <option value="$PROJECT_DIR$/platform/backup-service" />
+            <option value="$PROJECT_DIR$/platform/dictionary-service" />
+            <option value="$PROJECT_DIR$/platform/dictionary-service/dictionary-service-client" />
+            <option value="$PROJECT_DIR$/platform/dictionary-service/dictionary-service-dto" />
+            <option value="$PROJECT_DIR$/platform/dictionary-service/dictionary-service-impl" />
             <option value="$PROJECT_DIR$/room-service" />
             <option value="$PROJECT_DIR$/service-discovery" />
             <option value="$PROJECT_DIR$/ui" />

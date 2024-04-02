@@ -1,0 +1,8 @@
+type Query {
+    getCurrencyList: [Currency]
+}
+
+type Currency {
+    id: String
+    name: String
+}
