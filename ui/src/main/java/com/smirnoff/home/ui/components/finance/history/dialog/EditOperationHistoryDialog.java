@@ -1,11 +1,11 @@
 package com.smirnoff.home.ui.components.finance.history.dialog;
 
-import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
+import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.ui.components.common.CurrencyComboBox;
 import com.smirnoff.home.ui.components.common.ProductComboBox;
 import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
 import com.smirnoff.home.ui.service.finance.dictionary.DictionaryService;
+import com.smirnoff.home.ui.service.finance.history.OperationHistoryService;
 import com.smirnoff.home.ui.service.finance.product.ProductService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -22,16 +22,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 import static java.util.Objects.nonNull;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 @Component
 @Scope(SCOPE_PROTOTYPE)
-public class EditOperationHistoryDialog extends Dialog implements ComponentEventListener<ClickEvent<Button>>{
+public class EditOperationHistoryDialog extends Dialog {
 
-    private final OperationHistoryModel operationHistoryModel;
+    private final OperationHistoryDto operationHistoryModel;
     private final DictionaryService dictionaryService;
     private final ProductService productService;
+
     private TextField sourceAmountTextField;
     private ProductComboBox sourceProductComboBox;
     private CurrencyComboBox sourceCurrencyComboBox;
@@ -44,17 +47,19 @@ public class EditOperationHistoryDialog extends Dialog implements ComponentEvent
     private Button saveButton;
 
     @Autowired
-    public EditOperationHistoryDialog(DictionaryService dictionaryService, ProductService productService) {
+    public EditOperationHistoryDialog(DictionaryService dictionaryService,
+                                      ProductService productService) {
         this("Create operation", dictionaryService, productService, null);
     }
 
     private EditOperationHistoryDialog(String title,
                                        DictionaryService dictionaryService,
                                        ProductService productService,
-                                       OperationHistoryModel operationHistoryModel) {
+                                       OperationHistoryDto operationHistoryModel) {
         this.operationHistoryModel = operationHistoryModel;
         this.dictionaryService = dictionaryService;
         this.productService = productService;
+
         setDraggable(true);
         setResizable(false);
         setCloseOnEsc(true);
@@ -88,15 +93,8 @@ public class EditOperationHistoryDialog extends Dialog implements ComponentEvent
 
         this.saveButton = new Button();
         this.saveButton.setText("Save");
-        this.saveButton.addClickListener(this);
 
         getFooter().add(this.saveButton);
-    }
-
-    @Override
-    public void onComponentEvent(ClickEvent<Button> buttonClickEvent) {
-        ProductModel sourceProduct = sourceProductComboBox.getValue();
-        CurrencyModel sourceCurrency = sourceCurrencyComboBox.getValue();
     }
 
     private VerticalLayout prepareSourceComponent() {
@@ -153,7 +151,7 @@ public class EditOperationHistoryDialog extends Dialog implements ComponentEvent
         return layout;
     }
 
-    private void initValue(OperationHistoryModel operation) {
+    private void initValue(OperationHistoryDto operation) {
         descriptionTextField.setValue(operation.getDescription());
     }
 
@@ -170,9 +168,14 @@ public class EditOperationHistoryDialog extends Dialog implements ComponentEvent
     }
 
     public OperationHistoryModel getOperation() {
-        return new OperationHistoryModel(
-                getOperationId(),
-                getOperationDescription()
-        );
+        return OperationHistoryModel.builder()
+
+                .sourceProduct(sourceProductComboBox.getValue())
+                .sourceCurrency(sourceCurrencyComboBox.getValue())
+                .sourceAmount(BigDecimal.valueOf(Long.valueOf(sourceAmountTextField.getValue())))
+
+                .description(descriptionTextField.getValue())
+
+                .build();
     }
 }

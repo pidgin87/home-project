@@ -1,9 +1,9 @@
 package com.smirnoff.home.ui.components.finance.history;
 
+import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.ui.components.MainLayout;
 import com.smirnoff.home.ui.components.finance.history.dialog.EditOperationHistoryDialog;
 import com.smirnoff.home.ui.model.finance.fund.FundFilterModel;
-import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
 import com.smirnoff.home.ui.service.finance.history.OperationHistoryService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
@@ -31,12 +31,12 @@ import static java.util.Objects.nonNull;
 
 @PageTitle("Transaction history")
 @Route(value = "finance/history", layout = MainLayout.class)
-public class HistoryListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<OperationHistoryModel, Void>,
-        CallbackDataProvider.CountCallback<OperationHistoryModel, Void> {
+public class HistoryListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<OperationHistoryDto, Void>,
+        CallbackDataProvider.CountCallback<OperationHistoryDto, Void> {
 
     private final ApplicationContext applicationContext;
     private final OperationHistoryService operationHistoryService;
-    private final PaginatedGrid<OperationHistoryModel, FundFilterModel> grid;
+    private final PaginatedGrid<OperationHistoryDto, FundFilterModel> grid;
 
     public HistoryListView(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -52,7 +52,7 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         add(menuBar);
 
         grid = new PaginatedGrid<>();
-        grid.addColumn(OperationHistoryModel::getId).setHeader("Id");
+        grid.addColumn(OperationHistoryDto::getId).setHeader("Id");
 
         grid.setDataProvider(new CallbackDataProvider(this, this));
 
@@ -70,14 +70,14 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         });
 
         createIconItem(menuBar, VaadinIcon.EDIT, "Edit", event -> {
-            Set<OperationHistoryModel> selectedItems = grid.getSelectedItems();
+            Set<OperationHistoryDto> selectedItems = grid.getSelectedItems();
             if (selectedItems.size() == 1) {
                 createEditDialog(selectedItems.stream().toList().getFirst());
             }
         });
 
         createIconItem(menuBar, VaadinIcon.TRASH, "Delete", event -> {
-            for (OperationHistoryModel operation : grid.getSelectedItems()) {
+            for (OperationHistoryDto operation : grid.getSelectedItems()) {
                 operationHistoryService.delete(operation);
             }
             grid.refreshPaginator();
@@ -97,7 +97,7 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         dialog.open();
     }
 
-    private void createEditDialog(OperationHistoryModel operationHistoryModel) {
+    private void createEditDialog(OperationHistoryDto operationHistoryModel) {
         EditOperationHistoryDialog dialog = applicationContext.getBean(EditOperationHistoryDialog.class);
         dialog.saveClickListener(event -> {
             operationHistoryService.update(dialog.getOperation());
@@ -109,12 +109,12 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
     }
 
     @Override
-    public Stream<OperationHistoryModel> fetch(Query<OperationHistoryModel, Void> query) {
+    public Stream<OperationHistoryDto> fetch(Query<OperationHistoryDto, Void> query) {
         return operationHistoryService.getList().stream();
     }
 
     @Override
-    public int count(Query<OperationHistoryModel, Void> query) {
+    public int count(Query<OperationHistoryDto, Void> query) {
         return operationHistoryService.getList().size();
     }
 

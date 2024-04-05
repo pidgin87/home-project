@@ -1,0 +1,49 @@
+type Query {
+    getOperationList: [Operation]
+}
+
+type Mutation {
+    createOperation(
+        sourceProduct: String,
+        sourceAmount: Float,
+        sourceCurrency: String
+    ): VoidResponse
+}
+
+type Operation {
+    id: String
+
+    sourceProduct: Product
+    sourceAmount: Float
+    sourceCurrency: Currency
+
+    destinationProduct: Product
+    destinationAmount: Float
+    destinationCurrency: Currency
+
+    operationDate: DateTime
+}
+
+type Currency {
+    id: String
+    iso: ProductType
+    name: String
+}
+
+type Product {
+    id: String
+    name: String
+    type: ProductType
+}
+
+enum ProductType {
+    CARD,
+    ACCOUNT,
+    BROKER_ACCOUNT
+}
+
+type VoidResponse {
+    result: Boolean
+}
+
+scalar DateTime

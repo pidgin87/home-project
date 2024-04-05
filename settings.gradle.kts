@@ -27,8 +27,18 @@ findProject(":finance:fund-service")?.name = "fund-service"
 include("finance:product-service")
 findProject(":finance:product-service")?.name = "product-service"
 
-include("finance:history-service")
-findProject(":finance:history-service")?.name = "history-service"
+
+
+include("finance:history-service:history-service-impl")
+findProject(":finance:history-service:history-service-impl")?.name = "history-service-impl"
+
+include("finance:history-service:history-service-dto")
+findProject(":finance:history-service:history-service-dto")?.name = "history-service-dto"
+
+include("finance:history-service:history-service-client")
+findProject(":finance:history-service:history-service-client")?.name = "history-service-client"
+
+
 
 include("module:eureka-client-extension")
 findProject(":module:eureka-client-extension")?.name = "eureka-client-extension"
