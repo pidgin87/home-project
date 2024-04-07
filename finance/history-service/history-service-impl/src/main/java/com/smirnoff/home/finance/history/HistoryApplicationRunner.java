@@ -10,8 +10,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableJpaAuditing
-@EnableFeignClients
-@ComponentScan(value = {"com.smirnoff.home.platform", "com.smirnoff.home.finance.history"})
+@EnableFeignClients(value = {
+        "com.smirnoff.home.platform",
+        "com.smirnoff.home.finance.history"
+})
+@ComponentScan(value = {
+        "com.smirnoff.home.platform",
+        "com.smirnoff.home.finance.history"
+})
 public class HistoryApplicationRunner {
     public static void main(String[] args) {
         SpringApplication.run(HistoryApplicationRunner.class, args);

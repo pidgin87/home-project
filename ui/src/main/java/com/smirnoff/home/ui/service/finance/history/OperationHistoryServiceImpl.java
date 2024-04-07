@@ -37,7 +37,13 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                 getOperationList {
                     id
                     sourceAmount
+                    sourceCurrency {
+                        symbol
+                    }
                     destinationAmount
+                    destinationCurrency {
+                        symbol               
+                    }
                 }
             }
             """;

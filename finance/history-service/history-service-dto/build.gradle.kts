@@ -17,6 +17,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
+
+    implementation(project(":platform:dictionary-service:dictionary-service-dto"))
 }
 
 dependencyManagement {

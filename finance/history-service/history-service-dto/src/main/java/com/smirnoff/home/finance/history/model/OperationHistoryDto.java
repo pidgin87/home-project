@@ -1,5 +1,6 @@
 package com.smirnoff.home.finance.history.model;
 
+import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,11 +14,11 @@ public class OperationHistoryDto {
 
     private ProductDto sourceProduct;
     private BigDecimal sourceAmount;
-    private CurrencyDto sourceCurrency;
+    private CurrencyModel sourceCurrency;
 
     private ProductDto destinationProduct;
     private BigDecimal destinationAmount;
-    private CurrencyDto destinationCurrency;
+    private CurrencyModel destinationCurrency;
 
     private String description;
 

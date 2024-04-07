@@ -23,6 +23,8 @@ public class CurrencyEntity {
     String iso;
     @Column(name = "NAME", nullable = false)
     String name;
+    @Column(name = "SYMBOL", nullable = false)
+    String symbol;
     @Column(name = "DIRECTION", nullable = false)
     Long direction;
 }

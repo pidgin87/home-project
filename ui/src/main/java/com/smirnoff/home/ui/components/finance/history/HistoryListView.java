@@ -1,9 +1,11 @@
 package com.smirnoff.home.ui.components.finance.history;
 
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
+import com.smirnoff.home.finance.history.model.ProductDto;
 import com.smirnoff.home.ui.components.MainLayout;
 import com.smirnoff.home.ui.components.finance.history.dialog.EditOperationHistoryDialog;
 import com.smirnoff.home.ui.model.finance.fund.FundFilterModel;
+import com.smirnoff.home.ui.service.finance.history.MoneyTranslator;
 import com.smirnoff.home.ui.service.finance.history.OperationHistoryService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
@@ -12,6 +14,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.contextmenu.HasMenuItems;
 import com.vaadin.flow.component.contextmenu.MenuItem;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
@@ -36,11 +39,13 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
 
     private final ApplicationContext applicationContext;
     private final OperationHistoryService operationHistoryService;
+    private final MoneyTranslator moneyTranslator;
     private final PaginatedGrid<OperationHistoryDto, FundFilterModel> grid;
 
     public HistoryListView(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
         this.operationHistoryService = applicationContext.getBean(OperationHistoryService.class);
+        this.moneyTranslator = applicationContext.getBean(MoneyTranslator.class);
 
         HorizontalLayout toolbar = new HorizontalLayout();
         Button addButton = new Button(new Icon());
@@ -53,6 +58,8 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
 
         grid = new PaginatedGrid<>();
         grid.addColumn(OperationHistoryDto::getId).setHeader("Id");
+        grid.addComponentColumn(this::getAmountColumn).setHeader("Amount");
+        grid.addComponentColumn(this::getProductColumn).setHeader("Product");
 
         grid.setDataProvider(new CallbackDataProvider(this, this));
 
@@ -60,6 +67,43 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         grid.setSizeFull();
 
         add(grid);
+    }
+
+    private Component getAmountColumn(OperationHistoryDto operation) {
+        String sourceAmount = moneyTranslator.toString(operation.getSourceAmount(), operation.getSourceCurrency());
+        String destinationAmount = moneyTranslator.toString(operation.getDestinationAmount(), operation.getDestinationCurrency());
+
+        Span span = new Span();
+        if (sourceAmount != null && destinationAmount != null) {
+            span.add(sourceAmount);
+            span.add(" -> ");
+            span.setClassName("money-transfer");
+            span.add(destinationAmount);
+        } else if (sourceAmount != null) {
+            span.add(sourceAmount);
+            span.setClassName("money-outcome");
+        } else if (destinationAmount != null) {
+            span.add(destinationAmount);
+            span.setClassName("money-income");
+        }
+        return span;
+    }
+
+    private Component getProductColumn(OperationHistoryDto operation) {
+        ProductDto sourceProduct = operation.getSourceProduct();
+        ProductDto destinationProduct = operation.getDestinationProduct();
+
+        Span span = new Span();
+        if (sourceProduct != null && destinationProduct != null) {
+            span.add(sourceProduct.name());
+            span.add(" -> ");
+            span.add(destinationProduct.name());
+        } else if (sourceProduct != null) {
+            span.add(sourceProduct.name());
+        } else if (destinationProduct != null) {
+            span.add(destinationProduct.name());
+        }
+        return span;
     }
 
     private Component prepareToolbar() {

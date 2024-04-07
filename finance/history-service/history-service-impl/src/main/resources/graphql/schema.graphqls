@@ -28,6 +28,7 @@ type Currency {
     id: String
     iso: ProductType
     name: String
+    symbol: String
 }
 
 type Product {

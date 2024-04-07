@@ -19,6 +19,9 @@ dependencies {
     implementation(project(":module:graphql-openfeigh-extension"))
     implementation(project(":finance:history-service:history-service-dto"))
 
+    implementation(project(":platform:dictionary-service:dictionary-service-dto"))
+    implementation(project(":platform:dictionary-service:dictionary-service-client"))
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.graphql-java:graphql-java-extended-scalars:${property("graphqlJavaExtendedScalars.version")}")
