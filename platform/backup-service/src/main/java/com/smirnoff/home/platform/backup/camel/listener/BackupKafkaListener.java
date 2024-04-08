@@ -41,7 +41,8 @@ public class BackupKafkaListener extends RouteBuilder {
         from("""
                     kafka:{{home-project.backup-service.kafka.consumer.topics}}?
                         brokers={{home-project.backup-service.kafka.bootstraps}}&
-                        groupId={{home-project.backup-service.kafka.consumer.group-id}}
+                        groupId={{home-project.backup-service.kafka.consumer.group-id}}&
+                        autoOffsetReset=earliest
                 """)
                 .routeId("read-backups-messages")
                 .errorHandler(deadLetterChannel("""

@@ -57,7 +57,7 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         add(menuBar);
 
         grid = new PaginatedGrid<>();
-        grid.addColumn(OperationHistoryDto::getId).setHeader("Id");
+        grid.addColumn(OperationHistoryDto::getOperationDate).setHeader("Date");
         grid.addComponentColumn(this::getAmountColumn).setHeader("Amount");
         grid.addComponentColumn(this::getProductColumn).setHeader("Product");
 

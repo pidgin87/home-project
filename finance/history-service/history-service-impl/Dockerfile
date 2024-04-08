@@ -1,11 +1,11 @@
 FROM openjdk:21-bullseye
 
-EXPOSE 10004
+EXPOSE 10006
 WORKDIR /application
 
-COPY /history-service-impl/docker/entrypoint.sh /application/entrypoint.sh
+COPY /docker/entrypoint.sh /application/entrypoint.sh
 RUN chmod +x /application/entrypoint.sh
 
-COPY /build/libs/fund-service-0.0.1-SNAPSHOT.jar /application/runner.jar
+COPY /build/libs/history-service-impl-0.0.1-SNAPSHOT.jar /application/runner.jar
 
 ENTRYPOINT ["./entrypoint.sh"]
