@@ -1,7 +1,6 @@
 package com.smirnoff.home.finance.history.client;
 
 import com.smirnoff.home.finance.history.client.model.GetOperationHistoryDtoList;
-import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.finance.history.model.VoidResponse;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;

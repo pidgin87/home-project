@@ -44,6 +44,7 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                     destinationCurrency {
                         symbol               
                     }
+                    operationDate
                 }
             }
             """;
