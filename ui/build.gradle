@@ -37,6 +37,9 @@ dependencies {
     implementation(project(":platform:dictionary-service:dictionary-service-dto"))
     implementation(project(":platform:dictionary-service:dictionary-service-client"))
 
+    implementation(project(":finance:history-service:history-service-dto"))
+    implementation(project(":finance:history-service:history-service-client"))
+
     implementation('com.vaadin:vaadin-spring-boot-starter')
     implementation('org.parttio:line-awesome:2.0.0')
 

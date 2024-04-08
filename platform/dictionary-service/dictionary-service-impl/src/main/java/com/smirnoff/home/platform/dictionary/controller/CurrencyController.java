@@ -18,7 +18,7 @@ public class CurrencyController {
     private final CurrencyMapper currencyMapper;
 
     @QueryMapping
-    public List<CurrencyModel> getFundList() {
+    public List<CurrencyModel> getCurrencyList() {
         List<CurrencyEntity> currencies = currencyService.getAll();
         return currencyMapper.map(currencies);
     }

@@ -16,7 +16,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public List<CurrencyEntity> getAll() {
         return currencyRepository.findAll(
-                Sort.by(Sort.Direction.ASC, "order")
+                Sort.by(Sort.Direction.ASC, "direction")
         );
     }
 }

@@ -15,6 +15,9 @@
             <option value="$PROJECT_DIR$/finance" />
             <option value="$PROJECT_DIR$/finance/fund-service" />
             <option value="$PROJECT_DIR$/finance/history-service" />
+            <option value="$PROJECT_DIR$/finance/history-service/history-service-client" />
+            <option value="$PROJECT_DIR$/finance/history-service/history-service-dto" />
+            <option value="$PROJECT_DIR$/finance/history-service/history-service-impl" />
             <option value="$PROJECT_DIR$/finance/product-service" />
             <option value="$PROJECT_DIR$/gateway" />
             <option value="$PROJECT_DIR$/job-service" />

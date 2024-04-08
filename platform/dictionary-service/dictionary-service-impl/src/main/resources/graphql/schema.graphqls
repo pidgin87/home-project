@@ -5,4 +5,5 @@ type Query {
 type Currency {
     id: String
     name: String
+    iso: String
 }
