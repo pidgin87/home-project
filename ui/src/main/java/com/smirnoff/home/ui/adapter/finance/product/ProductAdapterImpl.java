@@ -2,6 +2,7 @@ package com.smirnoff.home.ui.adapter.finance.product;
 
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
+import com.smirnoff.home.graphql.request.GraphQlVariables;
 import com.smirnoff.home.ui.adapter.finance.product.client.FinanceProductServiceClient;
 import com.smirnoff.home.ui.adapter.finance.product.client.GetProductModelList;
 import com.smirnoff.home.ui.model.finance.product.ProductModel;
@@ -61,9 +62,9 @@ public class ProductAdapterImpl implements ProductAdapter {
         financeProductServiceClient.createProduct(GraphQlRequest.builder()
                 .query(CREATE_PRODUCT_REQUEST)
                 .operationName("CreateProduct")
-                .variables(Map.of(
-                        "name", productName,
-                        "type", productType)
+                .variables(new GraphQlVariables()
+                        .addObject("name", productName)
+                        .addObject("type", productType)
                 )
                 .build()
         );
@@ -74,7 +75,8 @@ public class ProductAdapterImpl implements ProductAdapter {
         financeProductServiceClient.deleteProduct(GraphQlRequest.builder()
                 .query(DELETE_PRODUCT_REQUEST)
                 .operationName("DeleteFund")
-                .variables(Map.of("productId", product.id()))
+                .variables(new GraphQlVariables()
+                        .addObject("productId", product.id()))
                 .build()
         );
     }

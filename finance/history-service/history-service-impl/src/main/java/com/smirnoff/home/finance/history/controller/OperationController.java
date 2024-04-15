@@ -47,6 +47,22 @@ public class OperationController {
                 OperationHistoryDto::getDestinationCurrency);
     }
 
+    @MutationMapping
+    public VoidResponse createOperation(@Argument String sourceProduct,
+                                        @Argument String sourceFund,
+                                        @Argument BigDecimal sourceAmount,
+                                        @Argument String sourceCurrency,
+                                        @Argument String destinationProduct,
+                                        @Argument String destinationFund,
+                                        @Argument BigDecimal destinationAmount,
+                                        @Argument String destinationCurrency,
+                                        @Argument String description) {
+        OperationHistoryEntity entity = operationHistoryMapper.map(sourceProduct, sourceFund, sourceAmount, sourceCurrency,
+                destinationProduct, destinationFund, destinationAmount, destinationCurrency, description);
+        operationHistoryService.save(entity);
+        return new VoidResponse();
+    }
+
     private Map<OperationHistoryDto, CurrencyModel> getOperationsWithCurrency(
             List<OperationHistoryDto> operations,
             Function<OperationHistoryDto, CurrencyModel> currencyFieldFunction) {
@@ -62,14 +78,5 @@ public class OperationController {
             resultMap.put(operation, currencyModel);
         }
         return resultMap;
-    }
-
-    @MutationMapping
-    public VoidResponse createOperation(@Argument String sourceProduct,
-                                        @Argument BigDecimal sourceAmount,
-                                        @Argument String sourceCurrency) {
-        OperationHistoryEntity entity = operationHistoryMapper.map(sourceProduct, sourceAmount, sourceCurrency);
-        operationHistoryService.save(entity);
-        return new VoidResponse();
     }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -22,5 +23,5 @@ public class OperationHistoryDto {
 
     private String description;
 
-    private LocalDateTime operationDate;
+    private OffsetDateTime createdDate;
 }

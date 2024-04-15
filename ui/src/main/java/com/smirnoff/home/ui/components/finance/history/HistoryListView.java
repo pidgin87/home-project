@@ -57,7 +57,7 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         add(menuBar);
 
         grid = new PaginatedGrid<>();
-        grid.addColumn(OperationHistoryDto::getOperationDate).setHeader("Date");
+        grid.addColumn(OperationHistoryDto::getCreatedDate).setHeader("Date");
         grid.addComponentColumn(this::getAmountColumn).setHeader("Amount");
         grid.addComponentColumn(this::getProductColumn).setHeader("Product");
 
@@ -68,6 +68,17 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
 
         add(grid);
     }
+
+    @Override
+    public Stream<OperationHistoryDto> fetch(Query<OperationHistoryDto, Void> query) {
+        return operationHistoryService.getList().stream();
+    }
+
+    @Override
+    public int count(Query<OperationHistoryDto, Void> query) {
+        return operationHistoryService.getList().size();
+    }
+
 
     private Component getAmountColumn(OperationHistoryDto operation) {
         String sourceAmount = moneyTranslator.toString(operation.getSourceAmount(), operation.getSourceCurrency());
@@ -150,16 +161,6 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         });
 
         dialog.open();
-    }
-
-    @Override
-    public Stream<OperationHistoryDto> fetch(Query<OperationHistoryDto, Void> query) {
-        return operationHistoryService.getList().stream();
-    }
-
-    @Override
-    public int count(Query<OperationHistoryDto, Void> query) {
-        return operationHistoryService.getList().size();
     }
 
     private void createIconItem(HasMenuItems menu, VaadinIcon iconName, String ariaLabel, ComponentEventListener<ClickEvent<MenuItem>> clickListener) {

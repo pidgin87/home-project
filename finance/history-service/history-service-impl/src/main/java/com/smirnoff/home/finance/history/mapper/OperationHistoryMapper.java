@@ -11,7 +11,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OperationHistoryMapper {
-    OperationHistoryEntity map(String sourceProduct, BigDecimal sourceAmount, String sourceCurrency);
+    OperationHistoryEntity map(String sourceProduct, String sourceFund, BigDecimal sourceAmount, String sourceCurrency,
+                               String destinationProduct, String destinationFund, BigDecimal destinationAmount,
+                               String destinationCurrency, String description);
 
     List<OperationHistoryDto> map(List<OperationHistoryEntity> operations);
 

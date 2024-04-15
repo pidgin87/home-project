@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Getter
 @Setter
@@ -22,11 +23,14 @@ public class OperationHistoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     private String id;
 
     @Column(name = "SOURCE_PRODUCT")
     private String sourceProduct;
+
+    @Column(name = "SOURCE_FUND")
+    private String sourceFund;
 
     @Column(name = "SOURCE_AMOUNT")
     private BigDecimal sourceAmount;
@@ -37,15 +41,20 @@ public class OperationHistoryEntity {
     @Column(name = "DESTINATION_PRODUCT")
     private String destinationProduct;
 
+    @Column(name = "DESTINATION_FUND")
+    private String destinationFund;
+
     @Column(name = "DESTINATION_AMOUNT")
     private BigDecimal destinationAmount;
 
     @Column(name = "DESTINATION_CURRENCY")
     private String destinationCurrency;
 
-    @CreatedDate
+    @Column(name = "DESCRIPTION")
+    private String description;
+
     @Column(name = "CREATED_DATE", nullable = false)
-    private LocalDateTime createdDate;
+    private OffsetDateTime createdDate;
 }
 
 

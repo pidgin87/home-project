@@ -2,6 +2,7 @@ package com.smirnoff.home.ui.adapter.finance.fund;
 
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
+import com.smirnoff.home.graphql.request.GraphQlVariables;
 import com.smirnoff.home.ui.adapter.finance.fund.client.FundClient;
 import com.smirnoff.home.ui.adapter.finance.fund.client.GetFundModelList;
 import com.smirnoff.home.ui.model.finance.fund.FundModel;
@@ -59,7 +60,8 @@ public class FundAdapterImpl implements FundAdapter {
         fundClient.createFund(GraphQlRequest.builder()
                 .query(CREATE_FUND_REQUEST)
                 .operationName("CreateFund")
-                .variables(Map.of("name", fundName))
+                .variables(new GraphQlVariables()
+                        .addObject("name", fundName))
                 .build()
         );
     }
@@ -69,7 +71,9 @@ public class FundAdapterImpl implements FundAdapter {
         fundClient.updateFund(GraphQlRequest.builder()
                 .query(UPDATE_FUND_REQUEST)
                 .operationName("UpdateFund")
-                .variables(Map.of("id", id, "name", fundName))
+                .variables(new GraphQlVariables()
+                        .addObject("id", id)
+                        .addObject("name", fundName))
                 .build()
         );
     }
@@ -89,7 +93,8 @@ public class FundAdapterImpl implements FundAdapter {
         fundClient.deleteFund(GraphQlRequest.builder()
                 .query(DELETE_FUND_REQUEST)
                 .operationName("DeleteFund")
-                .variables(Map.of("id", fundId))
+                .variables(new GraphQlVariables()
+                        .addObject("id", fundId))
                 .build()
         );
     }

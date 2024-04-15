@@ -2,9 +2,11 @@ package com.smirnoff.home.ui.components.finance.history.dialog;
 
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.ui.components.common.CurrencyComboBox;
+import com.smirnoff.home.ui.components.common.FundComboBox;
 import com.smirnoff.home.ui.components.common.ProductComboBox;
 import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
 import com.smirnoff.home.ui.service.finance.dictionary.DictionaryService;
+import com.smirnoff.home.ui.service.finance.fund.FundService;
 import com.smirnoff.home.ui.service.finance.history.OperationHistoryService;
 import com.smirnoff.home.ui.service.finance.product.ProductService;
 import com.vaadin.flow.component.ClickEvent;
@@ -34,13 +36,16 @@ public class EditOperationHistoryDialog extends Dialog {
     private final OperationHistoryDto operationHistoryModel;
     private final DictionaryService dictionaryService;
     private final ProductService productService;
+    private final FundService fundService;
 
     private TextField sourceAmountTextField;
     private ProductComboBox sourceProductComboBox;
+    private FundComboBox sourceFundComboBox;
     private CurrencyComboBox sourceCurrencyComboBox;
 
     private TextField destinationAmountTextField;
     private ProductComboBox destinationProductComboBox;
+    private FundComboBox destinationFundComboBox;
     private CurrencyComboBox destinationCurrencyComboBox;
 
     private TextArea descriptionTextField;
@@ -48,17 +53,20 @@ public class EditOperationHistoryDialog extends Dialog {
 
     @Autowired
     public EditOperationHistoryDialog(DictionaryService dictionaryService,
-                                      ProductService productService) {
-        this("Create operation", dictionaryService, productService, null);
+                                      ProductService productService,
+                                      FundService fundService) {
+        this("Create operation", dictionaryService, productService, fundService, null);
     }
 
     private EditOperationHistoryDialog(String title,
                                        DictionaryService dictionaryService,
                                        ProductService productService,
+                                       FundService fundService,
                                        OperationHistoryDto operationHistoryModel) {
         this.operationHistoryModel = operationHistoryModel;
         this.dictionaryService = dictionaryService;
         this.productService = productService;
+        this.fundService = fundService;
 
         setDraggable(true);
         setResizable(false);
@@ -100,10 +108,19 @@ public class EditOperationHistoryDialog extends Dialog {
     private VerticalLayout prepareSourceComponent() {
         VerticalLayout layout = new VerticalLayout();
 
+        HorizontalLayout productAndFundLayout = new HorizontalLayout();
+
         sourceProductComboBox = new ProductComboBox(productService);
         sourceProductComboBox.setPlaceholder("Source product");
-        sourceProductComboBox.setWidthFull();
-        layout.add(sourceProductComboBox);
+        sourceProductComboBox.setWidth(40, Unit.PERCENTAGE);
+        productAndFundLayout.add(sourceProductComboBox);
+
+        sourceFundComboBox = new FundComboBox(fundService);
+        sourceFundComboBox.setPlaceholder("Source fund");
+        sourceFundComboBox.setWidth(60, Unit.PERCENTAGE);
+        productAndFundLayout.add(sourceFundComboBox);
+
+        layout.add(productAndFundLayout);
 
         HorizontalLayout moneyLayout = new HorizontalLayout();
         sourceAmountTextField = new TextField();
@@ -127,10 +144,19 @@ public class EditOperationHistoryDialog extends Dialog {
     private VerticalLayout prepareDestinationComponent() {
         VerticalLayout layout = new VerticalLayout();
 
+        HorizontalLayout productAndFundLayout = new HorizontalLayout();
+
         destinationProductComboBox = new ProductComboBox(productService);
         destinationProductComboBox.setPlaceholder("Destination product");
-        destinationProductComboBox.setWidthFull();
-        layout.add(destinationProductComboBox);
+        destinationProductComboBox.setWidth(40, Unit.PERCENTAGE);
+        productAndFundLayout.add(destinationProductComboBox);
+
+        destinationFundComboBox = new FundComboBox(fundService);
+        destinationFundComboBox.setPlaceholder("Destination fund");
+        destinationFundComboBox.setWidth(60, Unit.PERCENTAGE);
+        productAndFundLayout.add(destinationFundComboBox);
+
+        layout.add(productAndFundLayout);
 
         HorizontalLayout moneyLayout = new HorizontalLayout();
         destinationAmountTextField = new TextField();
@@ -159,20 +185,18 @@ public class EditOperationHistoryDialog extends Dialog {
         saveButton.addClickListener(saveClickListener);
     }
 
-    public String getOperationDescription() {
-        return descriptionTextField.getValue();
-    }
-
-    public String getOperationId() {
-        return operationHistoryModel.getId();
-    }
-
     public OperationHistoryModel getOperation() {
         return OperationHistoryModel.builder()
 
                 .sourceProduct(sourceProductComboBox.getValue())
+                .sourceFund(sourceFundComboBox.getValue())
                 .sourceCurrency(sourceCurrencyComboBox.getValue())
                 .sourceAmount(BigDecimal.valueOf(Long.valueOf(sourceAmountTextField.getValue())))
+
+                .destinationProduct(destinationProductComboBox.getValue())
+                .destinationFund(destinationFundComboBox.getValue())
+                .destinationCurrency(destinationCurrencyComboBox.getValue())
+                .destinationAmount(BigDecimal.valueOf(Long.valueOf(destinationAmountTextField.getValue())))
 
                 .description(descriptionTextField.getValue())
 
