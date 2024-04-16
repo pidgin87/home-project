@@ -9,7 +9,7 @@ import java.util.Map;
 public record GraphQlRequest(
         String query,
         String operationName,
-        Map<String, Object> variables
+        GraphQlVariables variables
 ) {
 
 }

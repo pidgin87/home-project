@@ -1,9 +1,9 @@
 package com.smirnoff.home.finance.history.mapper;
 
-import com.smirnoff.home.finance.history.model.CurrencyDto;
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.finance.history.model.ProductDto;
 import com.smirnoff.home.finance.history.persistance.entity.OperationHistoryEntity;
+import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import org.mapstruct.Mapper;
 
 import java.math.BigDecimal;
@@ -11,7 +11,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OperationHistoryMapper {
-    OperationHistoryEntity map(String sourceProduct, BigDecimal sourceAmount, String sourceCurrency);
+    OperationHistoryEntity map(String sourceProduct, String sourceFund, BigDecimal sourceAmount, String sourceCurrency,
+                               String destinationProduct, String destinationFund, BigDecimal destinationAmount,
+                               String destinationCurrency, String description);
 
     List<OperationHistoryDto> map(List<OperationHistoryEntity> operations);
 
@@ -21,7 +23,7 @@ public interface OperationHistoryMapper {
         return new ProductDto(productId, null, null);
     }
 
-    default CurrencyDto mapCurrency(String currencyId) {
-        return new CurrencyDto(currencyId, null, null);
+    default CurrencyModel mapCurrency(String currencyId) {
+        return new CurrencyModel(currencyId, null, null, null);
     }
 }

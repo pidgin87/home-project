@@ -5,8 +5,17 @@ type Query {
 type Mutation {
     createOperation(
         sourceProduct: String,
+        sourceFund: String,
         sourceAmount: Float,
-        sourceCurrency: String
+        sourceCurrency: String,
+
+        destinationProduct: String,
+        destinationFund: String,
+        destinationAmount: Float,
+        destinationCurrency: String,
+
+        description: String
+
     ): VoidResponse
 }
 
@@ -21,13 +30,14 @@ type Operation {
     destinationAmount: Float
     destinationCurrency: Currency
 
-    operationDate: DateTime
+    createdDate: DateTime
 }
 
 type Currency {
     id: String
     iso: ProductType
     name: String
+    symbol: String
 }
 
 type Product {

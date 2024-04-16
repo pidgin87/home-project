@@ -5,12 +5,20 @@ import com.smirnoff.home.finance.history.client.model.GetOperationHistoryDtoList
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
+import com.smirnoff.home.graphql.request.GraphQlVariables;
+import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
+import com.smirnoff.home.ui.model.finance.fund.FundModel;
 import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
+import com.smirnoff.home.ui.model.finance.product.ProductModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Component
 @RequiredArgsConstructor
@@ -20,8 +28,8 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
 
     //language=graphql
     private static final String CREATE_OPERATION = """
-            mutation CreateOperation($sourceProduct: String, 
-                                     $sourceAmount: Float, 
+            mutation CreateOperation($sourceProduct: String,
+                                     $sourceAmount: Float,
                                      $sourceCurrency: String) {
                 createOperation(sourceProduct: $sourceProduct,
                                 sourceAmount: $sourceAmount,
@@ -37,7 +45,14 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                 getOperationList {
                     id
                     sourceAmount
+                    sourceCurrency {
+                        symbol
+                    }
                     destinationAmount
+                    destinationCurrency {
+                        symbol          
+                    }
+                    createdDate
                 }
             }
             """;
@@ -68,13 +83,19 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
         operationHistoryClient.createOperation(GraphQlRequest.builder()
                 .query(CREATE_OPERATION)
                 .operationName("CreateOperation")
-                .variables(Map.of(
-                                "sourceProduct", operation.getSourceProduct().id(),
-                                "sourceAmount", operation.getSourceAmount(),
-                                "sourceCurrency", operation.getSourceCurrency().getId()
-                        )
+                .variables(new GraphQlVariables()
+                        .addObject("sourceProduct", operation.getSourceProduct(), ProductModel::id)
+                        .addObject("sourceFund", operation.getSourceFund(), FundModel::id)
+                        .addObject("sourceAmount", operation.getSourceAmount())
+                        .addObject("sourceCurrency", operation.getSourceCurrency(), CurrencyModel::getId)
+
+                        .addObject("destinationProduct", operation.getDestinationProduct(), ProductModel::id)
+                        .addObject("destinationFund", operation.getDestinationFund(), FundModel::id)
+                        .addObject("destinationAmount", operation.getDestinationAmount())
+                        .addObject("destinationCurrency", operation.getDestinationCurrency(), CurrencyModel::getId)
+
+                        .addObject("description", operation.getDescription(), value -> isEmpty(value) ? null : value)
                 )
-                .build()
-        );
+                .build());
     }
 }

@@ -6,4 +6,5 @@ type Currency {
     id: String
     name: String
     iso: String
+    symbol: String
 }
