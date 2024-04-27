@@ -1,0 +1,8 @@
+type Query {
+    createOAuthSession: [CreateOAuthSessionRequest]
+}
+
+type CreateOAuthSessionRequest {
+    login: String
+    password: String
+}
