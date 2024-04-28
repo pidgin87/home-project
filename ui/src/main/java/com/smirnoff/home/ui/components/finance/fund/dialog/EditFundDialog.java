@@ -1,6 +1,6 @@
 package com.smirnoff.home.ui.components.finance.fund.dialog;
 
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
@@ -33,7 +33,7 @@ public class EditFundDialog extends Dialog {
         getFooter().add(this.saveButton);
     }
 
-    public EditFundDialog(FundModel fund) {
+    public EditFundDialog(Fund fund) {
         this("Update fund");
         if (fund != null) {
             fundNameTextField.setValue(fund.name());

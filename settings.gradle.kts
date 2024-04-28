@@ -44,9 +44,16 @@ include("platform:session-service:session-service-client")
 findProject(":platform:session-service:session-service-client")?.name = "session-service-client"
 
 //fund-service
-include("finance:fund-service")
-findProject(":finance:fund-service")?.name = "fund-service"
+include("finance:fund-service:fund-service-client")
+findProject(":finance:fund-service:fund-service-client")?.name = "fund-service-client"
 
+include("finance:fund-service:fund-service-dto")
+findProject(":finance:fund-service:fund-service-dto")?.name = "fund-service-dto"
+
+include("finance:fund-service:fund-service-impl")
+findProject(":finance:fund-service:fund-service-impl")?.name = "fund-service-impl"
+
+//product-service
 include("finance:product-service")
 findProject(":finance:product-service")?.name = "product-service"
 
@@ -59,8 +66,12 @@ findProject(":finance:history-service:history-service-dto")?.name = "history-ser
 include("finance:history-service:history-service-client")
 findProject(":finance:history-service:history-service-client")?.name = "history-service-client"
 
+//extra extension
 include("module:eureka-client-extension")
 findProject(":module:eureka-client-extension")?.name = "eureka-client-extension"
 
 include("module:graphql-openfeigh-extension")
 findProject(":module:graphql-openfeigh-extension")?.name = "graphql-openfeigh-extension"
+
+include("module:graphql-client-extension")
+findProject(":module:graphql-client-extension")?.name = "graphql-client-extension"

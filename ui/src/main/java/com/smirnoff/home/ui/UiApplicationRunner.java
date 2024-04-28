@@ -11,11 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableFeignClients(value = {
         "com.smirnoff.home.platform",
-        "com.smirnoff.home.finance.history",
+        "com.smirnoff.home.finance.history.client",
+        "com.smirnoff.home.finance.fund.client",
         "com.smirnoff.home.ui"
 })
 @ComponentScan(value = {
         "com.smirnoff.home.platform",
+        "com.smirnoff.home.platform.session.client",
         "com.smirnoff.home.ui"
 })
 @SpringBootApplication

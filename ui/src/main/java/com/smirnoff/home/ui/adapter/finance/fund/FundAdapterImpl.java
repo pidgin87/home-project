@@ -1,16 +1,15 @@
 package com.smirnoff.home.ui.adapter.finance.fund;
 
+import com.smirnoff.home.finance.fund.client.FundClient;
+import com.smirnoff.home.finance.fund.model.Fund;
+import com.smirnoff.home.finance.fund.model.GetFundModelList;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
 import com.smirnoff.home.graphql.request.GraphQlVariables;
-import com.smirnoff.home.ui.adapter.finance.fund.client.FundClient;
-import com.smirnoff.home.ui.adapter.finance.fund.client.GetFundModelList;
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -79,7 +78,7 @@ public class FundAdapterImpl implements FundAdapter {
     }
 
     @Override
-    public List<FundModel> getList() {
+    public List<Fund> getList() {
         GraphQlResponse<GetFundModelList> response = fundClient.getFunds(GraphQlRequest.builder()
                 .query(GET_FUND_REQUEST)
                 .operationName("GetFundList")

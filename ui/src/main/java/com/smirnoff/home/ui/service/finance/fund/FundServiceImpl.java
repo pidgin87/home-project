@@ -1,7 +1,7 @@
 package com.smirnoff.home.ui.service.finance.fund;
 
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.ui.adapter.finance.fund.FundAdapter;
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,17 +18,17 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public void update(FundModel fund) {
+    public void update(Fund fund) {
         fundAdapter.update(fund.id(), fund.name());
     }
 
     @Override
-    public List<FundModel> getList() {
+    public List<Fund> getList() {
         return fundAdapter.getList();
     }
 
     @Override
-    public void delete(FundModel fund) {
+    public void delete(Fund fund) {
         fundAdapter.delete(fund.id());
     }
 }

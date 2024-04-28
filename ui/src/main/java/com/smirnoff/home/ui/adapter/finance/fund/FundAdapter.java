@@ -1,6 +1,6 @@
 package com.smirnoff.home.ui.adapter.finance.fund;
 
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
+import com.smirnoff.home.finance.fund.model.Fund;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface FundAdapter {
 
     void update(String id, String name);
 
-    List<FundModel> getList();
+    List<Fund> getList();
 
     void delete(String fundId);
 }
