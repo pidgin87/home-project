@@ -1,0 +1,27 @@
+server:
+  port: 11100
+
+logging:
+  level:
+    org:
+      atmosphere : warn
+
+spring:
+  jpa:
+    defer-datasource-initialization: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: XXXX
+            client-secret: YYYY
+vaadin:
+  allowed-packages: com.vaadin,org.vaadin,dev.hilla,com.smirnoff.home.ui
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+  instance:
+    prefer-ip-address: true

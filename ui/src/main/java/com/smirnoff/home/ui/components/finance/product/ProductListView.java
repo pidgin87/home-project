@@ -1,6 +1,6 @@
 package com.smirnoff.home.ui.components.finance.product;
 
-import com.smirnoff.home.ui.components.MainLayout;
+import com.smirnoff.home.ui.components.MainView;
 import com.smirnoff.home.ui.components.finance.product.dialog.EditProductDialog;
 import com.smirnoff.home.ui.model.finance.fund.FundFilterModel;
 import com.smirnoff.home.ui.model.finance.product.ProductModel;
@@ -22,6 +22,7 @@ import com.vaadin.flow.data.provider.CallbackDataProvider;
 import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import jakarta.annotation.security.PermitAll;
 import org.vaadin.klaudeta.PaginatedGrid;
 
 import java.util.Set;
@@ -29,8 +30,9 @@ import java.util.stream.Stream;
 
 import static java.util.Objects.nonNull;
 
+@PermitAll
 @PageTitle("List of products")
-@Route(value = "finance/products", layout = MainLayout.class)
+@Route(value = "finance/products", layout = MainView.class)
 public class ProductListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<ProductModel, Void>,
         CallbackDataProvider.CountCallback<ProductModel, Void> {
 

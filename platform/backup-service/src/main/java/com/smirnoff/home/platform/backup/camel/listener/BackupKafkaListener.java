@@ -9,17 +9,11 @@ import com.smirnoff.home.platform.backup.model.debezium.DebeziumPayload;
 import com.smirnoff.home.platform.backup.model.debezium.DebeziumPayloadSource;
 import lombok.RequiredArgsConstructor;
 import org.apache.camel.Exchange;
-import org.apache.camel.Predicate;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.nonNull;

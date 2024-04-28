@@ -3,29 +3,37 @@ package com.smirnoff.home.ui.components;
 import com.smirnoff.home.ui.components.finance.fund.FundListView;
 import com.smirnoff.home.ui.components.finance.history.HistoryListView;
 import com.smirnoff.home.ui.components.finance.product.ProductListView;
+import com.smirnoff.home.ui.configuration.security.model.User;
+import com.smirnoff.home.ui.configuration.security.model.UserSessionService;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.html.Footer;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.server.VaadinServletRequest;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
-public class MainLayout extends AppLayout {
+@CssImport("./styles/global-styles.css")
+public class MainView extends AppLayout {
 
     private H2 viewTitle;
 
-    public MainLayout() {
+    private static final String LOGOUT_SUCCESS_URL = "/login";
+
+    public MainView(UserSessionService userSessionService) {
         setPrimarySection(Section.DRAWER);
-        addDrawerContent();
+        addDrawerContent(userSessionService.getUser());
         addHeaderContent();
     }
 
@@ -39,14 +47,37 @@ public class MainLayout extends AppLayout {
         addToNavbar(true, toggle, viewTitle);
     }
 
-    private void addDrawerContent() {
+    private void addDrawerContent(User user) {
         H1 appName = new H1("home-project");
         appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
-        Header header = new Header(appName);
+
+        Header header = new Header(new Paragraph(appName));
+        header.add(getHeader(user));
+        header.add(getLogoutButton());
 
         Scroller scroller = new Scroller(createNavigation());
-
         addToDrawer(header, scroller, createFooter());
+    }
+
+    private Component getLogoutButton() {
+        Button logoutButton = new Button("Logout", click -> {
+            UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
+            SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+            logoutHandler.logout(
+                    VaadinServletRequest.getCurrent().getHttpServletRequest(), null,
+                    null);
+        });
+        return new Paragraph(logoutButton);
+    }
+
+    private Component getHeader(User user) {
+        Image userImage = new Image(user.picture(), "User Image");
+        userImage.setClassName("avatar");
+
+        H1 h1 = new H1();
+        h1.add(new Paragraph(new Span("Hello %s!".formatted(user.firstName()))));
+        h1.add(new Paragraph(userImage));
+        return h1;
     }
 
     private SideNav createNavigation() {
@@ -63,9 +94,7 @@ public class MainLayout extends AppLayout {
     }
 
     private Footer createFooter() {
-        Footer layout = new Footer();
-
-        return layout;
+        return new Footer();
     }
 
     @Override

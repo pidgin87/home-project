@@ -18,18 +18,3 @@ vaadin-side-nav-item vaadin-icon {
 [slot="drawer"]:is(header, footer):is(:empty) {
     display: none;
 }
-
-.money-transfer {
-    color: darkgray;
-    font-weight: 700;
-}
-
-.money-income {
-    color: green;
-    font-weight: 700;
-}
-
-.money-outcome {
-    color: indianred;
-    font-weight: 700;
-}
