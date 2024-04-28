@@ -16,8 +16,12 @@ public class UserSessionService implements Serializable {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
 
-        return new User(principal.getAttribute("given_name"), principal.getAttribute("family_name"), principal.getAttribute("email"),
-                principal.getAttribute("picture"));
+        return new User(
+                principal.getAttribute("given_name"),
+                principal.getAttribute("family_name"),
+                principal.getAttribute("email"),
+                principal.getAttribute("picture")
+        );
     }
 
 }

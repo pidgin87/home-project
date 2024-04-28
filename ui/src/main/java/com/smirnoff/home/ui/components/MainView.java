@@ -59,7 +59,7 @@ public class MainView extends AppLayout {
         addToDrawer(header, scroller, createFooter());
     }
 
-    private static Component getLogoutButton() {
+    private Component getLogoutButton() {
         Button logoutButton = new Button("Logout", click -> {
             UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
             SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
@@ -70,12 +70,12 @@ public class MainView extends AppLayout {
         return new Paragraph(logoutButton);
     }
 
-    private static Component getHeader(User user) {
-        Image userImage = new Image(user.getPicture(), "User Image");
+    private Component getHeader(User user) {
+        Image userImage = new Image(user.picture(), "User Image");
         userImage.setClassName("avatar");
 
         H1 h1 = new H1();
-        h1.add(new Paragraph(new Span("Hello %s!".formatted(user.getFirstName()))));
+        h1.add(new Paragraph(new Span("Hello %s!".formatted(user.firstName()))));
         h1.add(new Paragraph(userImage));
         return h1;
     }
