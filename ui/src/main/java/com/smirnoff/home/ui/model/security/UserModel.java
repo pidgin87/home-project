@@ -1,6 +1,6 @@
-package com.smirnoff.home.ui.configuration.security.model;
+package com.smirnoff.home.ui.model.security;
 
-public record User (
+public record UserModel(
         String firstName,
         String lastName,
         String email,
