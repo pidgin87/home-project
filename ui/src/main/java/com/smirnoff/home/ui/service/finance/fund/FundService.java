@@ -1,15 +1,15 @@
 package com.smirnoff.home.ui.service.finance.fund;
 
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
+import com.smirnoff.home.finance.fund.model.Fund;
 
 import java.util.List;
 
 public interface FundService {
     void create(String fundName);
 
-    void update(FundModel fund);
+    void update(Fund fund);
 
-    List<FundModel> getList();
+    List<Fund> getList();
 
-    void delete(FundModel fund);
+    void delete(Fund fund);
 }

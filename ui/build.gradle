@@ -34,11 +34,17 @@ configurations {
 dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-openfeigh-extension"))
+
+    implementation(project(":platform:session-service:session-service-client"))
+
     implementation(project(":platform:dictionary-service:dictionary-service-dto"))
     implementation(project(":platform:dictionary-service:dictionary-service-client"))
 
     implementation(project(":finance:history-service:history-service-dto"))
     implementation(project(":finance:history-service:history-service-client"))
+
+    implementation(project(":finance:fund-service:fund-service-dto"))
+    implementation(project(":finance:fund-service:fund-service-client"))
 
     implementation('com.vaadin:vaadin-spring-boot-starter')
     implementation('org.parttio:line-awesome:2.0.0')

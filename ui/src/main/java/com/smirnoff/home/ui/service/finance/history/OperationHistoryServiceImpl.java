@@ -1,5 +1,6 @@
 package com.smirnoff.home.ui.service.finance.history;
 
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.finance.history.client.OperationHistoryClient;
 import com.smirnoff.home.finance.history.client.model.GetOperationHistoryDtoList;
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
@@ -7,16 +8,12 @@ import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
 import com.smirnoff.home.graphql.request.GraphQlVariables;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
-import com.smirnoff.home.ui.model.finance.fund.FundModel;
 import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
 import com.smirnoff.home.ui.model.finance.product.ProductModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -85,12 +82,12 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                 .operationName("CreateOperation")
                 .variables(new GraphQlVariables()
                         .addObject("sourceProduct", operation.getSourceProduct(), ProductModel::id)
-                        .addObject("sourceFund", operation.getSourceFund(), FundModel::id)
+                        .addObject("sourceFund", operation.getSourceFund(), Fund::id)
                         .addObject("sourceAmount", operation.getSourceAmount())
                         .addObject("sourceCurrency", operation.getSourceCurrency(), CurrencyModel::getId)
 
                         .addObject("destinationProduct", operation.getDestinationProduct(), ProductModel::id)
-                        .addObject("destinationFund", operation.getDestinationFund(), FundModel::id)
+                        .addObject("destinationFund", operation.getDestinationFund(), Fund::id)
                         .addObject("destinationAmount", operation.getDestinationAmount())
                         .addObject("destinationCurrency", operation.getDestinationCurrency(), CurrencyModel::getId)
 
