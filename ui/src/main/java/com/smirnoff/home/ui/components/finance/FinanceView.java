@@ -19,32 +19,10 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 @PermitAll
 @PageTitle("Finance module")
 @RouteAlias(value = "", layout = MainView.class)
-@Route(value = "finance", layout = MainView.class)
+@Route(value = "/finance", layout = MainView.class)
 public class FinanceView extends HorizontalLayout {
 
-    private static final String LOGOUT_SUCCESS_URL = "/login";
-
     public FinanceView() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
-
-        String givenName = principal.getAttribute("given_name");
-        String familyName = principal.getAttribute("family_name");
-        String email = principal.getAttribute("email");
-        String picture = principal.getAttribute("picture");
-
-        H2 header = new H2("Hello " + givenName + " " + familyName + " (" + email + ")");
-        Image image = new Image(picture, "User Image");
-
-        Button logoutButton = new Button("Logout", click -> {
-            UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
-            SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-            logoutHandler.logout(
-                    VaadinServletRequest.getCurrent().getHttpServletRequest(), null,
-                    null);
-        });
-
         setAlignItems(Alignment.CENTER);
-        add(header, image, logoutButton);
     }
 }

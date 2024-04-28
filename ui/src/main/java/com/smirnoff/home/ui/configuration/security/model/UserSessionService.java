@@ -5,12 +5,12 @@ import java.io.Serializable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
-@Component
+@Service
 @SessionScope
-public class UserSession implements Serializable {
+public class UserSessionService implements Serializable {
 
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -20,8 +20,4 @@ public class UserSession implements Serializable {
                 principal.getAttribute("picture"));
     }
 
-    public boolean isLoggedIn() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication != null;
-    }
 }
