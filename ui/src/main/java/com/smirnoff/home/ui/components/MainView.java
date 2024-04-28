@@ -3,8 +3,8 @@ package com.smirnoff.home.ui.components;
 import com.smirnoff.home.ui.components.finance.fund.FundListView;
 import com.smirnoff.home.ui.components.finance.history.HistoryListView;
 import com.smirnoff.home.ui.components.finance.product.ProductListView;
-import com.smirnoff.home.ui.configuration.security.model.User;
-import com.smirnoff.home.ui.configuration.security.model.UserSessionService;
+import com.smirnoff.home.ui.model.security.UserModel;
+import com.smirnoff.home.ui.service.security.UserSessionService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -47,7 +47,7 @@ public class MainView extends AppLayout {
         addToNavbar(true, toggle, viewTitle);
     }
 
-    private void addDrawerContent(User user) {
+    private void addDrawerContent(UserModel user) {
         H1 appName = new H1("home-project");
         appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
 
@@ -59,7 +59,7 @@ public class MainView extends AppLayout {
         addToDrawer(header, scroller, createFooter());
     }
 
-    private Component getLogoutButton() {
+    private static Component getLogoutButton() {
         Button logoutButton = new Button("Logout", click -> {
             UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
             SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
@@ -70,7 +70,7 @@ public class MainView extends AppLayout {
         return new Paragraph(logoutButton);
     }
 
-    private Component getHeader(User user) {
+    private static Component getHeader(UserModel user) {
         Image userImage = new Image(user.picture(), "User Image");
         userImage.setClassName("avatar");
 
