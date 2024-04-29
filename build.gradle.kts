@@ -2,7 +2,7 @@ plugins {
     java
 }
 
-group = "com.smirnoff.home.garden"
+group = "com.smirnoff.home"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -14,7 +14,7 @@ allprojects {
         mavenCentral()
     }
 
-    extra["springCloud.version"] = "2023.0.0"
+    extra["springCloud.version"] = "2023.0.1"
     extra["springCloud.openFeign.version"] = "4.1.0"
     extra["camel.version"] = "4.3.0"
     extra["springBoot.version"] = "3.2.2"
