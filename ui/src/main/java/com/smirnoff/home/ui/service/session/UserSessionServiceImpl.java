@@ -1,8 +1,9 @@
-package com.smirnoff.home.ui.service.security;
+package com.smirnoff.home.ui.service.session;
 
 import java.io.Serializable;
 
-import com.smirnoff.home.ui.adapter.security.UserSessionAdapter;
+import com.smirnoff.home.platform.user.profile.model.UserProfile;
+import com.smirnoff.home.ui.adapter.session.UserSessionAdapter;
 import com.smirnoff.home.ui.model.security.UserModel;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,8 +34,7 @@ public class UserSessionServiceImpl implements UserSessionService, Serializable 
     }
 
     @Override
-    public void createSession(UserModel userModel) {
-        userSessionAdapter.createSession(userModel);
+    public void createSession(UserProfile userProfile) {
+        userSessionAdapter.createSession(userProfile);
     }
-
 }

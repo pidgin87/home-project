@@ -1,4 +1,4 @@
-package com.smirnoff.home.platform.userprofile;
+package com.smirnoff.home.platform.user.profile;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

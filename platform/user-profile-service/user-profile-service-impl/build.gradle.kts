@@ -18,6 +18,8 @@ dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-openfeigh-extension"))
 
+    implementation(project(":platform:user-profile-service:user-profile-service-dto"))
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.graphql-java:graphql-java-extended-scalars:${property("graphqlJavaExtendedScalars.version")}")

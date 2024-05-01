@@ -1,5 +1,6 @@
-package com.smirnoff.home.ui.adapter.security;
+package com.smirnoff.home.ui.adapter.session;
 
+import com.smirnoff.home.platform.user.profile.model.UserProfile;
 import com.smirnoff.home.ui.model.security.UserModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,8 @@ public class UserSessionAdapterImpl implements UserSessionAdapter {
 //            }
 //            """;
 
-    public void createSession(UserModel user) {
+    @Override
+    public void createSession(UserProfile userProfile) {
+        
     }
 }

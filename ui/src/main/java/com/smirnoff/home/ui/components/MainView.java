@@ -4,7 +4,7 @@ import com.smirnoff.home.ui.components.finance.fund.FundListView;
 import com.smirnoff.home.ui.components.finance.history.HistoryListView;
 import com.smirnoff.home.ui.components.finance.product.ProductListView;
 import com.smirnoff.home.ui.model.security.UserModel;
-import com.smirnoff.home.ui.service.security.UserSessionService;
+import com.smirnoff.home.ui.service.session.UserSessionService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
