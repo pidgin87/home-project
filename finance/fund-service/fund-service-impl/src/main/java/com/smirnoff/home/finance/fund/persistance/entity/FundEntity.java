@@ -34,8 +34,8 @@ public class FundEntity {
     @Column(name = "CREATED_DATE", nullable = false)
     private LocalDateTime createdDate;
 
-    @Column(name = "COMPANY", nullable = false)
-    private String company;
+    @Column(name = "COMPANY_ID", nullable = false)
+    private String companyId;
 
     @SoftDelete(columnName = "ACTIVE", strategy = ACTIVE)
     private Boolean active;

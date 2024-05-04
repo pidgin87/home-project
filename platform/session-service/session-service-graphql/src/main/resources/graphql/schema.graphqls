@@ -1,0 +1,21 @@
+type Query {
+    getSession(sessionId: String): UserSession
+    getUserProfile(sessionId: String): UserProfileSession
+}
+
+type Mutation {
+    createSession(userProfileId: String): UserSession
+}
+
+type UserSession {
+    id: String
+}
+
+type UserProfileSession {
+    id: String
+    company: UserProfileCompanySession
+}
+
+type UserProfileCompanySession {
+    id: String
+}

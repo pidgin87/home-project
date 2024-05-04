@@ -24,8 +24,8 @@ include("platform:dictionary-service:dictionary-service-client")
 findProject(":platform:dictionary-service:dictionary-service-client")?.name = "dictionary-service-client"
 
 //PLATFORM: user-profile-service
-include("platform:user-profile-service:user-profile-service-impl")
-findProject(":platform:user-profile-service:user-profile-service-impl")?.name = "user-profile-service-impl"
+include("platform:user-profile-service:user-profile-service-graphql")
+findProject(":platform:user-profile-service:user-profile-service-graphql")?.name = "user-profile-service-graphql"
 
 include("platform:user-profile-service:user-profile-service-dto")
 findProject(":platform:user-profile-service:user-profile-service-dto")?.name = "user-profile-service-dto"
@@ -34,8 +34,8 @@ include("platform:user-profile-service:user-profile-service-client")
 findProject(":platform:user-profile-service:user-profile-service-client")?.name = "user-profile-service-client"
 
 //PLATFORM: session-service
-include("platform:session-service:session-service-impl")
-findProject(":platform:session-service:session-service-impl")?.name = "session-service-impl"
+include("platform:session-service:session-service-graphql")
+findProject(":platform:session-service:session-service-graphql")?.name = "session-service-graphql"
 
 include("platform:session-service:session-service-dto")
 findProject(":platform:session-service:session-service-dto")?.name = "session-service-dto"

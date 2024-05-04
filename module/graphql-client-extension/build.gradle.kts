@@ -11,6 +11,7 @@ dependencies {
     implementation("org.springframework:spring-context")
     implementation("org.springframework.graphql:spring-graphql")
     implementation("org.springframework:spring-web")
+    implementation("org.apache.tomcat.embed:tomcat-embed-core")
 
     implementation(project(":platform:session-service:session-service-client"))
 

@@ -1,0 +1,4 @@
+CREATE TABLE company
+(
+    ID VARCHAR(36) PRIMARY KEY NOT NULL
+);

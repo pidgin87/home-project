@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface FundRepository extends JpaRepository<FundEntity, String> {
 
-    List<FundEntity> findAllByOrderByCreatedDateAsc();
+    List<FundEntity> findByCompanyIdOrderByCreatedDateAsc(String companyId);
 }

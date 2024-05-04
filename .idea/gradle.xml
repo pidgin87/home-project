@@ -37,11 +37,11 @@
             <option value="$PROJECT_DIR$/platform/session-service" />
             <option value="$PROJECT_DIR$/platform/session-service/session-service-client" />
             <option value="$PROJECT_DIR$/platform/session-service/session-service-dto" />
-            <option value="$PROJECT_DIR$/platform/session-service/session-service-impl" />
+            <option value="$PROJECT_DIR$/platform/session-service/session-service-graphql" />
             <option value="$PROJECT_DIR$/platform/user-profile-service" />
             <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-client" />
             <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-dto" />
-            <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-impl" />
+            <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-graphql" />
             <option value="$PROJECT_DIR$/room-service" />
             <option value="$PROJECT_DIR$/service-discovery" />
             <option value="$PROJECT_DIR$/ui" />
