@@ -17,6 +17,10 @@ dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-openfeigh-extension"))
 
+    implementation(project(":platform:session-service:session-service-dto"))
+    implementation("org.apache.tomcat.embed:tomcat-embed-core")
+    implementation("org.springframework.graphql:spring-graphql")
+
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:${property("springCloud.openFeign.version")}")
 
     compileOnly("org.projectlombok:lombok")

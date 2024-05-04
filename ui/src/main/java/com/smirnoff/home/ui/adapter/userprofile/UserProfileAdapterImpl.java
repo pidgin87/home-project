@@ -16,7 +16,6 @@ public class UserProfileAdapterImpl implements UserProfileAdapter {
 
     private final UserProfileClient userProfileClient;
 
-
     //language=graphql
     private static final String GET_USER_BY_EMAIL = """
             query GetUserByEmail($email: String) {

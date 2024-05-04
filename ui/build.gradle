@@ -35,6 +35,7 @@ dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-openfeigh-extension"))
 
+    implementation(project(":platform:session-service:session-service-dto"))
     implementation(project(":platform:session-service:session-service-client"))
 
     implementation(project(":platform:dictionary-service:dictionary-service-dto"))

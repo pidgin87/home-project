@@ -1,0 +1,20 @@
+type Query {
+    getUserByEmail(email: String): UserProfile
+    getUserById(userProfileId: String): UserProfile
+}
+
+type Mutation {
+    createEmptyProfileByEmail(email: String): UserProfile
+}
+
+type UserProfile {
+    id: String
+    firstName: String
+    lastName: String
+    email: String
+    company: Company
+}
+
+type Company {
+    id: String
+}

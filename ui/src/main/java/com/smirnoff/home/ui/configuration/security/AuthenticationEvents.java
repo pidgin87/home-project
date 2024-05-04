@@ -1,7 +1,8 @@
 package com.smirnoff.home.ui.configuration.security;
 
+import com.smirnoff.home.platform.session.client.service.SessionClientService;
+import com.smirnoff.home.platform.session.model.UserSession;
 import com.smirnoff.home.platform.user.profile.model.UserProfile;
-import com.smirnoff.home.ui.model.security.UserModel;
 import com.smirnoff.home.ui.service.session.UserSessionService;
 import com.smirnoff.home.ui.service.userprofile.UserProfileService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class AuthenticationEvents {
 
     private final UserSessionService userSessionService;
     private final UserProfileService userProfileService;
+    private final SessionClientService sessionClientService;
 
     @EventListener
     public void onSuccess(AuthenticationSuccessEvent success) {
@@ -25,7 +27,9 @@ public class AuthenticationEvents {
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
         String email = principal.getAttribute("email");
         UserProfile profile = userProfileService.getProfileByEmail(email);
-        userSessionService.createSession(profile);
+        UserSession session = userSessionService.createSession(profile);
+
+        sessionClientService.setSessionId(session.id());
     }
 
     @EventListener

@@ -1,7 +1,7 @@
 package com.smirnoff.home.finance.fund.service.lc;
 
 import com.smirnoff.home.finance.fund.persistance.entity.FundEntity;
-import com.smirnoff.home.platform.session.client.SessionClientService;
+import com.smirnoff.home.platform.session.client.service.SessionClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class FundLifecycleImpl implements FundLifecycle {
     public FundEntity create() {
         FundEntity entity = new FundEntity();
         entity.setActive(Boolean.TRUE);
-        entity.setCompany(sessionClientService.getCompanyId());
+        entity.setCompanyId(sessionClientService.getCompanyId());
         return entity;
     }
 }
