@@ -35,4 +35,7 @@ public class ProductEntity {
     @CreatedDate
     @Column(name = "CREATED_DATE", nullable = false)
     private LocalDateTime createdDate;
+
+    @Column(name = "COMPANY_ID", nullable = false)
+    private String companyId;
 }

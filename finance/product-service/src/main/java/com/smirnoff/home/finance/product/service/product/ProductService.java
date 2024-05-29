@@ -1,4 +1,4 @@
-package com.smirnoff.home.finance.product.service;
+package com.smirnoff.home.finance.product.service.product;
 
 import com.smirnoff.home.finance.product.persistance.entity.ProductEntity;
 import com.smirnoff.home.finance.product.persistance.entity.ProductType;

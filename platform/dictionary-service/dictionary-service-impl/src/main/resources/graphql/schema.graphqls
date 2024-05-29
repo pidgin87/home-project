@@ -1,5 +1,6 @@
 type Query {
     getCurrencyList: [Currency]
+    getStockList: [Stock]
 }
 
 type Currency {
@@ -7,4 +8,10 @@ type Currency {
     name: String
     iso: String
     symbol: String
+}
+
+type Stock {
+    id: String
+    ticker: String
+    name: String
 }

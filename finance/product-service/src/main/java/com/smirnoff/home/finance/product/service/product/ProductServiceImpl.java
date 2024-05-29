@@ -1,8 +1,10 @@
-package com.smirnoff.home.finance.product.service;
+package com.smirnoff.home.finance.product.service.product;
 
 import com.smirnoff.home.finance.product.persistance.entity.ProductEntity;
 import com.smirnoff.home.finance.product.persistance.entity.ProductType;
 import com.smirnoff.home.finance.product.persistance.repository.ProductRepository;
+import com.smirnoff.home.finance.product.service.product.lc.ProductLifecycle;
+import com.smirnoff.home.platform.session.client.service.SessionClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,15 +16,17 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductLifecycle productLifecycle;
+    private final SessionClientService sessionClientService;
 
     @Override
     public List<ProductEntity> getAll() {
-        return productRepository.findAll();
+        return productRepository.findByCompanyIdOrderByCreatedDateAsc(sessionClientService.getCompanyId());
     }
 
     @Override
     public ProductEntity create(String name, ProductType type) {
-        ProductEntity product = new ProductEntity();
+        ProductEntity product = productLifecycle.create();
         product.setName(name);
         product.setType(type);
         return productRepository.save(product);
