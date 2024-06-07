@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -72,7 +73,8 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                 .build()
         );
 
-        return response.getData().getOperationList();
+        GetOperationHistoryDtoList data = response.getData();
+        return data == null ? List.of() : data.getOperationList();
     }
 
     @Override
