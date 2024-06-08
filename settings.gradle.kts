@@ -57,6 +57,7 @@ findProject(":finance:fund-service:fund-service-impl")?.name = "fund-service-imp
 include("finance:product-service")
 findProject(":finance:product-service")?.name = "product-service"
 
+//history-service
 include("finance:history-service:history-service-impl")
 findProject(":finance:history-service:history-service-impl")?.name = "history-service-impl"
 
@@ -65,6 +66,22 @@ findProject(":finance:history-service:history-service-dto")?.name = "history-ser
 
 include("finance:history-service:history-service-client")
 findProject(":finance:history-service:history-service-client")?.name = "history-service-client"
+
+//rate-service
+include("finance:rate-service")
+findProject(":finance:rate-service")?.name = "rate-service"
+
+include("finance:rate-service:rate-service-graphql")
+findProject(":finance:rate-service:rate-service-graphql")?.name = "rate-service-graphql"
+
+include("finance:rate-service:rate-service-dto")
+findProject(":finance:rate-service:rate-service-dto")?.name = "rate-service-dto"
+
+include("finance:rate-service:rate-service-procedure")
+findProject(":finance:rate-service:rate-service-procedure")?.name = "rate-service-procedure"
+
+include("finance:rate-service:rate-service-dbm")
+findProject(":finance:rate-service:rate-service-dbm")?.name = "rate-service-dbm"
 
 //extra extension
 include("module:eureka-client-extension")

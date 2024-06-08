@@ -19,7 +19,7 @@ public class StockEntity {
     @Column(name = "ID", nullable = false)
     String id;
     @Column(name = "TICKER", nullable = false)
-    String ticket;
+    String ticker;
     @Column(name = "NAME", nullable = false)
     String name;
 }

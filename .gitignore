@@ -11,7 +11,7 @@ docker/postgresql
 device-command-service/src/main/resources/application.yaml
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
+.idea/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/

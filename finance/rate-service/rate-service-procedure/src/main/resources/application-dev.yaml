@@ -1,0 +1,25 @@
+eureka:
+  client:
+    interface: eth0
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9000/eureka}
+  instance:
+    preferIpAddress: true
+
+logging:
+  level:
+    org:
+      springframework:
+        integration: error
+
+spring:
+  application:
+    name: rate-procedure-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/home-garden?currentSchema=rate-procedure-service
+    username: dev_user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
