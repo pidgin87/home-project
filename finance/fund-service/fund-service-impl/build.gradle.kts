@@ -1,8 +1,7 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.2.5"
-    id("io.spring.dependency-management") version "1.1.4"
-    id("org.hibernate.orm") version "6.4.1.Final"
+    id("org.springframework.boot") version "3.3.0"
+    id("io.spring.dependency-management") version "1.1.5"
 }
 
 group = "com.smirnoff.home.finance.fund.impl"
@@ -57,10 +56,4 @@ dependencyManagement {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-hibernate {
-    enhancement {
-        enableAssociationManagement.set(true)
-    }
 }

@@ -1,8 +1,7 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.2.5"
-    id("io.spring.dependency-management") version "1.1.4"
-    id("org.hibernate.orm") version "6.4.1.Final"
+    id("org.springframework.boot") version "3.3.0"
+    id("io.spring.dependency-management") version "1.1.5"
 }
 
 group = "com.smirnoff.home.finance.history.impl"
@@ -36,6 +35,8 @@ dependencies {
     implementation("org.mapstruct:mapstruct:${property("mapStruct.version")}")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 
+    implementation("org.apache.tika:tika-parser-pdf-module:2.0.0")
+
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
@@ -56,10 +57,4 @@ dependencyManagement {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-hibernate {
-    enhancement {
-        enableAssociationManagement.set(true)
-    }
 }

@@ -5,7 +5,7 @@ import com.smirnoff.home.finance.product.model.ProductDto;
 import com.smirnoff.home.finance.product.model.VoidResponse;
 import com.smirnoff.home.finance.product.persistance.entity.ProductEntity;
 import com.smirnoff.home.finance.product.persistance.entity.ProductType;
-import com.smirnoff.home.finance.product.service.ProductService;
+import com.smirnoff.home.finance.product.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
