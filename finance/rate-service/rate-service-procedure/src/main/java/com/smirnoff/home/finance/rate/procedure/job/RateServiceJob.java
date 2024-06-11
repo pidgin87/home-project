@@ -17,7 +17,7 @@ public class RateServiceJob {
     private final DictionaryAdapter dictionaryAdapter;
     private final RateIntegrationGateway rateIntegrationGateway;
 
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 */10 * * * *")
     public void runStocks() {
         dictionaryAdapter.getStocks().stream()
                 .filter(Objects::nonNull)
@@ -26,8 +26,7 @@ public class RateServiceJob {
                 .toList();
     }
 
-    //    @Scheduled(cron = "*/10 * * * * *")
-    @Scheduled(fixedRate = 10 * 60 * 1_000)
+    @Scheduled(cron = "0 */10 * * * *")
     public void runCurrencyPairs() {
         dictionaryAdapter.getCurrencyPair().stream()
                 .filter(Objects::nonNull)

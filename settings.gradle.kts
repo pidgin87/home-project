@@ -33,6 +33,9 @@ findProject(":platform:user-profile-service:user-profile-service-dto")?.name = "
 include("platform:user-profile-service:user-profile-service-client")
 findProject(":platform:user-profile-service:user-profile-service-client")?.name = "user-profile-service-client"
 
+include("platform:user-profile-service:user-profile-service-dbm")
+findProject(":platform:user-profile-service:user-profile-service-dbm")?.name = "user-profile-service-dbm"
+
 //PLATFORM: session-service
 include("platform:session-service:session-service-graphql")
 findProject(":platform:session-service:session-service-graphql")?.name = "session-service-graphql"
