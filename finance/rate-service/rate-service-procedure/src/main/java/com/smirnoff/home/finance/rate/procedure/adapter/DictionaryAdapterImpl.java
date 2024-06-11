@@ -2,7 +2,9 @@ package com.smirnoff.home.finance.rate.procedure.adapter;
 
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.platform.dictionary.client.DictionaryClient;
+import com.smirnoff.home.platform.dictionary.client.model.GetCurrencyPairModelList;
 import com.smirnoff.home.platform.dictionary.client.model.GetStockModelList;
+import com.smirnoff.home.platform.dictionary.dto.currencypair.CurrencyPairModel;
 import com.smirnoff.home.platform.dictionary.dto.stock.StockModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,27 @@ public class DictionaryAdapterImpl implements DictionaryAdapter {
                 getStockList {
                     id
                     ticker
+                    currency {
+                        id                    
+                    }
+                }
+            }
+            """;
+
+    //language=graphql
+    private static final String GET_CURRENCY_PAIRS_REQUEST = """
+            query GetCurrencyPairList {
+                getCurrencyPairList {
+                    id
+                    left {
+                        id
+                        iso                
+                    }
+                    right {
+                        id
+                        iso                                
+                    }
+                    ticker
                 }
             }
             """;
@@ -40,5 +63,20 @@ public class DictionaryAdapterImpl implements DictionaryAdapter {
         }
 
         return stockList.getStockList();
+    }
+
+    @Override
+    public List<CurrencyPairModel> getCurrencyPair() {
+        GetCurrencyPairModelList currencyPairList = dictionaryClient.getCurrencyPairs(GraphQlRequest.builder()
+                .query(GET_CURRENCY_PAIRS_REQUEST)
+                .operationName("GetCurrencyPairList")
+                .build()
+        ).getData();
+
+        if (Objects.isNull(currencyPairList)) {
+            return emptyList();
+        }
+
+        return currencyPairList.getCurrencyPairList();
     }
 }

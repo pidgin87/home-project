@@ -18,9 +18,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "STOCK_RATE")
+@Table(name = "CURRENCY_PAIR_RATE")
 @EntityListeners(AuditingEntityListener.class)
-public class StockRateEntity {
+public class CurrencyPairRateEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -39,7 +39,4 @@ public class StockRateEntity {
 
     @Column(name = "VALUE", nullable = false)
     private BigDecimal value;
-
-    @Column(name = "CURRENCY_ID", nullable = false)
-    private String currencyId;
 }

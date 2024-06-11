@@ -1,6 +1,14 @@
 type Query {
     getCurrencyList: [Currency]
+    getCurrencyPairList: [CurrencyPair]
     getStockList: [Stock]
+}
+
+type CurrencyPair {
+    id: String
+    left: Currency
+    right: Currency
+    ticker: String
 }
 
 type Currency {
@@ -14,4 +22,5 @@ type Stock {
     id: String
     ticker: String
     name: String
+    currency: Currency
 }
