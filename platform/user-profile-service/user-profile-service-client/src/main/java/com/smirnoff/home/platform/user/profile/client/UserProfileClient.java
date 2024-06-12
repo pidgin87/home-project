@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "platform-user-profile-service", path = "/api/platform/user-profile")
+@FeignClient(name = "platform-user-profile-graphql", path = "/api/platform/user-profile")
 public interface UserProfileClient {
     @RequestMapping(method = RequestMethod.POST)
     GraphQlResponse<GetUserByEmail> getUserByEmail(@RequestBody GraphQlRequest request);
