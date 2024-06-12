@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "platform-session-service", path = "/api/platform/session")
+@FeignClient(name = "platform-session-graphql", path = "/api/platform/session")
 public interface SessionGraphQlClient {
 
     @RequestMapping(method = RequestMethod.POST)
