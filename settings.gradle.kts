@@ -1,7 +1,6 @@
 rootProject.name = "home-garden"
 
 include("gateway")
-include("service-discovery")
 include("config-server")
 include("room-service")
 include("device-service")
@@ -35,6 +34,9 @@ findProject(":platform:user-profile-service:user-profile-service-client")?.name 
 
 include("platform:user-profile-service:user-profile-service-dbm")
 findProject(":platform:user-profile-service:user-profile-service-dbm")?.name = "user-profile-service-dbm"
+
+//PLATFORM: service-discovery
+include("platform:service-discovery")
 
 //PLATFORM: session-service
 include("platform:session-service:session-service-graphql")
