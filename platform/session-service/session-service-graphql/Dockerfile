@@ -1,6 +1,6 @@
 FROM openjdk:21-bullseye
 
-EXPOSE 10009
+EXPOSE 10010
 WORKDIR /application
 
 COPY /docker/entrypoint.sh /application/entrypoint.sh

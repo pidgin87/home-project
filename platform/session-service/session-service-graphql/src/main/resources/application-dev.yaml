@@ -11,7 +11,7 @@ eureka:
 
 spring:
   application:
-    name: platform-session-service
+    name: platform-session-graphql
   graphql:
     path: /api/platform/session
     graphiql:
