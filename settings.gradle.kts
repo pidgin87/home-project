@@ -55,16 +55,25 @@ findProject(":finance:fund-service:fund-service-client")?.name = "fund-service-c
 include("finance:fund-service:fund-service-dto")
 findProject(":finance:fund-service:fund-service-dto")?.name = "fund-service-dto"
 
-include("finance:fund-service:fund-service-impl")
-findProject(":finance:fund-service:fund-service-impl")?.name = "fund-service-impl"
+include("finance:fund-service:fund-service-graphql")
+findProject(":finance:fund-service:fund-service-graphql")?.name = "fund-service-graphql"
 
 //product-service
-include("finance:product-service")
-findProject(":finance:product-service")?.name = "product-service"
+include("finance:product-service:product-service-graphql")
+findProject(":finance:product-service:product-service-graphql")?.name = "product-service-graphql"
+
+include("finance:product-service:product-service-dto")
+findProject(":finance:product-service:product-service-dto")?.name = "product-service-dto"
+
+include("finance:product-service:product-service-client")
+findProject(":finance:product-service:product-service-client")?.name = "product-service-client"
+
+include("finance:product-service:product-service-dbm")
+findProject(":finance:product-service:product-service-dbm")?.name = "product-service-dbm"
 
 //history-service
-include("finance:history-service:history-service-impl")
-findProject(":finance:history-service:history-service-impl")?.name = "history-service-impl"
+include("finance:history-service:history-service-graphql")
+findProject(":finance:history-service:history-service-graphql")?.name = "history-service-graphql"
 
 include("finance:history-service:history-service-dto")
 findProject(":finance:history-service:history-service-dto")?.name = "history-service-dto"

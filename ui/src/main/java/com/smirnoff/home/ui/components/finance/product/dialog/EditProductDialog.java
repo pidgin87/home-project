@@ -1,7 +1,7 @@
 package com.smirnoff.home.ui.components.finance.product.dialog;
 
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
-import com.smirnoff.home.ui.model.finance.product.ProductTypeModel;
+import com.smirnoff.home.finance.product.model.ProductModel;
+import com.smirnoff.home.finance.product.model.ProductTypeModel;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;

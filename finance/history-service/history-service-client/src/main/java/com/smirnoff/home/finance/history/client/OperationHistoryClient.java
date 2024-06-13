@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "finance-operation-history-service", path = "/api/finance/operation-history")
+@FeignClient(name = "finance-operation-history-graphql", path = "/api/finance/operation-history")
 public interface OperationHistoryClient {
     @RequestMapping(method = RequestMethod.POST)
     GraphQlResponse<VoidResponse> createOperation(@RequestBody GraphQlRequest request);

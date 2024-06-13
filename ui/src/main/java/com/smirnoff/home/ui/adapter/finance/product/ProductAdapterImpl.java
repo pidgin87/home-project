@@ -1,17 +1,16 @@
 package com.smirnoff.home.ui.adapter.finance.product;
 
+import com.smirnoff.home.finance.product.client.FinanceProductServiceClient;
+import com.smirnoff.home.finance.product.client.GetProductModelList;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
 import com.smirnoff.home.graphql.request.GraphQlVariables;
-import com.smirnoff.home.ui.adapter.finance.product.client.FinanceProductServiceClient;
-import com.smirnoff.home.ui.adapter.finance.product.client.GetProductModelList;
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
-import com.smirnoff.home.ui.model.finance.product.ProductTypeModel;
+import com.smirnoff.home.finance.product.model.ProductModel;
+import com.smirnoff.home.finance.product.model.ProductTypeModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor

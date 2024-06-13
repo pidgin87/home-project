@@ -10,18 +10,11 @@ import org.springframework.shell.standard.ShellMethod;
 public class FlywayCommand {
 
     private final FlywayFactory flywayFactory;
-    @ShellMethod(key = "offline-migrate", value = "Run script migrations that placed in the offline catalog")
-    public void offlineMigrate() {
-        flywayFactory.createFlyway()
-                .locations("/offline")
-                .load()
-                .migrate();
-    }
 
-    @ShellMethod(key = "online-migrate", value = "Run script migrations that placed in the online catalog")
-    public void onlineMigrate() {
+    @ShellMethod(key = "migrate", value = "Run script migrations that placed in the online catalog")
+    public void migrate() {
         flywayFactory.createFlyway()
-                .locations("/online")
+                .locations("/database")
                 .load()
                 .migrate();
     }

@@ -9,7 +9,7 @@ import com.smirnoff.home.graphql.request.GraphQlResponse;
 import com.smirnoff.home.graphql.request.GraphQlVariables;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -26,12 +26,25 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
 
     //language=graphql
     private static final String CREATE_OPERATION = """
-            mutation CreateOperation($sourceProduct: String,
+            mutation CreateOperation(
+                                     $sourceProduct: String,
+                                     $sourceFund: String,
                                      $sourceAmount: Float,
-                                     $sourceCurrency: String) {
+                                     $sourceCurrency: String,
+                                     $destinationProduct: String,
+                                     $destinationFund: String,
+                                     $destinationAmount: Float,
+                                     $destinationCurrency: String,
+                                     $description: String) {
                 createOperation(sourceProduct: $sourceProduct,
+                                sourceFund: $sourceFund,
                                 sourceAmount: $sourceAmount,
-                                sourceCurrency: $sourceCurrency) {
+                                sourceCurrency: $sourceCurrency,
+                                destinationProduct: $destinationProduct,
+                                destinationFund: $destinationFund,
+                                destinationAmount: $destinationAmount,
+                                destinationCurrency: $destinationCurrency,
+                                description: $description) {
                     result
                 }
             }

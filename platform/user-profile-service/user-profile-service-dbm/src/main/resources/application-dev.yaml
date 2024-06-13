@@ -14,4 +14,4 @@ spring:
       ddl-auto: none
     show-sql: true
   flyway:
-    create-schemas: false
+    create-schemas: true

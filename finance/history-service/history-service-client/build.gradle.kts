@@ -16,6 +16,7 @@ configurations {
 dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-openfeigh-extension"))
+
     implementation(project(":finance:history-service:history-service-dto"))
 
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:${property("springCloud.openFeign.version")}")

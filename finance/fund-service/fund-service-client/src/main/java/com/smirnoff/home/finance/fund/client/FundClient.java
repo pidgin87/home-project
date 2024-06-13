@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "finance-fund-service", path = "/api/finance/fund")
+@FeignClient(name = "finance-fund-graphql", path = "/api/finance/fund")
 public interface FundClient {
 
     @RequestMapping(method = RequestMethod.POST)

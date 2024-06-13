@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
         "com.smirnoff.home.platform",
         "com.smirnoff.home.finance.history.client",
         "com.smirnoff.home.finance.fund.client",
+        "com.smirnoff.home.finance.product.client",
         "com.smirnoff.home.ui"
 })
 @ComponentScan(value = {
