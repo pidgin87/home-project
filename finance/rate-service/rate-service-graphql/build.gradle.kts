@@ -32,7 +32,10 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:${property("springCloud.openFeign.version")}")
     implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
 
+//  flyway
     implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
+
     implementation("org.mapstruct:mapstruct:${property("mapStruct.version")}")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 

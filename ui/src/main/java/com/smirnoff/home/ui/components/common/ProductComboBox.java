@@ -1,6 +1,6 @@
 package com.smirnoff.home.ui.components.common;
 
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.ui.service.finance.product.ProductService;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.function.SerializableFunction;

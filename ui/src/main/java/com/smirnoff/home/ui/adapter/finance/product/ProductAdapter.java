@@ -1,7 +1,7 @@
 package com.smirnoff.home.ui.adapter.finance.product;
 
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
-import com.smirnoff.home.ui.model.finance.product.ProductTypeModel;
+import com.smirnoff.home.finance.product.model.ProductModel;
+import com.smirnoff.home.finance.product.model.ProductTypeModel;
 
 import java.util.List;
 

@@ -11,7 +11,7 @@ eureka:
 
 spring:
   application:
-    name: platform-user-profile-service
+    name: platform-user-profile-graphql
   graphql:
     path: /api/platform/user-profile
     graphiql:

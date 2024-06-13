@@ -1,6 +1,7 @@
 package com.smirnoff.home.ui.service.session;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import com.smirnoff.home.platform.session.model.UserSession;
 import com.smirnoff.home.platform.user.profile.model.UserProfile;
@@ -36,6 +37,7 @@ public class UserSessionServiceImpl implements UserSessionService, Serializable 
 
     @Override
     public UserSession createSession(UserProfile userProfile) {
+        Objects.requireNonNull(userProfile);
         return userSessionAdapter.createSession(userProfile);
     }
 }

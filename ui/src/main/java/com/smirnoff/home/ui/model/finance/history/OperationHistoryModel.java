@@ -2,7 +2,7 @@ package com.smirnoff.home.ui.model.finance.history;
 
 import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
-import com.smirnoff.home.ui.model.finance.product.ProductModel;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import lombok.Builder;
 import lombok.Data;
 

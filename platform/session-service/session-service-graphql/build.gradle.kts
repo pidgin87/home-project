@@ -1,8 +1,7 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.2.5"
-    id("io.spring.dependency-management") version "1.1.4"
-    id("org.hibernate.orm") version "6.4.1.Final"
+    id("org.springframework.boot") version "3.3.0"
+    id("io.spring.dependency-management") version "1.1.5"
 }
 
 group = "com.smirnoff.home.platform.session.impl"
@@ -33,12 +32,14 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:${property("springCloud.openFeign.version")}")
 
+//  flyway
     implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
+
     implementation("org.mapstruct:mapstruct:${property("mapStruct.version")}")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 
     compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
@@ -57,10 +58,4 @@ dependencyManagement {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-hibernate {
-    enhancement {
-        enableAssociationManagement.set(true)
-    }
 }
