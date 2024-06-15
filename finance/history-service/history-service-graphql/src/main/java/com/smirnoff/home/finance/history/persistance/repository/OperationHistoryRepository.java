@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface OperationHistoryRepository extends JpaRepository<OperationHistoryEntity, String> {
 
-    List<OperationHistoryEntity> findByCompanyIdOrderByCreatedDateAsc(String companyId);
+    List<OperationHistoryEntity> findByCompanyIdOrderByCreatedDateDesc(String companyId);
 
 }

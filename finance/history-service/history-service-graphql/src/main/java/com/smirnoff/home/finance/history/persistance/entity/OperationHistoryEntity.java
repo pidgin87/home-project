@@ -6,6 +6,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,7 +18,8 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-@Entity(name = "OPERATION")
+@Entity
+@Table(name = "OPERATION")
 @EntityListeners(AuditingEntityListener.class)
 public class OperationHistoryEntity {
 
@@ -55,7 +57,7 @@ public class OperationHistoryEntity {
 
     @CreatedDate
     @Column(name = "CREATED_DATE", nullable = false)
-    private OffsetDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @Column(name = "COMPANY_ID", nullable = false)
     private String companyId;

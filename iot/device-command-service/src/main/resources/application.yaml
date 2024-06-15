@@ -1,0 +1,22 @@
+server:
+  port: 10_002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9000/eureka}
+  instance:
+    preferIpAddress: true
+
+spring:
+  application:
+    name: device-command-service
+  graphql:
+    path: /api/device-commands
+    graphiql:
+      enabled: true
+
+connector:
+  ak: 4wrxkuq9u35rjncagty4
+  sk: 2f38b670a6a5440bbb8d6182599218ac
+  region: US

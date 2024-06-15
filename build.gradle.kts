@@ -22,7 +22,7 @@ allprojects {
     extra["lombokMapStructProcessor.version"] = "0.2.0"
     extra["logstashLogbackEncoder.version"] = "7.3"
     extra["commonsLang3.version"] = "3.14.0"
-    extra["graphqlJavaExtendedScalars.version"] = "21.0"
+    extra["graphqlJavaExtendedScalars.version"] = "22.0"
 }
 
 configurations {
