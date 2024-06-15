@@ -27,7 +27,6 @@ dependencies {
     implementation("org.apache.camel:camel-jackson:${property("camel.version")}")
 
     compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${property("mapStruct.version")}")

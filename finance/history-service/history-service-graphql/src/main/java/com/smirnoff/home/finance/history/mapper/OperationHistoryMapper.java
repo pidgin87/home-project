@@ -9,7 +9,10 @@ import org.mapstruct.Mapper;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+        componentModel = "spring",
+        uses = {DateTimeMapper.class}
+)
 public interface OperationHistoryMapper {
     OperationHistoryEntity map(String sourceProduct, String sourceFund, BigDecimal sourceAmount, String sourceCurrency,
                                String destinationProduct, String destinationFund, BigDecimal destinationAmount,
