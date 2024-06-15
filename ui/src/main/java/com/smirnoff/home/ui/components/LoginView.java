@@ -23,26 +23,23 @@ import org.springframework.core.env.Environment;
 @AnonymousAllowed
 public class LoginView extends VerticalLayout {
 
-    @Value("${ui.oauth.uri:/111}")
-    public String OAUTH_URL = "/app/oauth2/authorization/google";
-
     public LoginView(Environment environment) {
         setPadding(true);
         setAlignItems(Alignment.CENTER);
 
         String clientKey = environment.getProperty("spring.security.oauth2.client.registration.google.client-id");
-
         if (clientKey == null || clientKey.length() < 32) {
             add(new Paragraph("Could not find OAuth client key in application.properties. "
                     + "Please double-check the key and refer to the README.md file for instructions."));
-        } else {
-            add(new H1("Access to this app via Google"));
-
-            Anchor loginLink = new Anchor(OAUTH_URL, getGoogleImage());
-            loginLink.addClassName(LumoUtility.FontSize.XLARGE);
-            loginLink.setRouterIgnore(true); // actually navigate away from this app
-            add(loginLink);
+            return;
         }
+        String oauthUri = environment.getProperty("ui.oauth.uri");
+        add(new H1("Access to this app via Google"));
+
+        Anchor loginLink = new Anchor(oauthUri, getGoogleImage());
+        loginLink.addClassName(LumoUtility.FontSize.XLARGE);
+        loginLink.setRouterIgnore(true); // actually navigate away from this app
+        add(loginLink);
     }
 
     private Div getGoogleImage() {
