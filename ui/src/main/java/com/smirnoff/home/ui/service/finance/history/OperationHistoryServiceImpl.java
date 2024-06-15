@@ -59,9 +59,17 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                     sourceCurrency {
                         symbol
                     }
+                    sourceProduct {
+                        id
+                        name
+                    }
                     destinationAmount
+                    destinationProduct {
+                        id
+                        name
+                    }
                     destinationCurrency {
-                        symbol          
+                        symbol
                     }
                     createdDate
                 }
