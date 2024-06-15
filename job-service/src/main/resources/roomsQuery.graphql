@@ -1,6 +1,0 @@
-query GetAllRooms {
-    rooms {
-        id
-        name
-    }
-}

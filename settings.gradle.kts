@@ -1,16 +1,18 @@
 rootProject.name = "home-garden"
 
-include("gateway")
-include("config-server")
-include("room-service")
-include("device-service")
-include("device-command-service")
-include("job-service")
 include("ui")
 
 //PLATFORM: backup-service
 include("platform:backup-service")
 findProject(":platform:backup-service")?.name = "backup-service"
+
+//PLATFORM: backup-service
+include("platform:config-server")
+findProject(":platform:config-server")?.name = "config-server"
+
+//PLATFORM: backup-service
+include("platform:gateway")
+findProject(":platform:gateway")?.name = "gateway"
 
 //PLATFORM: dictionary-service
 include("platform:dictionary-service:dictionary-service-impl")
@@ -47,6 +49,12 @@ findProject(":platform:session-service:session-service-dto")?.name = "session-se
 
 include("platform:session-service:session-service-client")
 findProject(":platform:session-service:session-service-client")?.name = "session-service-client"
+
+//iot
+include("iot:room-service")
+include("iot:device-service")
+include("iot:device-command-service")
+include("iot:job-service")
 
 //fund-service
 include("finance:fund-service:fund-service-client")
