@@ -17,6 +17,7 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.Autocomplete;
+import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
@@ -38,12 +39,12 @@ public class EditOperationHistoryDialog extends Dialog {
     private final ProductService productService;
     private final FundService fundService;
 
-    private TextField sourceAmountTextField;
+    private BigDecimalField sourceAmountTextField;
     private ProductComboBox sourceProductComboBox;
     private FundComboBox sourceFundComboBox;
     private CurrencyComboBox sourceCurrencyComboBox;
 
-    private TextField destinationAmountTextField;
+    private BigDecimalField destinationAmountTextField;
     private ProductComboBox destinationProductComboBox;
     private FundComboBox destinationFundComboBox;
     private CurrencyComboBox destinationCurrencyComboBox;
@@ -123,7 +124,7 @@ public class EditOperationHistoryDialog extends Dialog {
         layout.add(productAndFundLayout);
 
         HorizontalLayout moneyLayout = new HorizontalLayout();
-        sourceAmountTextField = new TextField();
+        sourceAmountTextField = new BigDecimalField();
         sourceAmountTextField.addThemeVariants(
                 TextFieldVariant.LUMO_ALIGN_RIGHT
         );
@@ -159,7 +160,7 @@ public class EditOperationHistoryDialog extends Dialog {
         layout.add(productAndFundLayout);
 
         HorizontalLayout moneyLayout = new HorizontalLayout();
-        destinationAmountTextField = new TextField();
+        destinationAmountTextField = new BigDecimalField();
         destinationAmountTextField.addThemeVariants(
                 TextFieldVariant.LUMO_ALIGN_RIGHT
         );
@@ -191,12 +192,12 @@ public class EditOperationHistoryDialog extends Dialog {
                 .sourceProduct(sourceProductComboBox.getValue())
                 .sourceFund(sourceFundComboBox.getValue())
                 .sourceCurrency(sourceCurrencyComboBox.getValue())
-                .sourceAmount(BigDecimal.valueOf(Long.valueOf(sourceAmountTextField.getValue())))
+                .sourceAmount(sourceAmountTextField.getValue())
 
                 .destinationProduct(destinationProductComboBox.getValue())
                 .destinationFund(destinationFundComboBox.getValue())
                 .destinationCurrency(destinationCurrencyComboBox.getValue())
-                .destinationAmount(BigDecimal.valueOf(Long.valueOf(destinationAmountTextField.getValue())))
+                .destinationAmount(destinationAmountTextField.getValue())
 
                 .description(descriptionTextField.getValue())
 
