@@ -1,9 +1,0 @@
-query GetDevicesStatuses ($remoteUids: [String]!) {
-    getRemoteDevices(ids: $remoteUids) {
-        id
-        statuses {
-            property
-            value
-        }
-    }
-}

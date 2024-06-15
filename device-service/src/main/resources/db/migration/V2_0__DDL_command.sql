@@ -1,9 +1,0 @@
-create table COMMAND
-(
-    ID         VARCHAR(36) PRIMARY KEY NOT NULL,
-    TYPE       VARCHAR(20)             NOT NULL,
-    PRODUCT_ID VARCHAR(36)             NOT NULL,
-    CONSTRAINT FK_PRODUCT
-        FOREIGN KEY (PRODUCT_ID)
-            REFERENCES PRODUCT (ID)
-);

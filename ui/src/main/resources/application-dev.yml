@@ -6,6 +6,10 @@ logging:
     org:
       atmosphere : warn
 
+ui:
+  oauth:
+    uri: /app/oauth2/authorization/google
+
 spring:
   jpa:
     defer-datasource-initialization: true

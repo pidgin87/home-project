@@ -9,6 +9,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 
 /**
@@ -22,10 +23,8 @@ import org.springframework.core.env.Environment;
 @AnonymousAllowed
 public class LoginView extends VerticalLayout {
 
-    /**
-     * URL that Spring uses to connect to Google services
-     */
-    private static final String OAUTH_URL = "/oauth2/authorization/google";
+    @Value("${ui.oauth.uri:/111}")
+    public String OAUTH_URL = "/app/oauth2/authorization/google";
 
     public LoginView(Environment environment) {
         setPadding(true);
