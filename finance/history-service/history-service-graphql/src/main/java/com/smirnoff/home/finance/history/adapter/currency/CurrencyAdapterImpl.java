@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Component
 @RequiredArgsConstructor
@@ -28,7 +31,7 @@ public class CurrencyAdapterImpl implements CurrencyAdapter {
             """;
 
     @Override
-    @Cacheable
+    @Cacheable("currency-model-cache")
     public List<CurrencyModel> getAll() {
         GetCurrencyModelList currency = dictionaryClient.getCurrencies(GraphQlRequest.builder()
                 .query(GET_CURRENCIES_REQUEST)
@@ -36,6 +39,9 @@ public class CurrencyAdapterImpl implements CurrencyAdapter {
                 .build()
         ).getData();
 
+        if (isNull(currency) || isNull(currency.getCurrencyList())) {
+            return Collections.emptyList();
+        }
         return currency.getCurrencyList();
     }
 }
