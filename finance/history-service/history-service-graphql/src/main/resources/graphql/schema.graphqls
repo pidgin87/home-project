@@ -15,6 +15,7 @@ type Mutation {
         destinationCurrency: String,
 
         description: String
+        createdDate: DateTime
 
     ): VoidResponse
 }

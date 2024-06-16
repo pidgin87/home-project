@@ -7,6 +7,7 @@ import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import org.mapstruct.Mapper;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper(
@@ -16,7 +17,7 @@ import java.util.List;
 public interface OperationHistoryMapper {
     OperationHistoryEntity map(String sourceProduct, String sourceFund, BigDecimal sourceAmount, String sourceCurrency,
                                String destinationProduct, String destinationFund, BigDecimal destinationAmount,
-                               String destinationCurrency, String description);
+                               String destinationCurrency, String description, LocalDateTime createdDate);
 
     List<OperationHistoryDto> map(List<OperationHistoryEntity> operations);
 

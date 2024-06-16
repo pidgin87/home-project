@@ -10,6 +10,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Controller
 @AllArgsConstructor
@@ -26,9 +27,10 @@ public class CreateOperationController {
                                         @Argument String destinationFund,
                                         @Argument BigDecimal destinationAmount,
                                         @Argument String destinationCurrency,
-                                        @Argument String description) {
+                                        @Argument String description,
+                                        @Argument LocalDateTime createdDate) {
         OperationHistoryEntity entity = operationHistoryMapper.map(sourceProduct, sourceFund, sourceAmount, sourceCurrency,
-                destinationProduct, destinationFund, destinationAmount, destinationCurrency, description);
+                destinationProduct, destinationFund, destinationAmount, destinationCurrency, description, createdDate);
         operationHistoryService.save(entity);
         return new VoidResponse();
     }

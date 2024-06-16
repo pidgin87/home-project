@@ -7,25 +7,25 @@ import com.smirnoff.home.ui.components.common.ProductComboBox;
 import com.smirnoff.home.ui.model.finance.history.OperationHistoryModel;
 import com.smirnoff.home.ui.service.finance.dictionary.DictionaryService;
 import com.smirnoff.home.ui.service.finance.fund.FundService;
-import com.smirnoff.home.ui.service.finance.history.OperationHistoryService;
 import com.smirnoff.home.ui.service.finance.product.ProductService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.Autocomplete;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import static java.util.Objects.nonNull;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
@@ -48,6 +48,7 @@ public class EditOperationHistoryDialog extends Dialog {
     private ProductComboBox destinationProductComboBox;
     private FundComboBox destinationFundComboBox;
     private CurrencyComboBox destinationCurrencyComboBox;
+    private DateTimePicker createdDateTimePicker;
 
     private TextArea descriptionTextField;
     private Button saveButton;
@@ -95,6 +96,10 @@ public class EditOperationHistoryDialog extends Dialog {
         descriptionTextField.setLabel("Description");
         descriptionTextField.setClearButtonVisible(true);
         add(descriptionTextField);
+
+        createdDateTimePicker = new DateTimePicker("Creation date/time");
+        createdDateTimePicker.setValue(LocalDateTime.now());
+        add(createdDateTimePicker);
 
         if (nonNull(this.operationHistoryModel)) {
             initValue(this.operationHistoryModel);
@@ -180,6 +185,7 @@ public class EditOperationHistoryDialog extends Dialog {
 
     private void initValue(OperationHistoryDto operation) {
         descriptionTextField.setValue(operation.getDescription());
+        createdDateTimePicker.setValue(operation.getCreatedDate().toLocalDateTime());
     }
 
     public void saveClickListener(ComponentEventListener<ClickEvent<Button>> saveClickListener) {
@@ -200,6 +206,7 @@ public class EditOperationHistoryDialog extends Dialog {
                 .destinationAmount(destinationAmountTextField.getValue())
 
                 .description(descriptionTextField.getValue())
+                .createdDate(createdDateTimePicker.getValue().atZone(ZoneId.systemDefault()).toOffsetDateTime())
 
                 .build();
     }

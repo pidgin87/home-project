@@ -35,7 +35,8 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                                      $destinationFund: String,
                                      $destinationAmount: Float,
                                      $destinationCurrency: String,
-                                     $description: String) {
+                                     $description: String,
+                                     $createdDate: DateTime) {
                 createOperation(sourceProduct: $sourceProduct,
                                 sourceFund: $sourceFund,
                                 sourceAmount: $sourceAmount,
@@ -44,7 +45,8 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                                 destinationFund: $destinationFund,
                                 destinationAmount: $destinationAmount,
                                 destinationCurrency: $destinationCurrency,
-                                description: $description) {
+                                description: $description,
+                                createdDate: $createdDate) {
                     result
                 }
             }
@@ -115,6 +117,7 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                         .addObject("destinationCurrency", operation.getDestinationCurrency(), CurrencyModel::getId)
 
                         .addObject("description", operation.getDescription(), value -> isEmpty(value) ? null : value)
+                        .addObject("createdDate", operation.getCreatedDate())
                 )
                 .build());
     }
