@@ -1,4 +1,4 @@
-FROM openjdk:21-bullseye
+FROM openjdk:22-bullseye
 
 EXPOSE 10006
 WORKDIR /application
