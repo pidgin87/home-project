@@ -24,6 +24,9 @@ dependencies {
     implementation(project(":platform:dictionary-service:dictionary-service-dto"))
     implementation(project(":platform:dictionary-service:dictionary-service-client"))
 
+    implementation(project(":finance:product-service:product-service-dto"))
+    implementation(project(":finance:product-service:product-service-client"))
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.graphql-java:graphql-java-extended-scalars:${property("graphqlJavaExtendedScalars.version")}")
@@ -34,10 +37,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:${property("springCloud.openFeign.version")}")
 
-//  flyway
-    implementation("org.flywaydb:flyway-core")
-    implementation("org.flywaydb:flyway-database-postgresql")
-
     implementation("org.mapstruct:mapstruct:${property("mapStruct.version")}")
     implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 
@@ -47,8 +46,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${property("mapStruct.version")}")
 
+    testImplementation(project(":finance:history-service:history-service-dto"))
+    testImplementation(project(":finance:history-service:history-service-client"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework:spring-webflux")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.graphql:spring-graphql-test")
 }
 

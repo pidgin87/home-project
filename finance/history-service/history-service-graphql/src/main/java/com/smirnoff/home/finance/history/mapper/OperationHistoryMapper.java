@@ -1,8 +1,8 @@
 package com.smirnoff.home.finance.history.mapper;
 
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
-import com.smirnoff.home.finance.history.model.ProductDto;
 import com.smirnoff.home.finance.history.persistance.entity.OperationHistoryEntity;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import org.mapstruct.Mapper;
 
@@ -22,8 +22,8 @@ public interface OperationHistoryMapper {
 
     OperationHistoryDto map(OperationHistoryEntity operation);
 
-    default ProductDto mapProduct(String productId) {
-        return new ProductDto(productId, null, null);
+    default ProductModel mapProduct(String productId) {
+        return new ProductModel(productId, null, null);
     }
 
     default CurrencyModel mapCurrency(String currencyId) {

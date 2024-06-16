@@ -19,6 +19,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:${property("lombokMapStructProcessor.version")}")
 
     implementation(project(":platform:dictionary-service:dictionary-service-dto"))
+    implementation(project(":finance:product-service:product-service-dto"))
 }
 
 dependencyManagement {

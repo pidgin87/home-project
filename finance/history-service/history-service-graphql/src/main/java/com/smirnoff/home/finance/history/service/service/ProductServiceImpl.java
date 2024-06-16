@@ -1,9 +1,11 @@
 package com.smirnoff.home.finance.history.service.service;
 
 import com.smirnoff.home.finance.history.adapter.product.ProductAdapter;
-import com.smirnoff.home.finance.history.model.ProductDto;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -12,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductAdapter productAdapter;
 
     @Override
-    public ProductDto getById(String productId) {
-        return productAdapter.getById(productId);
+    public List<ProductModel> getByIds(List<String> productList) {
+        return productAdapter.getByIds(productList);
     }
 }

@@ -89,6 +89,9 @@ findProject(":finance:history-service:history-service-dto")?.name = "history-ser
 include("finance:history-service:history-service-client")
 findProject(":finance:history-service:history-service-client")?.name = "history-service-client"
 
+include("finance:history-service:history-service-dbm")
+findProject(":finance:history-service:history-service-dbm")?.name = "history-service-dbm"
+
 //rate-service
 include("finance:rate-service")
 findProject(":finance:rate-service")?.name = "rate-service"

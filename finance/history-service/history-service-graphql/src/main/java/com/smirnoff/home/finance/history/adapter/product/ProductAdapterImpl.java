@@ -1,10 +1,17 @@
 package com.smirnoff.home.finance.history.adapter.product;
 
-import com.smirnoff.home.finance.history.adapter.product.client.FinanceProductServiceClient;
-import com.smirnoff.home.finance.history.model.ProductDto;
+import com.smirnoff.home.finance.product.client.FinanceProductServiceClient;
+import com.smirnoff.home.finance.product.client.GetProductModelList;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
+import com.smirnoff.home.graphql.request.GraphQlResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Component
 @RequiredArgsConstructor
@@ -13,19 +20,27 @@ public class ProductAdapterImpl implements ProductAdapter {
     private final FinanceProductServiceClient financeProductServiceClient;
 
     //language=graphql
-    private static final String GET_PRODUCT_REQUEST = """
-            mutation GetProduct($name: String, $type: String) {
-                createProduct(name: $name, type: $type) {
+    private static final String GRAPHQL_REQUESTS = """
+            query GetProductList {
+                getProductListByIds(productIds: [String]) {
                     id
+                    name
+                    type
                 }
             }
             """;
 
     @Override
-    public ProductDto getById(String productId) {
-        financeProductServiceClient.getProduct(GraphQlRequest.builder()
+    public List<ProductModel> getByIds(List<String> productList) {
+        GraphQlResponse<GetProductModelList> products = financeProductServiceClient.getProducts(GraphQlRequest.builder()
+                .query(GRAPHQL_REQUESTS)
                 .operationName("GetProduct")
                 .build());
-        return null;
+
+        if (isNull(products.getData())) {
+            return Collections.emptyList();
+        }
+
+        return products.getData().getProductList();
     }
 }

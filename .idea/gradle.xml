@@ -9,9 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/config-server" />
-            <option value="$PROJECT_DIR$/device-command-service" />
-            <option value="$PROJECT_DIR$/device-service" />
             <option value="$PROJECT_DIR$/finance" />
             <option value="$PROJECT_DIR$/finance/fund-service" />
             <option value="$PROJECT_DIR$/finance/fund-service/fund-service-client" />
@@ -19,6 +16,7 @@
             <option value="$PROJECT_DIR$/finance/fund-service/fund-service-graphql" />
             <option value="$PROJECT_DIR$/finance/history-service" />
             <option value="$PROJECT_DIR$/finance/history-service/history-service-client" />
+            <option value="$PROJECT_DIR$/finance/history-service/history-service-dbm" />
             <option value="$PROJECT_DIR$/finance/history-service/history-service-dto" />
             <option value="$PROJECT_DIR$/finance/history-service/history-service-graphql" />
             <option value="$PROJECT_DIR$/finance/product-service" />
@@ -31,18 +29,23 @@
             <option value="$PROJECT_DIR$/finance/rate-service/rate-service-dto" />
             <option value="$PROJECT_DIR$/finance/rate-service/rate-service-graphql" />
             <option value="$PROJECT_DIR$/finance/rate-service/rate-service-procedure" />
-            <option value="$PROJECT_DIR$/gateway" />
-            <option value="$PROJECT_DIR$/job-service" />
+            <option value="$PROJECT_DIR$/iot" />
+            <option value="$PROJECT_DIR$/iot/device-command-service" />
+            <option value="$PROJECT_DIR$/iot/device-service" />
+            <option value="$PROJECT_DIR$/iot/job-service" />
+            <option value="$PROJECT_DIR$/iot/room-service" />
             <option value="$PROJECT_DIR$/module" />
             <option value="$PROJECT_DIR$/module/eureka-client-extension" />
             <option value="$PROJECT_DIR$/module/graphql-client-extension" />
             <option value="$PROJECT_DIR$/module/graphql-openfeigh-extension" />
             <option value="$PROJECT_DIR$/platform" />
             <option value="$PROJECT_DIR$/platform/backup-service" />
+            <option value="$PROJECT_DIR$/platform/config-server" />
             <option value="$PROJECT_DIR$/platform/dictionary-service" />
             <option value="$PROJECT_DIR$/platform/dictionary-service/dictionary-service-client" />
             <option value="$PROJECT_DIR$/platform/dictionary-service/dictionary-service-dto" />
             <option value="$PROJECT_DIR$/platform/dictionary-service/dictionary-service-impl" />
+            <option value="$PROJECT_DIR$/platform/gateway" />
             <option value="$PROJECT_DIR$/platform/service-discovery" />
             <option value="$PROJECT_DIR$/platform/session-service" />
             <option value="$PROJECT_DIR$/platform/session-service/session-service-client" />
@@ -53,7 +56,6 @@
             <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-dbm" />
             <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-dto" />
             <option value="$PROJECT_DIR$/platform/user-profile-service/user-profile-service-graphql" />
-            <option value="$PROJECT_DIR$/room-service" />
             <option value="$PROJECT_DIR$/ui" />
           </set>
         </option>

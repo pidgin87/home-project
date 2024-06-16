@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: finance-operation-history-dbm
+  datasource:
+    url: jdbc:postgresql://localhost:5432/home-garden?currentSchema=finance-operation-history
+    username: dev_user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  flyway:
+    create-schemas: false
