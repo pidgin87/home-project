@@ -22,12 +22,15 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.CallbackDataProvider;
 import com.vaadin.flow.data.provider.Query;
+import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.context.ApplicationContext;
 import org.vaadin.klaudeta.PaginatedGrid;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -38,6 +41,8 @@ import static java.util.Objects.nonNull;
 @Route(value = "finance/history", layout = MainView.class)
 public class HistoryListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<OperationHistoryDto, Void>,
         CallbackDataProvider.CountCallback<OperationHistoryDto, Void> {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private final ApplicationContext applicationContext;
     private final OperationHistoryService operationHistoryService;
@@ -59,7 +64,7 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         add(menuBar);
 
         grid = new PaginatedGrid<>();
-        grid.addColumn(OperationHistoryDto::getCreatedDate).setHeader("Date");
+        grid.addColumn(formatCreatedDate()).setHeader("Date");
         grid.addComponentColumn(this::getAmountColumn).setHeader("Amount");
         grid.addComponentColumn(this::getProductColumn).setHeader("Product");
 
@@ -69,6 +74,13 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         grid.setSizeFull();
 
         add(grid);
+    }
+
+    private static ValueProvider<OperationHistoryDto, Object> formatCreatedDate() {
+        return operationHistoryDto -> {
+            OffsetDateTime createdDate = operationHistoryDto.getCreatedDate();
+            return FORMATTER.format(createdDate);
+        };
     }
 
     @Override
