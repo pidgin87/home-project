@@ -21,6 +21,7 @@ type Mutation {
 
 type Operation {
     id: String
+    description: String
 
     sourceProduct: Product
     sourceAmount: Float

@@ -14,4 +14,6 @@ public interface ProductService {
     void delete(String productId);
 
     Optional<ProductEntity> getById(String productId);
+
+    List<ProductEntity> getAll(List<String> productIds);
 }

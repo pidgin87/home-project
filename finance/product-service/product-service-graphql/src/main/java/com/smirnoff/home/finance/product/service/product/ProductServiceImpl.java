@@ -41,4 +41,10 @@ public class ProductServiceImpl implements ProductService {
     public Optional<ProductEntity> getById(String productId) {
         return productRepository.findById(productId);
     }
+
+    @Override
+    public List<ProductEntity> getAll(List<String> productIds) {
+        String companyId = sessionClientService.getCompanyId();
+        return productRepository.findByCompanyIdAndIdInOrderByCreatedDateAsc(companyId, productIds);
+    }
 }

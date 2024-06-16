@@ -1,5 +1,6 @@
 package com.smirnoff.home.finance.history.model;
 
+import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import lombok.Builder;
 import lombok.Data;
@@ -11,16 +12,15 @@ import java.time.OffsetDateTime;
 @Builder
 public class OperationHistoryDto {
     private String id;
+    private String description;
 
-    private ProductDto sourceProduct;
+    private ProductModel sourceProduct;
     private BigDecimal sourceAmount;
     private CurrencyModel sourceCurrency;
 
-    private ProductDto destinationProduct;
+    private ProductModel destinationProduct;
     private BigDecimal destinationAmount;
     private CurrencyModel destinationCurrency;
-
-    private String description;
 
     private OffsetDateTime createdDate;
 }

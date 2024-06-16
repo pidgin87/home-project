@@ -1,7 +1,7 @@
 package com.smirnoff.home.ui.components.finance.history;
 
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
-import com.smirnoff.home.finance.history.model.ProductDto;
+import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.ui.components.MainView;
 import com.smirnoff.home.ui.components.finance.history.dialog.EditOperationHistoryDialog;
 import com.smirnoff.home.ui.model.finance.fund.FundFilterModel;
@@ -115,8 +115,8 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
     }
 
     private Component getProductColumn(OperationHistoryDto operation) {
-        ProductDto sourceProduct = operation.getSourceProduct();
-        ProductDto destinationProduct = operation.getDestinationProduct();
+        ProductModel sourceProduct = operation.getSourceProduct();
+        ProductModel destinationProduct = operation.getDestinationProduct();
 
         Span span = new Span();
         if (sourceProduct != null && destinationProduct != null) {

@@ -1,5 +1,6 @@
 type Query {
     getProductList: [Product]
+    getProductListByIds(productIds: [String]): [Product]
     getProduct(productId: String): Product
 }
 

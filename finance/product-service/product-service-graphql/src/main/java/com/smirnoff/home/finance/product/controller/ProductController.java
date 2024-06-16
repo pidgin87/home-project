@@ -30,6 +30,13 @@ public class ProductController {
     }
 
     @QueryMapping
+    public List<ProductModel> getProductListByIds(@Argument List<String> productIds) {
+        return productMapper.map(
+                productService.getAll(productIds)
+        );
+    }
+
+    @QueryMapping
     public ProductModel getProduct(@Argument String productId) {
         Optional<ProductEntity> product = productService.getById(productId);
         return productMapper.map(product.get());

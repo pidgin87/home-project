@@ -1,0 +1,33 @@
+server:
+  port: 10_006
+
+eureka:
+  client:
+    enabled: false
+
+spring:
+  application:
+    name: finance-operation-history-graphql
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      client:
+        simple:
+          instances:
+            finance-operation-history-graphql[0]:
+              uri: http://localhost:10006
+  graphql:
+    path: /api/finance/operation-history
+    graphiql:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/home-garden?currentSchema=finance-operation-history
+    username: dev_user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  flyway:
+    create-schemas: true
