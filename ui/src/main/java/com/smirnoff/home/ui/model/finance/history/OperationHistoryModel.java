@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -24,4 +25,5 @@ public class OperationHistoryModel {
     private final BigDecimal destinationAmount;
 
     private final String description;
+    private final OffsetDateTime createdDate;
 }

@@ -55,7 +55,6 @@ public class OperationHistoryEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @CreatedDate
     @Column(name = "CREATED_DATE", nullable = false)
     private LocalDateTime createdDate;
 
