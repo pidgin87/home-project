@@ -1,5 +1,5 @@
 #!/bin/bash
 
-java -Xmx256M -Xms256M \
+java -Duser.timezone="Pacific/Auckland" \
      -Dspring.profiles.active=production \
      -jar /application/runner.jar

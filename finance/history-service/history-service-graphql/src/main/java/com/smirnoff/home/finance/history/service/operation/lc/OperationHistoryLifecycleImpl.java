@@ -5,6 +5,7 @@ import com.smirnoff.home.platform.session.client.service.SessionClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 @Component
@@ -15,6 +16,7 @@ public class OperationHistoryLifecycleImpl implements OperationHistoryLifecycle 
 
     @Override
     public void create(OperationHistoryEntity operation) {
+        operation.setCreatedDate(LocalDateTime.now());
         operation.setCompanyId(sessionClientService.getCompanyId());
     }
 }

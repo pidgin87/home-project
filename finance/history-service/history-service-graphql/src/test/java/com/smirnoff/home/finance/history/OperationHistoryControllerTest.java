@@ -20,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -98,6 +99,7 @@ public class OperationHistoryControllerTest {
         entity.setDestinationAmount(BigDecimal.TEN);
         entity.setDestinationCurrency("id:DestinationCurrency");
         entity.setDescription("Description");
+        entity.setCreatedDate(LocalDateTime.now());
 
         operationHistoryRepository.save(entity);
     }
