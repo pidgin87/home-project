@@ -36,6 +36,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     runtimeOnly("org.postgresql:postgresql")
+
+    implementation("net.logstash.logback:logstash-logback-encoder:${property("logstashLogbackEncoder.version")}")
 }
 
 dependencyManagement {

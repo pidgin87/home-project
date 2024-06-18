@@ -70,13 +70,29 @@ public class EditOperationHistoryDialog extends Dialog {
         this.productService = productService;
         this.fundService = fundService;
 
-        setDraggable(true);
+        setDraggable(false);
         setResizable(false);
-        setCloseOnEsc(true);
         setHeaderTitle(title);
 
+        VerticalLayout mainForm = new VerticalLayout();
+        mainForm.setSpacing(true);
+        add(mainForm);
+
+        HorizontalLayout additionalInfoLayout = new HorizontalLayout();
+
+        createdDateTimePicker = new DateTimePicker();
+        createdDateTimePicker.setValue(LocalDateTime.now());
+        additionalInfoLayout.add(createdDateTimePicker);
+
+        mainForm.add(additionalInfoLayout);
+
         HorizontalLayout verticalLayout = new HorizontalLayout();
+        verticalLayout.setPadding(false);
+        verticalLayout.setMargin(false);
+
         VerticalLayout sourceComponent = prepareSourceComponent();
+        sourceComponent.setPadding(false);
+        sourceComponent.setSpacing(false);
         sourceComponent.setWidth(48, Unit.PERCENTAGE);
         verticalLayout.add(sourceComponent);
 
@@ -85,21 +101,19 @@ public class EditOperationHistoryDialog extends Dialog {
         verticalLayout.add(divider);
 
         VerticalLayout destinationComponent = prepareDestinationComponent();
-        sourceComponent.setWidth(48, Unit.PERCENTAGE);
+        destinationComponent.setPadding(false);
+        destinationComponent.setSpacing(false);
+        destinationComponent.setWidth(48, Unit.PERCENTAGE);
         verticalLayout.add(destinationComponent);
 
-        add(verticalLayout);
+        mainForm.add(verticalLayout);
 
         descriptionTextField = new TextArea();
         descriptionTextField.setMaxLength(255);
         descriptionTextField.setWidthFull();
-        descriptionTextField.setLabel("Description");
+        descriptionTextField.setPlaceholder("Description");
         descriptionTextField.setClearButtonVisible(true);
-        add(descriptionTextField);
-
-        createdDateTimePicker = new DateTimePicker("Creation date/time");
-        createdDateTimePicker.setValue(LocalDateTime.now());
-        add(createdDateTimePicker);
+        mainForm.add(descriptionTextField);
 
         if (nonNull(this.operationHistoryModel)) {
             initValue(this.operationHistoryModel);
