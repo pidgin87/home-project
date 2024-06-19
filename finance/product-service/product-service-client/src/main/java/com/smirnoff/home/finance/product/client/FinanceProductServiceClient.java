@@ -13,6 +13,9 @@ public interface FinanceProductServiceClient {
     GraphQlResponse<GetProductModelList> getProducts(@RequestBody GraphQlRequest request);
 
     @RequestMapping(method = RequestMethod.POST)
+    GraphQlResponse<GetProductByIdsModelList> getProductsByIds(@RequestBody GraphQlRequest request);
+
+    @RequestMapping(method = RequestMethod.POST)
     void createProduct(@RequestBody GraphQlRequest build);
 
     @RequestMapping(method = RequestMethod.POST)

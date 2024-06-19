@@ -1,10 +1,11 @@
 package com.smirnoff.home.finance.history.adapter.product;
 
 import com.smirnoff.home.finance.product.client.FinanceProductServiceClient;
-import com.smirnoff.home.finance.product.client.GetProductModelList;
+import com.smirnoff.home.finance.product.client.GetProductByIdsModelList;
 import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
+import com.smirnoff.home.graphql.request.GraphQlVariables;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +22,8 @@ public class ProductAdapterImpl implements ProductAdapter {
 
     //language=graphql
     private static final String GRAPHQL_REQUESTS = """
-            query GetProductList {
-                getProductListByIds(productIds: [String]) {
+            query GetProductListByIds($productIds: [String]) {
+                getProductListByIds(productIds: $productIds) {
                     id
                     name
                     type
@@ -32,15 +33,18 @@ public class ProductAdapterImpl implements ProductAdapter {
 
     @Override
     public List<ProductModel> getByIds(List<String> productList) {
-        GraphQlResponse<GetProductModelList> products = financeProductServiceClient.getProducts(GraphQlRequest.builder()
+        GraphQlResponse<GetProductByIdsModelList> products = financeProductServiceClient.getProductsByIds(GraphQlRequest.builder()
                 .query(GRAPHQL_REQUESTS)
-                .operationName("GetProduct")
+                .operationName("GetProductListByIds")
+                .variables(new GraphQlVariables()
+                        .addObject("productIds", productList))
                 .build());
 
-        if (isNull(products.getData())) {
+        GetProductByIdsModelList productsData = products.getData();
+        if (isNull(productsData)) {
             return Collections.emptyList();
         }
 
-        return products.getData().getProductList();
+        return productsData.getProductListByIds();
     }
 }
