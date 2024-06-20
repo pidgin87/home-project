@@ -20,6 +20,7 @@ dependencies {
 
     implementation(project(":platform:dictionary-service:dictionary-service-dto"))
     implementation(project(":finance:product-service:product-service-dto"))
+    implementation(project(":finance:fund-service:fund-service-dto"))
 }
 
 dependencyManagement {

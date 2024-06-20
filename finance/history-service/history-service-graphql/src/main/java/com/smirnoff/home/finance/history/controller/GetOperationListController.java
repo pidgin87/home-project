@@ -1,11 +1,13 @@
 package com.smirnoff.home.finance.history.controller;
 
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.finance.history.mapper.OperationHistoryMapper;
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.finance.history.persistance.entity.OperationHistoryEntity;
 import com.smirnoff.home.finance.history.service.currency.CurrencyExternalService;
 import com.smirnoff.home.finance.history.service.operation.OperationHistoryService;
-import com.smirnoff.home.finance.history.service.service.ProductService;
+import com.smirnoff.home.finance.history.service.service.fund.FundService;
+import com.smirnoff.home.finance.history.service.service.product.ProductService;
 import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ public class GetOperationListController {
     private final OperationHistoryMapper operationHistoryMapper;
     private final CurrencyExternalService currencyExternalService;
     private final ProductService productService;
+    private final FundService fundService;
 
     @QueryMapping
     public List<OperationHistoryDto> getOperationList() {
@@ -57,6 +60,26 @@ public class GetOperationListController {
         return result;
     }
 
+    @BatchMapping(typeName = "Operation", field = "sourceFund")
+    public Map<OperationHistoryDto, Fund> sourceFund(List<OperationHistoryDto> operations) {
+        List<String> fundIds = operations.stream()
+                .filter(operation -> Objects.nonNull(operation.getSourceFund()))
+                .map(operation -> operation.getSourceFund().id())
+                .toList();
+
+        Map<String, Fund> collect = fundService
+                .getByIds(fundIds).stream()
+                .collect(Collectors.toMap(Fund::id, Function.identity()));
+
+        Map<OperationHistoryDto, Fund> result = new HashMap<>();
+        for (OperationHistoryDto operation : operations) {
+            String fundId = operation.getSourceFund().id();
+            result.put(operation, collect.get(fundId));
+        }
+
+        return result;
+    }
+
     @BatchMapping(typeName = "Operation", field = "destinationProduct")
     public Map<OperationHistoryDto, ProductModel> destinationProduct(List<OperationHistoryDto> operations) {
         List<String> productList = operations.stream()
@@ -72,6 +95,26 @@ public class GetOperationListController {
         for (OperationHistoryDto operation : operations) {
             String destinationProductId = operation.getDestinationProduct().id();
             result.put(operation, collect.get(destinationProductId));
+        }
+
+        return result;
+    }
+
+    @BatchMapping(typeName = "Operation", field = "destinationFund")
+    public Map<OperationHistoryDto, Fund> destinationFund(List<OperationHistoryDto> operations) {
+        List<String> fundIds = operations.stream()
+                .filter(operation -> Objects.nonNull(operation.getDestinationFund()))
+                .map(operation -> operation.getDestinationFund().id())
+                .toList();
+
+        Map<String, Fund> collect = fundService
+                .getByIds(fundIds).stream()
+                .collect(Collectors.toMap(Fund::id, Function.identity()));
+
+        Map<OperationHistoryDto, Fund> result = new HashMap<>();
+        for (OperationHistoryDto operation : operations) {
+            String fundId = operation.getDestinationFund().id();
+            result.put(operation, collect.get(fundId));
         }
 
         return result;

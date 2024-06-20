@@ -65,8 +65,16 @@ public class OperationHistoryServiceImpl implements OperationHistoryService {
                         id
                         name
                     }
+                    sourceFund {
+                        id
+                        name
+                    }
                     destinationAmount
                     destinationProduct {
+                        id
+                        name
+                    }
+                    destinationFund {
                         id
                         name
                     }

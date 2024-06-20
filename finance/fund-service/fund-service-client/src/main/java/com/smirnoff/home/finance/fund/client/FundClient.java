@@ -1,5 +1,6 @@
 package com.smirnoff.home.finance.fund.client;
 
+import com.smirnoff.home.finance.fund.model.GetFundByIdsModelList;
 import com.smirnoff.home.finance.fund.model.GetFundModelList;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
@@ -13,6 +14,9 @@ public interface FundClient {
 
     @RequestMapping(method = RequestMethod.POST)
     GraphQlResponse<GetFundModelList> getFunds(@RequestBody GraphQlRequest request);
+
+    @RequestMapping(method = RequestMethod.POST)
+    GraphQlResponse<GetFundByIdsModelList> getFundsByIds(@RequestBody GraphQlRequest request);
 
     @RequestMapping(method = RequestMethod.POST)
     GraphQlResponse.VoidGraphQlResponse createFund(@RequestBody GraphQlRequest request);

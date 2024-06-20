@@ -25,10 +25,12 @@ type Operation {
     description: String
 
     sourceProduct: Product
+    sourceFund: Fund
     sourceAmount: Float
     sourceCurrency: Currency
 
     destinationProduct: Product
+    destinationFund: Fund
     destinationAmount: Float
     destinationCurrency: Currency
 
@@ -46,6 +48,11 @@ type Product {
     id: String
     name: String
     type: ProductType
+}
+
+type Fund {
+    id: String
+    name: String
 }
 
 enum ProductType {

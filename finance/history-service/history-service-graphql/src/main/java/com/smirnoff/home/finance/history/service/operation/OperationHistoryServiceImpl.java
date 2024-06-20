@@ -5,7 +5,6 @@ import com.smirnoff.home.finance.history.persistance.repository.OperationHistory
 import com.smirnoff.home.finance.history.service.balance.BalanceFundService;
 import com.smirnoff.home.finance.history.service.balance.BalanceProductService;
 import com.smirnoff.home.finance.history.service.operation.lc.OperationHistoryLifecycle;
-import com.smirnoff.home.finance.history.service.service.ProductService;
 import com.smirnoff.home.platform.session.client.service.SessionClientService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

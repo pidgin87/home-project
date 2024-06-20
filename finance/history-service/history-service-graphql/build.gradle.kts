@@ -27,6 +27,9 @@ dependencies {
     implementation(project(":finance:product-service:product-service-dto"))
     implementation(project(":finance:product-service:product-service-client"))
 
+    implementation(project(":finance:fund-service:fund-service-dto"))
+    implementation(project(":finance:fund-service:fund-service-client"))
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.graphql-java:graphql-java-extended-scalars:${property("graphqlJavaExtendedScalars.version")}")

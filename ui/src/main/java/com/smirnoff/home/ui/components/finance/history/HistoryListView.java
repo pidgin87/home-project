@@ -1,5 +1,6 @@
 package com.smirnoff.home.ui.components.finance.history;
 
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.ui.components.MainView;
@@ -42,7 +43,7 @@ import static java.util.Objects.nonNull;
 public class HistoryListView extends VerticalLayout implements CallbackDataProvider.FetchCallback<OperationHistoryDto, Void>,
         CallbackDataProvider.CountCallback<OperationHistoryDto, Void> {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     private final ApplicationContext applicationContext;
     private final OperationHistoryService operationHistoryService;
@@ -64,9 +65,9 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         add(menuBar);
 
         grid = new PaginatedGrid<>();
-        grid.addColumn(formatCreatedDate()).setHeader("Date");
-        grid.addComponentColumn(this::getAmountColumn).setHeader("Amount");
-        grid.addComponentColumn(this::getDescriptionColumn).setHeader("Description");
+        grid.addColumn(formatCreatedDate()).setWidth("20%").setHeader("Date");
+        grid.addComponentColumn(this::getAmountColumn).setWidth("30%").setHeader("Amount");
+        grid.addComponentColumn(this::getDescriptionColumn).setWidth("50%").setHeader("Description");
 
         grid.setDataProvider(new CallbackDataProvider(this, this));
 
@@ -116,25 +117,45 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
 
     private Component getDescriptionColumn(OperationHistoryDto operation) {
         ProductModel sourceProduct = operation.getSourceProduct();
+        Fund sourceFund = operation.getSourceFund();
         ProductModel destinationProduct = operation.getDestinationProduct();
+        Fund destinationFund = operation.getDestinationFund();
 
-        HorizontalLayout descriptionLayout = new HorizontalLayout();
-        if (operation.isSourceIsNotNull() && operation.isDestinationIsNotNull()) {
-            descriptionLayout.add(new Span("Transfer between: "));
-            descriptionLayout.add(createProductSpan(sourceProduct.name() + " -> " + destinationProduct.name()));
-        } else if (operation.isSourceIsNotNull()) {
-            descriptionLayout.add(new Span("From: "));
-            descriptionLayout.add(createProductSpan(sourceProduct.name()));
-        } else if (operation.isDestinationIsNotNull()) {
-            descriptionLayout.add(new Span("To: "));
-            descriptionLayout.add(createProductSpan(destinationProduct.name()));
+        VerticalLayout descriptionLayout = new VerticalLayout();
+        if (sourceProduct != null && sourceProduct.id() != null && destinationProduct != null && destinationProduct.id() != null) {
+            createDescription(descriptionLayout,
+                    sourceProduct.name() + " -> " + destinationProduct.name(),
+                    sourceFund.name() + " -> " + destinationFund.name());
+        } else if (sourceProduct != null && sourceFund.id() != null) {
+            createDescription(descriptionLayout, sourceProduct.name(), sourceFund.name());
+        } else if (destinationProduct != null && destinationProduct.id() != null) {
+            createDescription(descriptionLayout,
+                    destinationProduct.name(), destinationFund.name());
         }
         return descriptionLayout;
+    }
+
+    private static void createDescription(VerticalLayout descriptionLayout, String productText, String fundText) {
+        HorizontalLayout productLayout = new HorizontalLayout();
+        productLayout.add(new Span("Product: "));
+        productLayout.add(createProductSpan(productText));
+        descriptionLayout.add(productLayout);
+
+        HorizontalLayout fundLayout = new HorizontalLayout();
+        fundLayout.add(new Span("Fund: "));
+        fundLayout.add(createFundSpan(fundText));
+        descriptionLayout.add(fundLayout);
     }
 
     private static Span createProductSpan(String text) {
         Span productSpan = new Span(text);
         productSpan.setClassName("product-description");
+        return productSpan;
+    }
+
+    private static Span createFundSpan(String text) {
+        Span productSpan = new Span(text);
+        productSpan.setClassName("fund-description");
         return productSpan;
     }
 

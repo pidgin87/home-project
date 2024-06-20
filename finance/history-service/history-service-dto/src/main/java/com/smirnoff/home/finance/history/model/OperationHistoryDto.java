@@ -1,5 +1,6 @@
 package com.smirnoff.home.finance.history.model;
 
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.finance.product.model.ProductModel;
 import com.smirnoff.home.platform.dictionary.dto.currency.CurrencyModel;
 import lombok.Builder;
@@ -15,20 +16,15 @@ public class OperationHistoryDto {
     private String description;
 
     private ProductModel sourceProduct;
+    private Fund sourceFund;
     private BigDecimal sourceAmount;
     private CurrencyModel sourceCurrency;
 
     private ProductModel destinationProduct;
+    private Fund destinationFund;
     private BigDecimal destinationAmount;
     private CurrencyModel destinationCurrency;
 
     private OffsetDateTime createdDate;
 
-    public boolean isSourceIsNotNull() {
-        return sourceProduct != null && sourceProduct.isNotNull();
-    }
-
-    public boolean isDestinationIsNotNull() {
-        return destinationProduct != null && destinationProduct.isNotNull();
-    }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 public interface FundService {
     List<FundEntity> getAll();
 
+    List<FundEntity> getAll(List<String> fundIds);
+
     FundEntity create(String name);
 
     FundEntity update(String id, String name);

@@ -1,5 +1,6 @@
 package com.smirnoff.home.finance.history.mapper;
 
+import com.smirnoff.home.finance.fund.model.Fund;
 import com.smirnoff.home.finance.history.model.OperationHistoryDto;
 import com.smirnoff.home.finance.history.persistance.entity.OperationHistoryEntity;
 import com.smirnoff.home.finance.product.model.ProductModel;
@@ -25,6 +26,10 @@ public interface OperationHistoryMapper {
 
     default ProductModel mapProduct(String productId) {
         return new ProductModel(productId, null, null);
+    }
+
+    default Fund mapFund(String fundId) {
+        return new Fund(fundId, null);
     }
 
     default CurrencyModel mapCurrency(String currencyId) {

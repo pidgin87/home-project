@@ -5,7 +5,4 @@ public record ProductModel(
         String name,
         ProductTypeModel type) {
 
-    public boolean isNotNull() {
-        return id != null;
-    }
 }
