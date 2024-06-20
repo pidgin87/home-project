@@ -23,4 +23,12 @@ public class OperationHistoryDto {
     private CurrencyModel destinationCurrency;
 
     private OffsetDateTime createdDate;
+
+    public boolean isSourceIsNotNull() {
+        return sourceProduct != null && sourceProduct.isNotNull();
+    }
+
+    public boolean isDestinationIsNotNull() {
+        return destinationProduct != null && destinationProduct.isNotNull();
+    }
 }

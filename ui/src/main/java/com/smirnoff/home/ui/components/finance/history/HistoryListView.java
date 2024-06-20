@@ -66,7 +66,7 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         grid = new PaginatedGrid<>();
         grid.addColumn(formatCreatedDate()).setHeader("Date");
         grid.addComponentColumn(this::getAmountColumn).setHeader("Amount");
-        grid.addComponentColumn(this::getProductColumn).setHeader("Product");
+        grid.addComponentColumn(this::getDescriptionColumn).setHeader("Description");
 
         grid.setDataProvider(new CallbackDataProvider(this, this));
 
@@ -114,21 +114,28 @@ public class HistoryListView extends VerticalLayout implements CallbackDataProvi
         return span;
     }
 
-    private Component getProductColumn(OperationHistoryDto operation) {
+    private Component getDescriptionColumn(OperationHistoryDto operation) {
         ProductModel sourceProduct = operation.getSourceProduct();
         ProductModel destinationProduct = operation.getDestinationProduct();
 
-        Span span = new Span();
-        if (sourceProduct != null && destinationProduct != null) {
-            span.add(sourceProduct.name());
-            span.add(" -> ");
-            span.add(destinationProduct.name());
-        } else if (sourceProduct != null) {
-            span.add(sourceProduct.name());
-        } else if (destinationProduct != null) {
-            span.add(destinationProduct.name());
+        HorizontalLayout descriptionLayout = new HorizontalLayout();
+        if (operation.isSourceIsNotNull() && operation.isDestinationIsNotNull()) {
+            descriptionLayout.add(new Span("Transfer between: "));
+            descriptionLayout.add(createProductSpan(sourceProduct.name() + " -> " + destinationProduct.name()));
+        } else if (operation.isSourceIsNotNull()) {
+            descriptionLayout.add(new Span("From: "));
+            descriptionLayout.add(createProductSpan(sourceProduct.name()));
+        } else if (operation.isDestinationIsNotNull()) {
+            descriptionLayout.add(new Span("To: "));
+            descriptionLayout.add(createProductSpan(destinationProduct.name()));
         }
-        return span;
+        return descriptionLayout;
+    }
+
+    private static Span createProductSpan(String text) {
+        Span productSpan = new Span(text);
+        productSpan.setClassName("product-description");
+        return productSpan;
     }
 
     private Component prepareToolbar() {
