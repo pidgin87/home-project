@@ -24,6 +24,12 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
+    public List<FundEntity> getAll(List<String> fundIds) {
+        String companyId = sessionClientService.getCompanyId();
+        return fundRepository.findByCompanyIdAndIdInOrderByCreatedDateAsc(companyId, fundIds);
+    }
+
+    @Override
     public FundEntity create(String name) {
         FundEntity fund = fundLifecycle.create();
         fund.setName(name);

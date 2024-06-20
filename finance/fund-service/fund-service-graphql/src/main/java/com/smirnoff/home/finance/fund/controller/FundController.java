@@ -27,6 +27,13 @@ public class FundController {
         return fundMapper.map(funds);
     }
 
+    @QueryMapping
+    public List<Fund> getFundListByIds(@Argument List<String> fundIds) {
+        return fundMapper.map(
+                fundService.getAll(fundIds)
+        );
+    }
+
     @MutationMapping
     public Fund createFund(@Argument String name) {
         FundEntity fund = fundService.create(name);
