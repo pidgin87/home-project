@@ -1,4 +1,4 @@
-package com.smirnoff.home.finance.history.service.service;
+package com.smirnoff.home.finance.history.service.service.product;
 
 import com.smirnoff.home.finance.history.adapter.product.ProductAdapter;
 import com.smirnoff.home.finance.product.model.ProductModel;

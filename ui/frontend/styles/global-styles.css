@@ -14,6 +14,13 @@
 }
 
 .product-description {
+    align-content: center;
+    font-weight: 700;
+}
+
+.fund-description {
+    font-size: 80%;
+    align-content: center;
     font-weight: 700;
 }
 

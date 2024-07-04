@@ -15,7 +15,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableFeignClients(value = {
         "com.smirnoff.home.platform",
         "com.smirnoff.home.finance.history",
-        "com.smirnoff.home.finance.product"
+        "com.smirnoff.home.finance.product",
+        "com.smirnoff.home.finance.fund"
 })
 @ComponentScan(value = {
         "com.smirnoff.home.platform",
