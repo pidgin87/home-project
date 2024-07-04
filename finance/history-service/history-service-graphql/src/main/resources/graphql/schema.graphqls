@@ -1,5 +1,6 @@
 type Query {
     getOperationList: [Operation]
+    getBalanceByProductList(productIds: [String]): [ProductBalance]
 }
 
 type Mutation {
@@ -33,6 +34,12 @@ type Operation {
     destinationCurrency: Currency
 
     createdDate: DateTime
+}
+
+type ProductBalance {
+    productId: String
+    amount: Float
+    currency: Currency
 }
 
 type Currency {

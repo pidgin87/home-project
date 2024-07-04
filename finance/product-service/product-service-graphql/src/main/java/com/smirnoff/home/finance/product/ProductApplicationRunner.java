@@ -12,10 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaAuditing
 @ComponentScan(value = {
         "com.smirnoff.home.platform",
-        "com.smirnoff.home.finance.product"
+        "com.smirnoff.home.finance.product",
+        "com.smirnoff.home.finance.history",
 })
 @EnableFeignClients(value = {
-        "com.smirnoff.home.platform"
+        "com.smirnoff.home.platform",
+        "com.smirnoff.home.finance.history"
 })
 public class ProductApplicationRunner {
     public static void main(String[] args) {

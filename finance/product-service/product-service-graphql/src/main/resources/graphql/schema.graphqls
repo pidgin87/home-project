@@ -13,6 +13,19 @@ type Product {
     id: String
     name: String
     type: ProductType
+    amount: Amount
+}
+
+type Amount {
+    amount: Float
+    currency: Currency
+}
+
+type Currency {
+    id: String
+    iso: ProductType
+    name: String
+    symbol: String
 }
 
 enum ProductType {

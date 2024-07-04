@@ -1,6 +1,8 @@
 package com.smirnoff.home.finance.history.client;
 
 import com.smirnoff.home.finance.history.client.model.GetOperationHistoryDtoList;
+import com.smirnoff.home.finance.history.client.model.GetProductBalanceDtoList;
+import com.smirnoff.home.finance.history.model.ProductBalanceDto;
 import com.smirnoff.home.finance.history.model.VoidResponse;
 import com.smirnoff.home.graphql.request.GraphQlRequest;
 import com.smirnoff.home.graphql.request.GraphQlResponse;
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name = "finance-operation-history-graphql", path = "/api/finance/operation-history")
 public interface OperationHistoryClient {
+
+    @RequestMapping(method = RequestMethod.POST)
+    GraphQlResponse<GetProductBalanceDtoList> getBalanceByProductList(@RequestBody GraphQlRequest request);
+
     @RequestMapping(method = RequestMethod.POST)
     GraphQlResponse<VoidResponse> createOperation(@RequestBody GraphQlRequest request);
 

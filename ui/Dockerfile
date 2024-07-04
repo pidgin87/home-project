@@ -1,6 +1,10 @@
 FROM openjdk:22-bullseye
 
 EXPOSE 11100
+EXPOSE 5005
+
+ENV DEBUG=false
+
 WORKDIR /application
 
 COPY /docker/entrypoint.sh /application/entrypoint.sh
