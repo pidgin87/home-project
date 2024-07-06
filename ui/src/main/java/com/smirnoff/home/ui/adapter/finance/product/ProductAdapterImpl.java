@@ -18,27 +18,25 @@ public class ProductAdapterImpl implements ProductAdapter {
     private final FinanceProductServiceClient financeProductServiceClient;
 
     //language=graphql
-    private static final String GET_PRODUCT_REQUEST = """
+    private static final String REQUESTS = """
             query GetProductList {
                 getProductList {
                     id
                     name
                     type
+                    amount {
+                        amount
+                        currency {
+                            name
+                        }
+                    }
                 }
             }
-            """;
-
-    //language=graphql
-    private static final String CREATE_PRODUCT_REQUEST = """
             mutation CreateProduct($name: String, $type: String) {
                 createProduct(name: $name, type: $type) {
                     id
                 }
             }
-            """;
-
-    //language=graphql
-    private static final String DELETE_PRODUCT_REQUEST = """
             mutation DeleteFund($productId: String) {
                 deleteProduct(productId: $productId) {
                     result
@@ -49,7 +47,7 @@ public class ProductAdapterImpl implements ProductAdapter {
     @Override
     public List<ProductModel> getList() {
         GraphQlResponse<GetProductModelList> products = financeProductServiceClient.getProducts(GraphQlRequest.builder()
-                .query(GET_PRODUCT_REQUEST)
+                .query(REQUESTS)
                 .operationName("GetProductList")
                 .build()
         );
@@ -59,7 +57,7 @@ public class ProductAdapterImpl implements ProductAdapter {
     @Override
     public void create(String productName, ProductTypeModel productType) {
         financeProductServiceClient.createProduct(GraphQlRequest.builder()
-                .query(CREATE_PRODUCT_REQUEST)
+                .query(REQUESTS)
                 .operationName("CreateProduct")
                 .variables(new GraphQlVariables()
                         .addObject("name", productName)
@@ -72,7 +70,7 @@ public class ProductAdapterImpl implements ProductAdapter {
     @Override
     public void delete(ProductModel product) {
         financeProductServiceClient.deleteProduct(GraphQlRequest.builder()
-                .query(DELETE_PRODUCT_REQUEST)
+                .query(REQUESTS)
                 .operationName("DeleteFund")
                 .variables(new GraphQlVariables()
                         .addObject("productId", product.id()))

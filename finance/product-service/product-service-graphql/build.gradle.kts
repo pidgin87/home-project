@@ -16,8 +16,12 @@ configurations {
 dependencies {
     implementation(project(":module:eureka-client-extension"))
     implementation(project(":module:graphql-client-extension"))
+    implementation(project(":module:graphql-openfeigh-extension"))
 
     implementation(project(":finance:product-service:product-service-dto"))
+
+    implementation(project(":finance:history-service:history-service-dto"))
+    implementation(project(":finance:history-service:history-service-client"))
 
     implementation(project(":platform:session-service:session-service-client"))
 

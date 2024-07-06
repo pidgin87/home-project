@@ -25,7 +25,7 @@ public interface OperationHistoryMapper {
     OperationHistoryDto map(OperationHistoryEntity operation);
 
     default ProductModel mapProduct(String productId) {
-        return new ProductModel(productId, null, null);
+        return new ProductModel(productId, null, null, null);
     }
 
     default Fund mapFund(String fundId) {
