@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "com.smirnoff.home.finance.rate.dbm"
-version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {

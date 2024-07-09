@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "com.smirnoff.home.finance.rate.graphql"
-version = "0.0.1-SNAPSHOT"
 
 configurations {
     compileOnly {
