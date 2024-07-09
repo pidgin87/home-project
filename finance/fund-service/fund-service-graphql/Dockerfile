@@ -6,6 +6,6 @@ WORKDIR /application
 COPY /docker/entrypoint.sh /application/entrypoint.sh
 RUN chmod +x /application/entrypoint.sh
 
-COPY /build/libs/fund-service-graphql-0.0.1-SNAPSHOT.jar /application/runner.jar
+COPY /build/libs/runner.jar /application/runner.jar
 
 ENTRYPOINT ["./entrypoint.sh"]

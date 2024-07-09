@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "com.smirnoff.home.finance.fund.impl"
-version = "0.0.1-SNAPSHOT"
 
 configurations {
     compileOnly {
