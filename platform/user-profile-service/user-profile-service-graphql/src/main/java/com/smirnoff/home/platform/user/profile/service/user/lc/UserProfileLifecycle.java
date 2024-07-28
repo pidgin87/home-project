@@ -1,4 +1,4 @@
-package com.smirnoff.home.platform.user.profile.service.lc;
+package com.smirnoff.home.platform.user.profile.service.user.lc;
 
 import com.smirnoff.home.platform.user.profile.persistance.entity.UserProfileEntity;
 

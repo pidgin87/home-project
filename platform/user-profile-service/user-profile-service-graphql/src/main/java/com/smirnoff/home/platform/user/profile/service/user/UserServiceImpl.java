@@ -1,8 +1,8 @@
-package com.smirnoff.home.platform.user.profile.service;
+package com.smirnoff.home.platform.user.profile.service.user;
 
 import com.smirnoff.home.platform.user.profile.persistance.entity.UserProfileEntity;
 import com.smirnoff.home.platform.user.profile.persistance.repository.UserRepository;
-import com.smirnoff.home.platform.user.profile.service.lc.UserProfileLifecycle;
+import com.smirnoff.home.platform.user.profile.service.user.lc.UserProfileLifecycle;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

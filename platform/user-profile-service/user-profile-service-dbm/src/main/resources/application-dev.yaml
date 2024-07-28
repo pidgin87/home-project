@@ -1,10 +1,6 @@
 spring:
   application:
     name: platform-dictionary-service
-  graphql:
-    path: /api/platform/dictionary
-    graphiql:
-      enabled: true
   datasource:
     url: jdbc:postgresql://localhost:5432/home-garden?currentSchema=platform-user-profile-service
     username: dev_user

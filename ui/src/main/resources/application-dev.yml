@@ -6,9 +6,15 @@ logging:
     org:
       atmosphere : warn
 
+home-project:
+  http:
+    client:
+      feign:
+        enabled: true
+
 ui:
   oauth:
-    uri: /app/oauth2/authorization/google
+    uri: /oauth2/authorization/google
 
 spring:
   jpa:

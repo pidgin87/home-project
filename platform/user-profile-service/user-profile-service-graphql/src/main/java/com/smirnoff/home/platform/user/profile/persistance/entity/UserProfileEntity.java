@@ -12,25 +12,25 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name = "user_profile")
 @Getter
 @Setter
+@Entity
+@Table(name = "user_profile")
 public class UserProfileEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "ID", nullable = false)
-    String id;
+    private String id;
 
     @Column(name = "FIRSTNAME")
-    String firstName;
+    private String firstName;
 
     @Column(name = "LASTNAME")
-    String lastName;
+    private String lastName;
 
     @Column(name = "EMAIL", nullable = false)
-    String email;
+    private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "COMPANY_ID", referencedColumnName = "id")

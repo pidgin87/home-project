@@ -1,5 +1,6 @@
 package com.smirnoff.home.ui.components;
 
+import com.smirnoff.home.platform.session.model.UserRoleDto;
 import com.smirnoff.home.ui.components.finance.fund.FundListView;
 import com.smirnoff.home.ui.components.finance.history.HistoryListView;
 import com.smirnoff.home.ui.components.finance.product.ProductListView;
@@ -24,6 +25,11 @@ import com.vaadin.flow.server.VaadinServletRequest;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.smirnoff.home.platform.session.model.UserRoleDto.ADMIN;
+
 /**
  * The main view is a top-level placeholder for other views.
  */
@@ -33,10 +39,12 @@ public class MainView extends AppLayout {
     private H2 viewTitle;
 
     private static final String LOGOUT_SUCCESS_URL = "/login";
+    private final UserSessionService userSessionService;
 
     public MainView(UserSessionService userSessionService) {
+        this.userSessionService = userSessionService;
         setPrimarySection(Section.DRAWER);
-        addDrawerContent(userSessionService.getUser());
+        addDrawerContent();
         addHeaderContent();
     }
 
@@ -50,14 +58,7 @@ public class MainView extends AppLayout {
         addToNavbar(true, toggle, viewTitle);
     }
 
-    private void addDrawerContent(UserModel user) {
-//        H1 appName = new H1("Renwo");
-//        appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
-
-//        Header header = new Header(new Paragraph(appName));
-//        header.add();
-//        header.add(getLogoutButton());
-
+    private void addDrawerContent() {
         HorizontalLayout layout = new HorizontalLayout();
 
         // Configure styling for the header
@@ -67,7 +68,7 @@ public class MainView extends AppLayout {
         layout.setSpacing(false);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
 
-        layout.add(getUserHeader(user));
+        layout.add(getUserHeader());
 
         Scroller scroller = new Scroller(createNavigation());
         addToDrawer(layout, scroller, createFooter());
@@ -84,10 +85,11 @@ public class MainView extends AppLayout {
         return new Paragraph(logoutButton);
     }
 
-    private Component getUserHeader(UserModel user) {
+    private Component getUserHeader() {
         HorizontalLayout userInfo = new HorizontalLayout();
         userInfo.setAlignItems(FlexComponent.Alignment.CENTER);
 
+        UserModel user = this.userSessionService.getUser();
         Image userImage = new Image(user.picture(), "User Image");
         userImage.setClassName("avatar");
         userImage.setWidth(32, Unit.PIXELS);
@@ -115,7 +117,18 @@ public class MainView extends AppLayout {
     }
 
     private Footer createFooter() {
-        return new Footer();
+        List<Component> components = new ArrayList<>();
+
+        List<UserRoleDto> roles = userSessionService.getRoles();
+        if (roles.contains(ADMIN)) {
+            components.add(createAdminPanel());
+        }
+
+        return new Footer(components.toArray(new Component[0]));
+    }
+
+    private Component createAdminPanel() {
+        return null;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.smirnoff.home.platform.session.service.lc;
+package com.smirnoff.home.platform.session.service.session.lc;
 
 import com.smirnoff.home.platform.session.persistance.entity.SessionEntity;
 

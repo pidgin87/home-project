@@ -1,7 +1,6 @@
-package com.smirnoff.home.platform.user.profile.service;
+package com.smirnoff.home.platform.user.profile.service.user;
 
 import com.smirnoff.home.platform.user.profile.persistance.entity.UserProfileEntity;
-import org.dataloader.Try;
 
 import java.util.Optional;
 

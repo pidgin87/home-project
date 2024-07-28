@@ -20,8 +20,9 @@ public class UserProfileAdapterImpl implements UserProfileAdapter {
                 getUserById(userProfileId: $userProfileId) {
                     id
                     company {
-                        id                  
+                        id
                     }
+                    roles
                 }
             }
             """;
